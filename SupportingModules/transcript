@@ -1,0 +1,35 @@
+# //  ModelSim SE 10.3b May 29 2014 Linux 3.10.0-862.14.4.el7.x86_64
+# //
+# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
+# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
+# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //
+vsim -novopt work.test_sigma1
+# vsim 
+# Start time: 14:58:48 on Oct 29,2018
+# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+# Loading sv_std.std
+# Loading work.test_sigma1
+# Loading work.sigma1
+add wave  \
+sim:/test_sigma1/u1/clock \
+sim:/test_sigma1/u1/reset \
+sim:/test_sigma1/u1/word \
+sim:/test_sigma1/u1/sigma1_output \
+sim:/test_sigma1/u1/signal \
+sim:/test_sigma1/u1/next_sigma1_output \
+sim:/test_sigma1/u1/word_new \
+sim:/test_sigma1/u1/w_r1 \
+sim:/test_sigma1/u1/w_r2 \
+sim:/test_sigma1/u1/w_r3
+run
+run
+# ** Note: $finish    : test_sigma1.v(11)
+#    Time: 120 ns  Iteration: 0  Instance: /test_sigma1
+# 1
+# Break in Module test_sigma1 at test_sigma1.v line 11
+# End time: 15:01:49 on Oct 29,2018, Elapsed time: 0:03:01
+# Errors: 0, Warnings: 1
