@@ -3,7 +3,7 @@
 * NAME:  counter
 *
 * DESCRIPTION:
-*  downcounter with zero flag and synchronous clear
+*  downcounter with read_complete flag and synchronous clear
 *
 * NOTES:
 *
@@ -15,34 +15,32 @@
 
 /*======Declarations===============================*/
 
-module counter #(parameter DEC_COUNT = 1'b1)
+module counter #(parameter UP_COUNT = 1'b1, parameter MAX_MESSAGE_LENGTH = 55)
 		(
 		
 		/*-----------Inputs--------------------------------*/
 
-		input       clock,  /* clock */
-		input [6:0] in,  /* input initial count */
-		input       latch,  /* `latch input' */
-		input       dec,   /* decrement */
+		input       								clock,  /* clock */
+		input       								reset,  /* `reset input' */
+		input reg      							   	start,   /* start */
+		input reg  [clog2(MAX_MESSAGE_LENGTH) : 0] 	msg_length,
 
 		/*-----------Outputs--------------------------------*/
 
-		output wire zero  /* zero flag */
+		output reg [clog2(MAX_MESSAGE_LENGTH) : 0] 	read_address,  /* read_complete flag */
+		output wire read_complete  /* read_complete flag */
 		);
-
-
-/*----------------Nets and Registers----------------*/
-reg [3:0] value;       /* current count value */
 
 // Count Flip-flops with input multiplexor
 always@(posedge clock)
   begin  // begin-end not actually need here as there is only one statement
-    if (latch) value <= in;
-    else if (dec && !zero) value <= value - DEC_COUNT;  
+    if (reset) read_address <= 0;
+    else if (start && !read_complete) read_address <= read_address + UP_COUNT;
+	else read_address <= x;
   end
 
-// combinational logic for zero flag
-assign zero = ~|value;
+// combinational logic for read_complete flag
+assign read_complete = ~|(msg_length - read_address);
 
 endmodule /* counter */
 
