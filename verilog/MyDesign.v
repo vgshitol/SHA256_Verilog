@@ -68,11 +68,11 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 	reg next_dut__msg__enable;
 	reg [ $clog2(MAX_MESSAGE_LENGTH)-1:0]	next_dut__msg__address;
 	reg address_read_complete;
-	reg [439:0] message_vector;
+	reg [511:0] message_vector;
 	reg [$clog2(439): 0] msg_vec_msb_pnt;
 	reg [$clog2(439): 0] msg_vec_lsb_pnt;
 	reg [7:0] msg_vec[0:54];
-	integer vec_cnt;
+	integer cur_block, block_bit, length_bit;
  // `include "v564.vh"
 
     always @(xxx__dut__go or dut__msg__enable)
@@ -106,19 +106,26 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 	dut__msg__enable <= next_dut__msg__enable;
 	msg_vec[dut__msg__address] <= msg__dut__data;
 	address_read_complete <= (xxx__dut__msg_length-1 <= dut__msg__address) ? 1 : 0;	
+	//for(i = 0; i< xxx__dut__msg_length; i= i+1)
+
 	end
 end
 
 always @(address_read_complete)
+begin 
 message_vector = 0;
 if(address_read_complete) 
 begin
-for (i = 0 ; i < 8; i = i + 1)
-for (j = 0; j < xxx__dut__msg_length ; j = j+1)
-msg_vec[j][i] 
-end 
-/**
+for (cur_block = 0; cur_block < xxx__dut__msg_length ; cur_block = cur_block+1)
+for (block_bit = 0 ; block_bit < 8; block_bit = block_bit + 1)
+message_vector[511 - (block_bit + cur_block*8)] = msg_vec[cur_block][7 - block_bit];
 
+for (length_bit = 0; length_bit <  $clog2(MAX_MESSAGE_LENGTH); length_bit = length_bit+1)
+message_vector[length_bit] = xxx__dut__msg_length[length_bit];
+end 
+end
+
+/**
 always @(posedge clk)
 begin
 if(!address_read_complete && dut__msg__enable) 
@@ -130,6 +137,7 @@ if(!address_read_complete && dut__msg__enable)
 else message_vector[vec_cnt];
 end
 **/
+
  //  always @(address_read_complete)
 	
  
