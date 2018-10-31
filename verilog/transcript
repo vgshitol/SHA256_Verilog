@@ -7,29 +7,76 @@
 # //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
 # //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
 # //
+vlog -sv MyDesign.v
+# Model Technology ModelSim SE vlog 10.3b Compiler 2014.05 May 29 2014
+# Start time: 19:15:40 on Oct 31,2018
+# vlog -reportprogress 300 -sv MyDesign.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter
+# -- Compiling module msgEn
+# -- Compiling module msg512Block
+# 
+# Top level modules:
+# 	MyDesign
+# End time: 19:15:40 on Oct 31,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
 vsim -novopt work.tb_top
 # vsim 
-# Start time: 17:26:58 on Oct 30,2018
+# Start time: 19:15:44 on Oct 31,2018
 # ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
 # Loading sv_std.std
 # Loading work.tb_top
 # Loading work.sram
 # Loading work.MyDesign
-add wave sim:/tb_top/dut/*
+# ** Warning: (vsim-3015) MyDesign.v(75): [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#         Region: /tb_top/dut/u1
+# ** Warning: (vsim-3015) MyDesign.v(76): [PCDPC] - Port size (8) does not match connection size (1) for port 'msg_write'. The port definition is at: ../SupportingModules/msg512Block.sv(16).
+#         Region: /tb_top/dut/u2
+add wave  \
+sim:/tb_top/dut/OUTPUT_LENGTH \
+sim:/tb_top/dut/MAX_MESSAGE_LENGTH \
+sim:/tb_top/dut/NUMBER_OF_Ks \
+sim:/tb_top/dut/NUMBER_OF_Hs \
+sim:/tb_top/dut/SYMBOL_WIDTH \
+sim:/tb_top/dut/dut__xxx__finish \
+sim:/tb_top/dut/xxx__dut__go \
+sim:/tb_top/dut/xxx__dut__msg_length \
+sim:/tb_top/dut/dut__msg__address \
+sim:/tb_top/dut/dut__msg__enable \
+sim:/tb_top/dut/dut__msg__write \
+sim:/tb_top/dut/msg__dut__data \
+sim:/tb_top/dut/dut__kmem__address \
+sim:/tb_top/dut/dut__kmem__enable \
+sim:/tb_top/dut/dut__kmem__write \
+sim:/tb_top/dut/kmem__dut__data \
+sim:/tb_top/dut/dut__hmem__address \
+sim:/tb_top/dut/dut__hmem__enable \
+sim:/tb_top/dut/dut__hmem__write \
+sim:/tb_top/dut/hmem__dut__data \
+sim:/tb_top/dut/dut__dom__address \
+sim:/tb_top/dut/dut__dom__data \
+sim:/tb_top/dut/dut__dom__enable \
+sim:/tb_top/dut/dut__dom__write \
+sim:/tb_top/dut/clk \
+sim:/tb_top/dut/reset \
+sim:/tb_top/dut/address_read_complete \
+sim:/tb_top/dut/message_vector_complete \
+sim:/tb_top/dut/message_vector
 run
 # INFO::readmem : ./message.dat 
 # INFO::readmem : K.dat 
 # INFO::readmem : H.dat 
 # @315, go asserted
-# Causality operation skipped due to absence of debug database file
-add wave  \
-sim:/tb_top/dut/msg_vec
 restart
 # ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
 # Loading sv_std.std
 # Loading work.tb_top
 # Loading work.sram
 # Loading work.MyDesign
+# ** Warning: (vsim-3015) MyDesign.v(75): [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#         Region: /tb_top/dut/u1
+# ** Warning: (vsim-3015) MyDesign.v(76): [PCDPC] - Port size (8) does not match connection size (1) for port 'msg_write'. The port definition is at: ../SupportingModules/msg512Block.sv(16).
+#         Region: /tb_top/dut/u2
 run
 # INFO::readmem : ./message.dat 
 # INFO::readmem : K.dat 
@@ -37,22 +84,66 @@ run
 # @315, go asserted
 vlog -sv MyDesign.v
 # Model Technology ModelSim SE vlog 10.3b Compiler 2014.05 May 29 2014
-# Start time: 17:30:27 on Oct 30,2018
+# Start time: 19:17:56 on Oct 31,2018
 # vlog -reportprogress 300 -sv MyDesign.v 
 # -- Compiling module MyDesign
+# -- Compiling module counter
+# -- Compiling module msgEn
+# -- Compiling module msg512Block
 # 
 # Top level modules:
 # 	MyDesign
-# End time: 17:30:27 on Oct 30,2018, Elapsed time: 0:00:00
+# End time: 19:17:56 on Oct 31,2018, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-restart
+vsim -novopt work.tb_top
+# vsim 
+# Start time: 19:18:05 on Oct 31,2018
 # ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
 # Loading sv_std.std
 # Loading work.tb_top
 # Loading work.sram
 # Loading work.MyDesign
+# ** Warning: (vsim-3015) MyDesign.v(75): [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#         Region: /tb_top/dut/u1
+# ** Warning: (vsim-3015) MyDesign.v(76): [PCDPC] - Port size (8) does not match connection size (1) for port 'msg_write'. The port definition is at: ../SupportingModules/msg512Block.sv(16).
+#         Region: /tb_top/dut/u2
 run
 # INFO::readmem : ./message.dat 
 # INFO::readmem : K.dat 
 # INFO::readmem : H.dat 
 # @315, go asserted
+add wave  \
+sim:/tb_top/dut/OUTPUT_LENGTH \
+sim:/tb_top/dut/MAX_MESSAGE_LENGTH \
+sim:/tb_top/dut/NUMBER_OF_Ks \
+sim:/tb_top/dut/NUMBER_OF_Hs \
+sim:/tb_top/dut/SYMBOL_WIDTH \
+sim:/tb_top/dut/dut__xxx__finish \
+sim:/tb_top/dut/xxx__dut__go \
+sim:/tb_top/dut/xxx__dut__msg_length \
+sim:/tb_top/dut/dut__msg__address \
+sim:/tb_top/dut/dut__msg__enable \
+sim:/tb_top/dut/dut__msg__write \
+sim:/tb_top/dut/msg__dut__data \
+sim:/tb_top/dut/dut__kmem__address \
+sim:/tb_top/dut/dut__kmem__enable \
+sim:/tb_top/dut/dut__kmem__write \
+sim:/tb_top/dut/kmem__dut__data \
+sim:/tb_top/dut/dut__hmem__address \
+sim:/tb_top/dut/dut__hmem__enable \
+sim:/tb_top/dut/dut__hmem__write \
+sim:/tb_top/dut/hmem__dut__data \
+sim:/tb_top/dut/dut__dom__address \
+sim:/tb_top/dut/dut__dom__data \
+sim:/tb_top/dut/dut__dom__enable \
+sim:/tb_top/dut/dut__dom__write \
+sim:/tb_top/dut/clk \
+sim:/tb_top/dut/reset \
+sim:/tb_top/dut/address_read_complete \
+sim:/tb_top/dut/message_vector_complete \
+sim:/tb_top/dut/message_vector
+run
+# Causality operation skipped due to absence of debug database file
+add dataflow /tb_top/dut/u2/msg_data /tb_top/dut/u2/address_read_complete /tb_top/dut/u2/prev_message_vector /tb_top/dut/u2/msg_address /tb_top/dut/u2/reset /tb_top/dut/u2/clock /tb_top/dut/u2/msg_write /tb_top/dut/u2/message_vector_complete /tb_top/dut/u2/message_vector /tb_top/dut/u2/length_bit /tb_top/dut/u2/block_bit
+# End time: 19:20:28 on Oct 31,2018, Elapsed time: 0:02:23
+# Errors: 0, Warnings: 4

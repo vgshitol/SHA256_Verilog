@@ -10,31 +10,34 @@ cModel Technology
 Z0 d/afs/unity.ncsu.edu/users/v/vgshitol/Downloads/SHA256/verilog
 vMyDesign
 Z1 DXx6 sv_std 3 std 0 22 <EOTafDcUY:cQeO^ICn]m3
-!s110 1540935027
+!s110 1541027876
 !i10b 1
-!s100 PjPOe@F;kg@KEU[TM>@G:1
-I4n2S6>Qz=QT3OZT>7^kXB3
+!s100 bUKccOZXEg:3I1n?6fHSV1
+IbQf4HVg<bjR8DRZIjJ:aR1
 Z2 V`JN@9S9cnhjKRR_L]QIcM3
 !s105 MyDesign_v_unit
 S1
 R0
-w1540935000
+w1541027851
 8MyDesign.v
 FMyDesign.v
+F../SupportingModules/counter.v
+F../SupportingModules/msgEn.sv
+F../SupportingModules/msg512Block.sv
 L0 8
 Z3 OE;L;10.3b;59
 r1
 !s85 0
 31
-!s108 1540935027.178028
-!s107 MyDesign.v|
+!s108 1541027876.849051
+!s107 ../SupportingModules/msg512Block.sv|../SupportingModules/msgEn.sv|../SupportingModules/counter.v|MyDesign.v|
 !s90 -reportprogress|300|-sv|MyDesign.v|
 !i113 1
 o-sv
 n@my@design
 vsram
 R1
-!s110 1540934803
+!s110 1541027713
 !i10b 1
 !s100 f5FDgiY94AT2XG1@e_:4@0
 IM6U^F0fWb9QOh8lnJhdzk0
@@ -50,14 +53,14 @@ R3
 r1
 !s85 0
 31
-!s108 1540934803.433345
+!s108 1541027713.282865
 !s107 sram.v|
 !s90 -sv|sram.v|
 !i113 1
 o-sv
 vtb_top
 R1
-!s110 1540934805
+!s110 1541027709
 !i10b 1
 !s100 dzbgbd=0A3`5Rgf=::@KU0
 IHmDTHI8C4FQkBjTRlUeBU2
@@ -73,7 +76,7 @@ R3
 r1
 !s85 0
 31
-!s108 1540934805.480024
+!s108 1541027709.617927
 !s107 ece564_project_tb_top.v|
 !s90 -sv|ece564_project_tb_top.v|
 !i113 1
