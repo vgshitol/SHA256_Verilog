@@ -17,32 +17,17 @@ module w64 #(parameter W_LENGTH = 64
     output reg [2095:0]                     w_vector
 );
 
-integer block_bit;
-    reg w_r7;
+    wire w_16_complete;
 
-always @(posedge clock)
-    begin
-        if(reset || !enable) begin
-            w_vector = 0;
-            w_vector_complete <= 0;
-        end
-        else begin
-	        if(w_vector_index == 0) w_vector <= 0;
-	        else w_vector <= prev_w_vector;
-            
-	        if(!w_index_complete && w_vector_index < 16)
-                for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                    w_vector[block_bit + w_vector_index*32] <= message_vector[511-32 + block_bit - w_vector_index*32];
+    wire [2095:0]                     intermediate_w_vector;
 
-            else if(!w_index_complete && w_vector_index >= 16)
-            begin
-                for (block_bit = 0 ; block_bit < 8; block_bit = block_bit + 1)
-                w_vector[block_bit + w_vector_index*8] <= message_vector[504 + block_bit - w_vector_index*8];
-            end
+w64_16 u0(.clock(clk), .reset(reset), .enable(enable), .w_index_complete(w_index_complete),
+        .w_vector_index(w_vector_index), .message_vector(message_vector),
+        .prev_w_vector(prev_w_vector) , .w_16_complete(w_16_complete), .w_vector(intermediate_w_vector));
 
-            if(w_index_complete) w_vector_complete <= 1;
-        end
-    end
+    w64_1663 u0(.clock(clk), .reset(reset), .enable(w_16_complete), .w_index_complete(w_index_complete),
+        .w_vector_index(w_vector_index), .prev_w_vector(intermediate_w_vector) , .w_vector_complete(w_vector_complete),
+        .w_vector(w_vector));
 
-    asssign w_r7 = 
+
 endmodule

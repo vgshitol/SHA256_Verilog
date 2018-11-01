@@ -8,26 +8,25 @@ module w64_1663 #(parameter W_LENGTH = 64
     input  reg                              enable, /* Previous Enable to decide what to do for the next enable*/
     input  reg                              w_index_complete,
     input  reg [ $clog2(W_LENGTH):0]        w_vector_index,
-    input  reg [511:0]                      message_vector,
     input  reg [2095:0]                     prev_w_vector,
 
     /*-----------Outputs--------------------------------*/
 
-    output reg                              w_16_complete,  /* message formation complete flag */
+    output reg                              w_vector_complete,  /* message formation complete flag */
     output reg [2095:0]                     w_vector
 );
 
     integer block_bit;
-    wire [31:0] s0w_r1;
-    wire [31:0] s0w_r2;
-    wire [31:0] s0w_r3;
+    reg  [31:0] s0w_r1;
+    reg  [31:0] s0w_r2;
+    reg  [31:0] s0w_r3;
     reg  [31:0] s0word;
     reg  [63:0] double_s0word;
     reg  [31:0] sigma0_s0word;
     
-    wire [31:0] s1w_r1;
-    wire [31:0] s1w_r2;
-    wire [31:0] s1w_r3;
+    reg  [31:0] s1w_r1;
+    reg  [31:0] s1w_r2;
+    reg  [31:0] s1w_r3;
     reg  [31:0] s1word;
     reg  [63:0] double_s1word;
     reg  [31:0] sigma1_s1word;
@@ -38,20 +37,17 @@ module w64_1663 #(parameter W_LENGTH = 64
 
     always @(posedge clock)
         begin
-            if(reset || !enable) begin
-                w_vector = 0;
-                w_16_complete <= 0;
-            end
+            w_vector <= prev_w_vector;
+            if(reset || !enable) w_16_complete <= 0;
             else begin
-                if(w_vector_index == 0) w_vector <= 0;
-                else w_vector <= prev_w_vector;
-
                 if(enable && !w_index_complete)
                     begin
                         for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                             w_vector[block_bit + w_vector_index*32] <= new_word[block_bit];
                     end
             end
+
+            w_vector_complete <= ~|(64 - w_vector_index);
         end
 
     always @(*)
