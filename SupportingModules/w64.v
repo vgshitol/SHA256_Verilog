@@ -21,11 +21,14 @@ module w64 #(parameter W_LENGTH = 64
 
     wire [2095:0]                     intermediate_w_vector;
 
+    `include "w64_16.sv"
+    `include "w64_1663.v"
+
 w64_16 u0(.clock(clk), .reset(reset), .enable(enable), .w_index_complete(w_index_complete),
         .w_vector_index(w_vector_index), .message_vector(message_vector),
         .prev_w_vector(prev_w_vector) , .w_16_complete(w_16_complete), .w_vector(intermediate_w_vector));
 
-    w64_1663 u0(.clock(clk), .reset(reset), .enable(w_16_complete), .w_index_complete(w_index_complete),
+    w64_1663 u1(.clock(clk), .reset(reset), .enable(w_16_complete), .w_index_complete(w_index_complete),
         .w_vector_index(w_vector_index), .prev_w_vector(intermediate_w_vector) , .w_vector_complete(w_vector_complete),
         .w_vector(w_vector));
 

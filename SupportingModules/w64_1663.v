@@ -38,7 +38,7 @@ module w64_1663 #(parameter W_LENGTH = 64
     always @(posedge clock)
         begin
             w_vector <= prev_w_vector;
-            if(reset || !enable) w_16_complete <= 0;
+            if(reset || !enable) w_vector_complete <= 0;
             else begin
                 if(enable && !w_index_complete)
                     begin

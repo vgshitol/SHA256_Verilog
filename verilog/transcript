@@ -1,43 +1,87 @@
-# //  ModelSim SE 10.3b May 29 2014 Linux 3.10.0-862.14.4.el7.x86_64
+# //  ModelSim SE-64 10.7c Aug 17 2018Linux 3.10.0-862.14.4.el7.x86_64
 # //
-# //  Copyright 1991-2014 Mentor Graphics Corporation
+# //  Copyright 1991-2018 Mentor Graphics Corporation
 # //  All Rights Reserved.
 # //
-# //  THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION
-# //  WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS
-# //  LICENSORS AND IS SUBJECT TO LICENSE TERMS.
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
 # //
+vsim -novopt work.tb_top
+# vsim -novopt work.tb_top 
+# Start time: 19:21:35 on Nov 01,2018
+# ** Error (suppressible): (vsim-12110) All optimizations are disabled because the -novopt option is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features, please see the User's Manual section on Preserving Object Visibility with vopt. -novopt option is now deprecated and will be removed in future releases.
+# Error loading design
+# End time: 19:21:36 on Nov 01,2018, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+vsim -voptargs=+acc work.tb_top
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 19:21:58 on Nov 01,2018
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Error: ../SupportingModules/w64.v(24): Module 'w64_16' is not defined.
+# ** Error: ../SupportingModules/w64.v(28): Module 'w64_1663' is not defined.
+# Optimization failed
+# Error loading design
+# End time: 19:22:02 on Nov 01,2018, Elapsed time: 0:00:04
+# Errors: 2, Warnings: 0
+vsim -voptargs=+acc work.tb_top
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 19:25:14 on Nov 01,2018
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Error: ../SupportingModules/w64.v(24): Module 'w64_16' is not defined.
+# ** Error: ../SupportingModules/w64.v(28): Module 'w64_1663' is not defined.
+# Optimization failed
+# Error loading design
+# End time: 19:25:18 on Nov 01,2018, Elapsed time: 0:00:04
+# Errors: 2, Warnings: 0
 vlog -sv MyDesign.v
-# Model Technology ModelSim SE vlog 10.3b Compiler 2014.05 May 29 2014
-# Start time: 19:15:40 on Oct 31,2018
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 19:26:02 on Nov 01,2018
 # vlog -reportprogress 300 -sv MyDesign.v 
 # -- Compiling module MyDesign
 # -- Compiling module counter
 # -- Compiling module msgEn
 # -- Compiling module msg512Block
+# -- Compiling module w64
+# -- Compiling module w64_16
+# -- Compiling module w64_1663
 # 
 # Top level modules:
 # 	MyDesign
-# End time: 19:15:40 on Oct 31,2018, Elapsed time: 0:00:00
+# End time: 19:26:05 on Nov 01,2018, Elapsed time: 0:00:03
 # Errors: 0, Warnings: 0
-vsim -novopt work.tb_top
-# vsim 
-# Start time: 19:15:44 on Oct 31,2018
-# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
+vsim -voptargs=+acc work.tb_top
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 19:26:12 on Nov 01,2018
+# ** Note: (vsim-3812) Design is being optimized...
 # Loading sv_std.std
-# Loading work.tb_top
-# Loading work.sram
-# Loading work.MyDesign
-# ** Warning: (vsim-3015) MyDesign.v(75): [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
-#         Region: /tb_top/dut/u1
-# ** Warning: (vsim-3015) MyDesign.v(76): [PCDPC] - Port size (8) does not match connection size (1) for port 'msg_write'. The port definition is at: ../SupportingModules/msg512Block.sv(16).
-#         Region: /tb_top/dut/u2
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u1 File: MyDesign.v Line: 83
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'msg_write'. The port definition is at: ../SupportingModules/msg512Block.sv(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u2 File: MyDesign.v Line: 84
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (32) for port 'msg_length'. The port definition is at: ../SupportingModules/counter.v(26).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u4 File: MyDesign.v Line: 88
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u4 File: MyDesign.v Line: 88
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'w_vector_index'. The port definition is at: ../SupportingModules/w64.v(10).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u5 File: MyDesign.v Line: 89
 add wave  \
 sim:/tb_top/dut/OUTPUT_LENGTH \
 sim:/tb_top/dut/MAX_MESSAGE_LENGTH \
 sim:/tb_top/dut/NUMBER_OF_Ks \
 sim:/tb_top/dut/NUMBER_OF_Hs \
 sim:/tb_top/dut/SYMBOL_WIDTH \
+sim:/tb_top/dut/W_LENGTH \
 sim:/tb_top/dut/dut__xxx__finish \
 sim:/tb_top/dut/xxx__dut__go \
 sim:/tb_top/dut/xxx__dut__msg_length \
@@ -61,89 +105,19 @@ sim:/tb_top/dut/clk \
 sim:/tb_top/dut/reset \
 sim:/tb_top/dut/address_read_complete \
 sim:/tb_top/dut/message_vector_complete \
-sim:/tb_top/dut/message_vector
+sim:/tb_top/dut/w_vector_enable \
+sim:/tb_top/dut/message_vector \
+sim:/tb_top/dut/w_vector_index \
+sim:/tb_top/dut/w_vector_index_complete \
+sim:/tb_top/dut/w_vector \
+sim:/tb_top/dut/w_vector_complete
 run
 # INFO::readmem : ./message.dat 
 # INFO::readmem : K.dat 
 # INFO::readmem : H.dat 
 # @315, go asserted
-restart
-# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
-# Loading sv_std.std
-# Loading work.tb_top
-# Loading work.sram
-# Loading work.MyDesign
-# ** Warning: (vsim-3015) MyDesign.v(75): [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
-#         Region: /tb_top/dut/u1
-# ** Warning: (vsim-3015) MyDesign.v(76): [PCDPC] - Port size (8) does not match connection size (1) for port 'msg_write'. The port definition is at: ../SupportingModules/msg512Block.sv(16).
-#         Region: /tb_top/dut/u2
-run
-# INFO::readmem : ./message.dat 
-# INFO::readmem : K.dat 
-# INFO::readmem : H.dat 
-# @315, go asserted
-vlog -sv MyDesign.v
-# Model Technology ModelSim SE vlog 10.3b Compiler 2014.05 May 29 2014
-# Start time: 19:17:56 on Oct 31,2018
-# vlog -reportprogress 300 -sv MyDesign.v 
-# -- Compiling module MyDesign
-# -- Compiling module counter
-# -- Compiling module msgEn
-# -- Compiling module msg512Block
-# 
-# Top level modules:
-# 	MyDesign
-# End time: 19:17:56 on Oct 31,2018, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-vsim -novopt work.tb_top
-# vsim 
-# Start time: 19:18:05 on Oct 31,2018
-# ** Warning: (vsim-8891) All optimizations are turned off because the -novopt switch is in effect. This will cause your simulation to run very slowly. If you are using this switch to preserve visibility for Debug or PLI features please see the User's Manual section on Preserving Object Visibility with vopt.
-# Loading sv_std.std
-# Loading work.tb_top
-# Loading work.sram
-# Loading work.MyDesign
-# ** Warning: (vsim-3015) MyDesign.v(75): [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
-#         Region: /tb_top/dut/u1
-# ** Warning: (vsim-3015) MyDesign.v(76): [PCDPC] - Port size (8) does not match connection size (1) for port 'msg_write'. The port definition is at: ../SupportingModules/msg512Block.sv(16).
-#         Region: /tb_top/dut/u2
-run
-# INFO::readmem : ./message.dat 
-# INFO::readmem : K.dat 
-# INFO::readmem : H.dat 
-# @315, go asserted
-add wave  \
-sim:/tb_top/dut/OUTPUT_LENGTH \
-sim:/tb_top/dut/MAX_MESSAGE_LENGTH \
-sim:/tb_top/dut/NUMBER_OF_Ks \
-sim:/tb_top/dut/NUMBER_OF_Hs \
-sim:/tb_top/dut/SYMBOL_WIDTH \
-sim:/tb_top/dut/dut__xxx__finish \
-sim:/tb_top/dut/xxx__dut__go \
-sim:/tb_top/dut/xxx__dut__msg_length \
-sim:/tb_top/dut/dut__msg__address \
-sim:/tb_top/dut/dut__msg__enable \
-sim:/tb_top/dut/dut__msg__write \
-sim:/tb_top/dut/msg__dut__data \
-sim:/tb_top/dut/dut__kmem__address \
-sim:/tb_top/dut/dut__kmem__enable \
-sim:/tb_top/dut/dut__kmem__write \
-sim:/tb_top/dut/kmem__dut__data \
-sim:/tb_top/dut/dut__hmem__address \
-sim:/tb_top/dut/dut__hmem__enable \
-sim:/tb_top/dut/dut__hmem__write \
-sim:/tb_top/dut/hmem__dut__data \
-sim:/tb_top/dut/dut__dom__address \
-sim:/tb_top/dut/dut__dom__data \
-sim:/tb_top/dut/dut__dom__enable \
-sim:/tb_top/dut/dut__dom__write \
-sim:/tb_top/dut/clk \
-sim:/tb_top/dut/reset \
-sim:/tb_top/dut/address_read_complete \
-sim:/tb_top/dut/message_vector_complete \
-sim:/tb_top/dut/message_vector
-run
 # Causality operation skipped due to absence of debug database file
-add dataflow /tb_top/dut/u2/msg_data /tb_top/dut/u2/address_read_complete /tb_top/dut/u2/prev_message_vector /tb_top/dut/u2/msg_address /tb_top/dut/u2/reset /tb_top/dut/u2/clock /tb_top/dut/u2/msg_write /tb_top/dut/u2/message_vector_complete /tb_top/dut/u2/message_vector /tb_top/dut/u2/length_bit /tb_top/dut/u2/block_bit
-# End time: 19:20:28 on Oct 31,2018, Elapsed time: 0:02:23
-# Errors: 0, Warnings: 4
+run
+exit
+# End time: 19:38:22 on Nov 01,2018, Elapsed time: 0:12:10
+# Errors: 0, Warnings: 6
