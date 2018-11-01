@@ -23,7 +23,7 @@ module w64_16 #(parameter W_LENGTH = 64
         begin
             if(reset || !enable) begin
                 w_vector = 0;
-                w_vector_complete <= 0;
+                w_16_complete <= 0;
             end
             else begin
                 if(w_vector_index == 0) w_vector <= 0;

@@ -25,12 +25,12 @@ module w64_1663 #(parameter W_LENGTH = 64
     reg  [63:0] double_s0word;
     reg  [31:0] sigma0_s0word;
     
-    wire [31:0] s0w_r1;
-    wire [31:0] s0w_r2;
-    wire [31:0] s0w_r3;
-    reg  [31:0] s0word;
-    reg  [63:0] double_s0word;
-    reg  [31:0] sigma0_s0word;
+    wire [31:0] s1w_r1;
+    wire [31:0] s1w_r2;
+    wire [31:0] s1w_r3;
+    reg  [31:0] s1word;
+    reg  [63:0] double_s1word;
+    reg  [31:0] sigma1_s1word;
 
     reg  [31:0] word16;
     reg  [31:0] word7;
