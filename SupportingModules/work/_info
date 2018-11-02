@@ -42,6 +42,54 @@ r1
 !i113 0
 Z5 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R1
+vhash
+R2
+!s110 1541190067
+!i10b 1
+!s100 0X`m^IF<Ha_zoTWPFSHj61
+I6DRQR^g<l>BjiHYVMlghk3
+R3
+!s105 hash_v_unit
+S1
+R0
+w1541190055
+8hash.v
+Fhash.v
+L0 1
+R4
+r1
+!s85 0
+31
+!s108 1541190067.000000
+!s107 hash.v|
+!s90 -sv|hash.v|
+!i113 0
+R5
+R1
+vk_vector
+R2
+!s110 1541193353
+!i10b 1
+!s100 nRWi3T;VJcoOzMmWX^C<91
+IGa<HE6RUgJ]PQ7[c]^lOm0
+R3
+!s105 k_vector_v_unit
+S1
+R0
+w1541193346
+8k_vector.v
+Fk_vector.v
+L0 1
+R4
+r1
+!s85 0
+31
+!s108 1541193353.000000
+!s107 k_vector.v|
+!s90 -sv|k_vector.v|
+!i113 0
+R5
+R1
 vmsg512Block
 R2
 !s110 1541187555
