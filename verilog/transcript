@@ -1302,3 +1302,123 @@ run
 # INFO::readmem : H.dat 
 # @315, go asserted
 run
+vsim -voptargs=+acc work.tb_top
+# End time: 17:31:54 on Nov 02,2018, Elapsed time: 0:15:43
+# Errors: 0, Warnings: 10
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:31:54 on Nov 02,2018
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: MyDesign.v(114): (vopt-2685) [TFMPC] - Too few port connections for 'u11'.  Expected 11, found 10.
+# ** Warning: MyDesign.v(114): (vopt-2718) [TFMPC] - Missing connection for port 'cur_k_value'.
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u1 File: MyDesign.v Line: 81
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'msg_write'. The port definition is at: ../SupportingModules/msg512Block.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u2 File: MyDesign.v Line: 82
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (32) for port 'msg_length'. The port definition is at: ../SupportingModules/counter.v(26).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u4 File: MyDesign.v Line: 93
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u4 File: MyDesign.v Line: 93
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (32) for port 'msg_length'. The port definition is at: ../SupportingModules/counter.v(26).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u7 File: MyDesign.v Line: 103
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (3) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u7 File: MyDesign.v Line: 103
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'hash_write'. The port definition is at: ../SupportingModules/hash.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u8 File: MyDesign.v Line: 104
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (32) for port 'msg_length'. The port definition is at: ../SupportingModules/counter.v(26).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u10 File: MyDesign.v Line: 113
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u10 File: MyDesign.v Line: 113
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'k_write'. The port definition is at: ../SupportingModules/k_vector.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u11 File: MyDesign.v Line: 114
+add wave sim:/tb_top/dut/u11/*
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+vsim -voptargs=+acc work.tb_top
+# End time: 17:33:34 on Nov 02,2018, Elapsed time: 0:01:40
+# Errors: 0, Warnings: 12
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:33:34 on Nov 02,2018
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u1 File: MyDesign.v Line: 81
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'msg_write'. The port definition is at: ../SupportingModules/msg512Block.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u2 File: MyDesign.v Line: 82
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (32) for port 'msg_length'. The port definition is at: ../SupportingModules/counter.v(26).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u4 File: MyDesign.v Line: 93
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u4 File: MyDesign.v Line: 93
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (32) for port 'msg_length'. The port definition is at: ../SupportingModules/counter.v(26).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u7 File: MyDesign.v Line: 103
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (3) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u7 File: MyDesign.v Line: 103
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'hash_write'. The port definition is at: ../SupportingModules/hash.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u8 File: MyDesign.v Line: 104
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (32) for port 'msg_length'. The port definition is at: ../SupportingModules/counter.v(26).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u10 File: MyDesign.v Line: 113
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u10 File: MyDesign.v Line: 113
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'k_write'. The port definition is at: ../SupportingModules/k_vector.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u11 File: MyDesign.v Line: 114
+add wave sim:/tb_top/dut/u11/*
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+vsim -voptargs=+acc work.tb_top
+# End time: 17:35:15 on Nov 02,2018, Elapsed time: 0:01:41
+# Errors: 0, Warnings: 10
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:35:15 on Nov 02,2018
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u1 File: MyDesign.v Line: 81
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'msg_write'. The port definition is at: ../SupportingModules/msg512Block.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u2 File: MyDesign.v Line: 82
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (32) for port 'msg_length'. The port definition is at: ../SupportingModules/counter.v(26).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u4 File: MyDesign.v Line: 93
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u4 File: MyDesign.v Line: 93
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (32) for port 'msg_length'. The port definition is at: ../SupportingModules/counter.v(26).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u7 File: MyDesign.v Line: 103
+# ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (3) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u7 File: MyDesign.v Line: 103
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'hash_write'. The port definition is at: ../SupportingModules/hash.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u8 File: MyDesign.v Line: 104
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (32) for port 'msg_length'. The port definition is at: ../SupportingModules/counter.v(26).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u10 File: MyDesign.v Line: 113
+# ** Warning: (vsim-3015) [PCDPC] - Port size (7) does not match connection size (6) for port 'read_address'. The port definition is at: ../SupportingModules/counter.v(30).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u10 File: MyDesign.v Line: 113
+# ** Warning: (vsim-3015) [PCDPC] - Port size (8) does not match connection size (1) for port 'k_write'. The port definition is at: ../SupportingModules/k_vector.v(16).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/u11 File: MyDesign.v Line: 114
+add wave sim:/tb_top/dut/u11/*
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+run

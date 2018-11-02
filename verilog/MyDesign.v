@@ -107,11 +107,11 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 	reg k_address_complete;
 	reg [2047:0] kvector;
 	reg k_vector_complete;
-
+	reg [31:0] cur_k_value;
 /** Creating K Vector **/
 	msgEn u9(.clock(clk), .reset(reset), .start(hash_vector_complete), .enable(dut__kmem__enable));
 	counter #(.MAX_MESSAGE_LENGTH(NUMBER_OF_Ks)) u10(.clock(clk), .reset(reset), .start(dut__kmem__enable), .msg_length(NUMBER_OF_Ks), .read_address(dut__kmem__address), .read_complete(k_address_complete));
-	k_vector #(.K_LENGTH(NUMBER_OF_Ks)) u11(.clock(clk), .reset(reset), .enable(dut__kmem__enable), .address_read_complete(k_address_complete), .k_address(dut__kmem__address), .k_write(dut__kmem__write), .k_data(kmem__dut__data) , .prev_k_vector(kvector), .k_vector_complete(k_vector_complete), .k_vector(kvector));
+	k_vector #(.K_LENGTH(NUMBER_OF_Ks)) u11(.clock(clk), .reset(reset), .enable(dut__kmem__enable), .address_read_complete(k_address_complete), .k_address(dut__kmem__address), .k_write(dut__kmem__write), .k_data(kmem__dut__data) , .prev_k_vector(kvector), .k_vector_complete(k_vector_complete), .k_vector(kvector), .cur_k_value(cur_k_value));
 /**
 	parameter WK_LENGTH = 64;
 	reg  [ $clog2(WK_LENGTH)-1:0]   wk_vector_index;  // index of w
