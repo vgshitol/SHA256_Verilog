@@ -9,12 +9,12 @@ module w64_16 #(parameter W_LENGTH = 64
     input  reg                              w_index_complete,
     input  reg [ $clog2(W_LENGTH)-1:0]      w_vector_index,
     input  reg [511:0]                      message_vector,
-    input  reg [2047:0]                     prev_w_vector,
+    input  reg [2095:0]                     prev_w_vector,
 
     /*-----------Outputs--------------------------------*/
 
     output reg                              w_16_complete,  /* message formation complete flag */
-    output reg [2047:0]                     w_vector
+    output reg [2095:0]                     w_vector
 );
 
     integer block_bit;

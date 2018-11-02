@@ -65,8 +65,8 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
   //
   //<<<<----  YOUR CODE HERE    ---->>>>
 	`include "../SupportingModules/counter.v"
-	`include "../SupportingModules/msgEn.sv"
-	`include "../SupportingModules/msg512Block.sv"
+	`include "../SupportingModules/msgEn.v"
+	`include "../SupportingModules/msg512Block.v"
 	`include "../SupportingModules/w64.v"		
 	
 	reg address_read_complete;
@@ -83,21 +83,21 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 	reg  [ $clog2(W_LENGTH)-1:0]   w_vector_index;  // index of w
 	reg w_vector_enable;
 	reg w_vector_index_complete;
-	reg [2095:0] w_vector;
+	reg [2047:0] w_vector;
 	reg w_vector_complete;
 
 /** Creating the W Vector**/
 	msgEn u3(.clock(clk), .reset(reset), .start(address_read_complete), .enable(w_vector_enable));
-	counter #(.MAX_MESSAGE_LENGTH(W_LENGTH)) u4(.clock(clk), .reset(reset), .start(w_vector_enable), .msg_length(W_LENGTH), .read_address(w_vector_index), .read_complete(w_vector_index_complete));
+	counter #(.MAX_MESSAGE_LENGTH(W_LENGTH)) u4(.clock(clk), .reset(reset), .start(w_vector_enable), .msg_length(W_LENGTH-1), .read_address(w_vector_index), .read_complete(w_vector_index_complete));
 	w64 #(.W_LENGTH(W_LENGTH)) u5(.clock(clk), .reset(reset), .enable(w_vector_enable), .w_vector_index(w_vector_index), .w_index_complete(w_vector_index_complete), .message_vector(message_vector), .prev_w_vector(w_vector), .w_vector_complete(w_vector_complete), .w_vector(w_vector));
-
+/**
 	reg [ $clog2(HASH_LENGTH)-1:0]   hash_vector_index;  // index of hash
 	reg hash_address_complete;
 	reg [2095:0] hash_vector;
 	reg hash_vector_complete;
 
 /** Creating Hash Vector **/
-	msgEn u6(.clock(clk), .reset(reset), .start(w_vector_complete), .enable(dut__hmem__enable));
+/**	msgEn u6(.clock(clk), .reset(reset), .start(w_vector_complete), .enable(dut__hmem__enable));
 	counter #(.MAX_MESSAGE_LENGTH(NUMBER_OF_Hs)) u7(.clock(clk), .reset(reset), .start(dut__hmem__enable), .msg_length(HASH_LENGTH), .read_address(dut__hmem__address), .read_complete(hash_address_complete));
 	hash #(.HASH_LENGTH(NUMBER_OF_Hs)) u8(.clock(clk), .reset(reset), .enable(dut__hmem__enable), .address_read_complete(hash_address_complete), .hash_address(dut__hmem__address), .hash_write(dut__hmem__write), .hash_data(hmem__dut__data) , .prev_hash_vector(hash_vector), .hash_vector_complete(hash_vector_complete), .hash_vector(hash_vector));
 
