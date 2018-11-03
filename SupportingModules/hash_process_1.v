@@ -21,6 +21,16 @@ module hash_process_1 #(parameter WK_LENGTH = 64
 
     integer block_bit;
     integer block_bit_1;
+
+    reg [31:0] h0;
+    reg [31:0] h1;
+    reg [31:0] h2;
+    reg [31:0] h3;
+    reg [31:0] h4;
+    reg [31:0] h5;
+    reg [31:0] h6;
+    reg [31:0] h7;
+
     reg [31:0] a;
     reg [31:0] b;
     reg [31:0] c;
@@ -56,53 +66,73 @@ module hash_process_1 #(parameter WK_LENGTH = 64
 
     wire [31:0] ms0;
     wire [31:0] cs1;
-    wire [31:0] ms0cs1;
-    wire [31:0] cs1wkd;
+    wire [31:0] t1;
+    wire [31:0] t2;
 
-    wire [31:0] a_new;
-    wire [31:0] b_new;
-    wire [31:0] c_new;
-    wire [31:0] d_new;
-    wire [31:0] e_new;
-    wire [31:0] f_new;
-    wire [31:0] g_new;
-    wire [31:0] h_new;
+    reg [31:0] a_new;
+    reg [31:0] b_new;
+    reg [31:0] c_new;
+    reg [31:0] d_new;
+    reg [31:0] e_new;
+    reg [31:0] f_new;
+    reg [31:0] g_new;
+    reg [31:0] h_new;
+
+    reg final_hash_complete;
 
     always @(posedge clock)
         begin
             if(reset || !enable) begin
+		updated_hash <= prev_hash;
+		final_hash_complete = 0;
             end
             else begin
+		if(!wk_index_complete && !final_hash_complete) begin
                 for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                     begin
-                        updated_hash[31 - block_bit + 32*0] <= a_new[block_bit];
-                        updated_hash[31 - block_bit + 32*1] <= b_new[block_bit];
-                        updated_hash[31 - block_bit + 32*2] <= c_new[block_bit];
-                        updated_hash[31 - block_bit + 32*3] <= d_new[block_bit];
-                        updated_hash[31 - block_bit + 32*4] <= e_new[block_bit];
-                        updated_hash[31 - block_bit + 32*5] <= f_new[block_bit];
-                        updated_hash[31 - block_bit + 32*6] <= g_new[block_bit];
-                        updated_hash[31 - block_bit + 32*7] <= h_new[block_bit];
+                        updated_hash[block_bit + 32*0] <= a_new[block_bit];
+                        updated_hash[block_bit + 32*1] <= b_new[block_bit];
+                        updated_hash[block_bit + 32*2] <= c_new[block_bit];
+                        updated_hash[block_bit + 32*3] <= d_new[block_bit];
+                        updated_hash[block_bit + 32*4] <= e_new[block_bit];
+                        updated_hash[block_bit + 32*5] <= f_new[block_bit];
+                        updated_hash[block_bit + 32*6] <= g_new[block_bit];
+                        updated_hash[block_bit + 32*7] <= h_new[block_bit];
                     end
-            end
-
+		end
+		else if(wk_index_complete) begin 
+		for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
+                    begin
+                        updated_hash[block_bit + 32*7] <= a_new[block_bit];
+                        updated_hash[block_bit + 32*6] <= b_new[block_bit];
+                        updated_hash[block_bit + 32*5] <= c_new[block_bit];
+                        updated_hash[block_bit + 32*4] <= d_new[block_bit];
+                        updated_hash[block_bit + 32*3] <= e_new[block_bit];
+                        updated_hash[block_bit + 32*2] <= f_new[block_bit];
+                        updated_hash[block_bit + 32*1] <= g_new[block_bit];
+                        updated_hash[block_bit + 32*0] <= h_new[block_bit];
+			final_hash_complete <= 1;
+                    end
+		end
+		else if(final_hash_complete) updated_hash <= prev_hash;
+	    end
 	    hash_complete <= wk_index_complete;
         end
 
     always @(*)
     begin
-        if(!wk_index_complete)
+        if(!hash_complete)
             begin
                 for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                     begin
-                        a[block_bit] = prev_hash[block_bit + 32*0];
-                        b[block_bit] = prev_hash[block_bit + 32*1];
-                        c[block_bit] = prev_hash[block_bit + 32*2];
-                        d[block_bit] = prev_hash[block_bit + 32*3];
-                        e[block_bit] = prev_hash[block_bit + 32*4];
-                        f[block_bit] = prev_hash[block_bit + 32*5];
-                        g[block_bit] = prev_hash[block_bit + 32*6];
-                        h[block_bit] = prev_hash[block_bit + 32*7];
+                        a[block_bit] = updated_hash[block_bit + 32*0];
+                        b[block_bit] = updated_hash[block_bit + 32*1];
+                        c[block_bit] = updated_hash[block_bit + 32*2];
+                        d[block_bit] = updated_hash[block_bit + 32*3];
+                        e[block_bit] = updated_hash[block_bit + 32*4];
+                        f[block_bit] = updated_hash[block_bit + 32*5];
+                        g[block_bit] = updated_hash[block_bit + 32*6];
+                        h[block_bit] = updated_hash[block_bit + 32*7];
                     end
             end
 	else 
@@ -122,7 +152,7 @@ module hash_process_1 #(parameter WK_LENGTH = 64
 
     always @(*)
     begin
-        if(enable && !wk_index_complete)
+        if(enable && !hash_complete)
             begin
                 for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
 		    begin
@@ -135,66 +165,94 @@ module hash_process_1 #(parameter WK_LENGTH = 64
 
     always @(*)
     begin
-        if(enable && !wk_index_complete)
+        if(enable && !hash_complete)
             begin
                 a_n = {a, a};
                 a_r1 = a_n >> 2;
 		a_r2 = a_n >> 13;
 		a_r3 = a_n >> 22;
-                summation0_output = a_r1 + a_r2 + a_r3;
+                summation0_output = a_r1 ^ a_r2 ^ a_r3;
             end
         else summation0_output = 0;
     end
 
     always @(*)
     begin
-        if(enable && !wk_index_complete)
+        if(enable && !hash_complete)
             begin
                 e_n = {e, e};
-                e_r1 = e_n >> 2;
-		e_r2 = e_n >> 13;
-		e_r3 = e_n >> 22;
-                summation1_output = e_r1 + e_r2 + e_r3;
+                e_r1 = e_n >> 6;
+		e_r2 = e_n >> 11;
+		e_r3 = e_n >> 25;
+                summation1_output = (e_r1 ^ e_r2) ^ e_r3;
             end
         else summation1_output = 0;
     end
 
     always @(*)
     begin
-        if(enable && !wk_index_complete)
+        if(enable && !hash_complete)
             begin
-              m1 = a^b;
-	      m2 = a^c;
-  	      m3 = b^c;
-	      major_output = m1 + m2 + m3;
+              m1 = a & b;
+	      m2 = a & c;
+  	      m3 = b & c;
+	      major_output = (m1 ^ m2) ^ m3;
             end
         else major_output = 0;
     end
 
     always @(*)
     begin
-        if(enable && !wk_index_complete)
+        if(enable && !hash_complete)
             begin
-              c1 = e^f;
-    	      c2 = e^g;
-    	      choice_output = c1 + c2;
+              c1 = e & f;
+    	      c2 = (~e) & g;
+    	      choice_output = c1 ^ c2;
             end
         else choice_output = 0;
     end
 
-    assign ms0 = summation0_output + major_output;
-    assign cs1 = summation1_output + choice_output;
- 
-    assign ms0cs1 = ms0 + cs1;
-    assign cs1wkd = (cs1 + w) + (k + d);
+    assign t2 = summation0_output + major_output;
+    assign t1 = (summation1_output + choice_output) + (w + k) + h;
 
-    assign a_new = ms0cs1 + a;
-    assign b_new = a + b;
-    assign c_new = b + c;
-    assign d_new = c + d;
-    assign e_new = cs1wkd + e;
-    assign f_new = e + f;
-    assign g_new = f + g;
-    assign h_new = g + h;
+always @(*)
+begin
+for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
+	begin
+	h0[block_bit] = prev_hash[block_bit + 32*0];
+	h1[block_bit] = prev_hash[block_bit + 32*1];
+	h2[block_bit] = prev_hash[block_bit + 32*2];
+	h3[block_bit] = prev_hash[block_bit + 32*3];
+	h4[block_bit] = prev_hash[block_bit + 32*4];
+	h5[block_bit] = prev_hash[block_bit + 32*5];
+	h6[block_bit] = prev_hash[block_bit + 32*6];
+	h7[block_bit] = prev_hash[block_bit + 32*7];
+	end
+
+if(!wk_index_complete)
+begin
+    a_new = t1 + t2;
+    b_new = a;
+    c_new = b;
+    d_new = c;
+    e_new = t1 + d;
+    f_new = e;
+    g_new = f;
+    h_new = g;
+end
+else
+begin
+  
+
+    a_new = a + h0;
+    b_new = b + h1;
+    c_new = c + h2;
+    d_new = d + h3;
+    e_new = e + h4;
+    f_new = f + h5;
+    g_new = g + h6;
+    h_new = h + h7;
+end
+end
 
 endmodule

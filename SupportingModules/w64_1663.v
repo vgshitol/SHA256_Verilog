@@ -41,10 +41,10 @@ module w64_1663 #(parameter W_LENGTH = 64
         begin
 
             if(reset || !enable) w_vector <=0;
-	    else if(enable && !w_index_complete && w_vector_index < 16)
+	    else if(enable && !w_vector_complete && w_vector_index < 16)
                     for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                         w_vector[block_bit + w_vector_index*32] <= message_vector[511-31 + block_bit - w_vector_index*32];
-	    else if(enable && !w_index_complete && w_vector_index >= 16)
+	    else if(enable && !w_vector_complete && w_vector_index >= 16)
                     begin
     			for (word_16_bit = 0 ; word_16_bit < w_vector_index*32; word_16_bit = word_16_bit + 1)
                             w_vector[word_16_bit] <= prev_w_vector[word_16_bit];
@@ -63,7 +63,7 @@ module w64_1663 #(parameter W_LENGTH = 64
 
     always @(*)
     begin
-        if(enable && !w_index_complete && w_vector_index >= 16)
+        if(enable && !w_vector_complete && w_vector_index >= 16)
             begin
                 for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                     s0word[block_bit] = w_vector[block_bit + (w_vector_index-15)*32];
@@ -72,14 +72,14 @@ module w64_1663 #(parameter W_LENGTH = 64
                 s0w_r1 = double_s0word >> 7;
                 s0w_r2 = double_s0word >> 18;
                 s0w_r3 = s0word >> 3;
-                sigma0_s0word = s0w_r1 + s0w_r2 + s0w_r3;
+                sigma0_s0word = (s0w_r1 ^ s0w_r2) ^ s0w_r3;
             end
         else sigma0_s0word = 0;
     end
 
     always @(*)
         begin
-            if(enable && !w_index_complete && w_vector_index >= 16)
+            if(enable && !w_vector_complete && w_vector_index >= 16)
                 begin
                     for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                         s1word[block_bit] = w_vector[block_bit + (w_vector_index-2)*32];
@@ -88,21 +88,22 @@ module w64_1663 #(parameter W_LENGTH = 64
                     s1w_r1 = double_s1word >> 17;
                     s1w_r2 = double_s1word >> 19;
                     s1w_r3 = s1word >> 10;
-                    sigma1_s1word = s1w_r1 + s1w_r2 + s1w_r3;
+                    sigma1_s1word = (s1w_r1 ^ s1w_r2) ^ s1w_r3;
                 end
             else sigma1_s1word = 0;
         end
 
     always @(*)
         begin
-            if(enable && !w_index_complete && w_vector_index >= 16)
+            if(enable && !w_vector_complete && w_vector_index >= 16)
                 begin
                     for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                        word16[block_bit] = w_vector[block_bit + (w_vector_index-16)*32];
-                    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                        word7[block_bit] = w_vector[block_bit + (w_vector_index-7)*32];
+                        begin
+			word16[block_bit] = w_vector[block_bit + (w_vector_index-16)*32];
+                    	word7[block_bit] = w_vector[block_bit + (w_vector_index-7)*32];
+                	end
                 end
-            else word16 = 0; word7 = 0;
+            else begin word16 = 0; word7 = 0; end
         end
 
     assign new_word = (sigma0_s0word + sigma1_s1word) + (word16 + word7);

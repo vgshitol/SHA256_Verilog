@@ -70,7 +70,8 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 	`include "../SupportingModules/w64.v"		
 	`include "../SupportingModules/hash.v"		
 	`include "../SupportingModules/k_vector.v"		
-	`include "../SupportingModules/hash_process_1.v"		
+	`include "../SupportingModules/hash_process_1.v"	
+	`include "../SupportingModules/hash_complete.v"		
 	
 	reg address_read_complete;
 	reg message_vector_complete;
@@ -123,14 +124,19 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 	reg  [ $clog2(WK_LENGTH)-1:0]   wk_vector_index;  // index of w
 	reg wk_vector_enable;
 	reg wk_vector_index_complete;
-	
-	reg hash_complete;
+	reg [255:0] updated_hash;
+	reg hash_complete1;
 
 /** Processing Word and K Vector**/
 	msgEn u12(.clock(clk), .reset(reset), .start(k_vector_complete), .enable(wk_vector_enable));
 	counter #(.MAX_MESSAGE_LENGTH(WK_LENGTH)) u13(.clock(clk), .reset(reset), .start(wk_vector_enable), .msg_length(WK_LENGTH), .read_address(wk_vector_index), .read_complete(wk_vector_index_complete));
 	hash_process_1 #(.WK_LENGTH(WK_LENGTH)) u14 (.clock(clk), .reset(reset), .enable(wk_vector_enable), .wk_index_complete(wk_vector_index_complete) , .wk_vector_index(wk_vector_index),
-.prev_hash(hash_vector) , .w_vector(w_vector), .k_vector(kvector), .hash_complete(hash_complete) , .updated_hash(hash_vector) , .cur_k(cur_k_value));
- 
+.prev_hash(hash_vector) , .w_vector(w_vector), .k_vector(kvector), .hash_complete(hash_complete1) , .updated_hash(updated_hash) , .cur_k(cur_k_value));
+ 	
+reg [255:0] final_hash;
+reg hash_final_complete;
+/*
+	hash_complete u15(.clock(clk), .reset(reset), .enable(hash_complete1), .updated_hash(updated_hash), .prev_hash(hash_vector) , .final_hash(final_hash), .hash_complete(hash_final_complete));
+*/
 endmodule
 

@@ -21,6 +21,9 @@ module msg512Block #(parameter MSG_LENGTH = 55
 integer block_bit;
 integer length_bit;
 
+parameter MSG_BIT_LENGTH = 440;
+reg [ $clog2(MSG_BIT_LENGTH)-1:0] message_bit_length;
+
 always @(posedge clock)
     begin
         if(reset) begin
@@ -39,11 +42,13 @@ always @(posedge clock)
 	    if(address_read_complete)
 		begin
                 message_vector[511 - (msg_address*8)] <= 1; // appending 1 bit
-                for (length_bit = 0; length_bit < $clog2(MSG_LENGTH); length_bit = length_bit+1)
-                    message_vector[length_bit] <= msg_address[length_bit];
+                for (length_bit = 0; length_bit < $clog2(MSG_BIT_LENGTH); length_bit = length_bit+1)
+                    message_vector[length_bit] <= message_bit_length[length_bit];
 		message_vector_complete <= 1;		
 		end	               
         end
     end
+
+assign message_bit_length = msg_address*8;
 
 endmodule
