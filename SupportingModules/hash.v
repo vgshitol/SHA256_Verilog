@@ -33,7 +33,7 @@ module hash #(parameter HASH_LENGTH = 8
                             hash_vector[block_bit] <= prev_hash_vector[block_bit];
 
                 if(!address_read_complete) for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                    hash_vector[block_bit + hash_address*32] <= hash_data[31 - block_bit];
+                    hash_vector[block_bit + hash_address*32] <= hash_data[31-block_bit];
 
                 if (address_read_complete) hash_vector_complete <= 1;
             end
