@@ -9,26 +9,25 @@ z2
 cModel Technology
 Z0 d/afs/unity.ncsu.edu/users/v/vgshitol/Downloads/SHA256/verilog
 T_opt
-!s110 1542232065
-V4O^bLL3NB<:S3c@^?jLlN3
+!s110 1542236941
+V>>m;E6ah_^PAF@@4CQ4WB3
 04 6 4 work tb_top fast 0
-=27-54bf64688e6d-5bec9801-5a902-5a52
+=5-54bf64688e6d-5becab0d-70b66-318f
 o-quiet -auto_acc_if_foreign -work work +acc
 Z1 tCvgOpt 0
 n@_opt
 OL;O;10.7c;67
-R0
 vMyDesign
 Z2 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
-Z3 !s110 1542232223
+!s110 1542236936
 !i10b 1
-!s100 C??G6j3LZa`f9a9ek=;oT3
-Imi^XjRQ3oM]d4=1`fobeQ1
-Z4 VDg1SIo80bB@j0V0VzS_@n1
+!s100 b9bd1N>M>Fb:bnF?2ddbU2
+Ig[2h[kUOo5mi=X02cHH??2
+Z3 VDg1SIo80bB@j0V0VzS_@n1
 !s105 MyDesign_v_unit
 S1
 R0
-w1542232051
+w1542236930
 8MyDesign.v
 FMyDesign.v
 F../SupportingModules/counter.v
@@ -38,25 +37,26 @@ F../SupportingModules/w64.v
 F../SupportingModules/hash.v
 F../SupportingModules/k_vector.v
 F../SupportingModules/hash_process_1.v
+F../SupportingModules/store_hash.v
 L0 8
-Z5 OL;L;10.7c;67
+Z4 OL;L;10.7c;67
 r1
 !s85 0
 31
-Z6 !s108 1542232223.000000
-!s107 ../SupportingModules/hash_process_1.v|../SupportingModules/k_vector.v|../SupportingModules/hash.v|../SupportingModules/w64.v|../SupportingModules/msg512Block.v|../SupportingModules/msgEn.v|../SupportingModules/counter.v|sram.v|ece564_project_tb_top.v|MyDesign.v|
-Z7 !s90 -sv|MyDesign.v|ece564_project_tb_top.v|sram.v|
+!s108 1542236936.000000
+!s107 ../SupportingModules/store_hash.v|../SupportingModules/hash_process_1.v|../SupportingModules/k_vector.v|../SupportingModules/hash.v|../SupportingModules/w64.v|../SupportingModules/msg512Block.v|../SupportingModules/msgEn.v|../SupportingModules/counter.v|MyDesign.v|
+!s90 -sv|MyDesign.v|
 !i113 0
-Z8 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z5 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R1
 n@my@design
 vsram
 R2
-R3
+Z6 !s110 1542232223
 !i10b 1
 !s100 2EFG>XYnV196zbc=Hi]SI3
 IV_2f6=MO>F]Zjn:ABkfmT3
-R4
+R3
 !s105 sram_v_unit
 S1
 R0
@@ -64,23 +64,23 @@ w1539277634
 8sram.v
 Fsram.v
 L0 16
-R5
+R4
 r1
 !s85 0
 31
-R6
-Z9 !s107 ../SupportingModules/hash_process_1.v|../SupportingModules/k_vector.v|../SupportingModules/hash.v|../SupportingModules/w64.v|../SupportingModules/msg512Block.v|../SupportingModules/msgEn.v|../SupportingModules/counter.v|sram.v|ece564_project_tb_top.v|MyDesign.v|
-R7
+Z7 !s108 1542232223.000000
+Z8 !s107 ../SupportingModules/hash_process_1.v|../SupportingModules/k_vector.v|../SupportingModules/hash.v|../SupportingModules/w64.v|../SupportingModules/msg512Block.v|../SupportingModules/msgEn.v|../SupportingModules/counter.v|sram.v|ece564_project_tb_top.v|MyDesign.v|
+Z9 !s90 -sv|MyDesign.v|ece564_project_tb_top.v|sram.v|
 !i113 0
-R8
+R5
 R1
 vtb_top
 R2
-R3
+R6
 !i10b 1
 !s100 Ym@0Sl3R=PlNB2bAYVUFj0
 IVAh2d160nkc`dU6;znPGF2
-R4
+R3
 !s105 ece564_project_tb_top_v_unit
 S1
 R0
@@ -88,13 +88,13 @@ w1540776062
 8ece564_project_tb_top.v
 Fece564_project_tb_top.v
 L0 39
-R5
+R4
 r1
 !s85 0
 31
-R6
-R9
 R7
-!i113 0
 R8
+R9
+!i113 0
+R5
 R1
