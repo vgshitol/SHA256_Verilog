@@ -9,8 +9,7 @@ module hash_process_1 #(parameter WK_LENGTH = 64
     input  reg                              wk_index_complete,
     input  reg [ $clog2(WK_LENGTH)-1:0]     wk_vector_index,
     input  reg [255:0]                      prev_hash,
-    input  reg [2047:0]                     w_vector,
-    input  reg [2047:0]                     k_vector,
+    input  reg [31:0]  			    cur_w,
     input  reg [31:0]  			    cur_k,
 
     /*-----------Outputs--------------------------------*/
@@ -78,16 +77,16 @@ module hash_process_1 #(parameter WK_LENGTH = 64
     reg [31:0] g_new;
     reg [31:0] h_new;
 
-    reg final_hash_complete;
-
     always @(posedge clock)
         begin
-            if(reset || !enable) begin
+            if(reset) begin
+		updated_hash <= 0;
+	    end
+            else if(!enable) begin
 		updated_hash <= prev_hash;
-		final_hash_complete = 0;
-            end
+	    end
             else begin
-		if(!wk_index_complete && !final_hash_complete) begin
+		if(!wk_index_complete) begin
                 for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                     begin
                         updated_hash[block_bit + 32*0] <= a_new[block_bit];
@@ -100,7 +99,8 @@ module hash_process_1 #(parameter WK_LENGTH = 64
                         updated_hash[block_bit + 32*7] <= h_new[block_bit];
                     end
 		end
-		else if(wk_index_complete) begin 
+		else 
+		begin 
 		for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                     begin
                         updated_hash[block_bit + 32*7] <= a_new[block_bit];
@@ -111,10 +111,8 @@ module hash_process_1 #(parameter WK_LENGTH = 64
                         updated_hash[block_bit + 32*2] <= f_new[block_bit];
                         updated_hash[block_bit + 32*1] <= g_new[block_bit];
                         updated_hash[block_bit + 32*0] <= h_new[block_bit];
-			final_hash_complete <= 1;
                     end
 		end
-		else if(final_hash_complete) updated_hash <= prev_hash;
 	    end
 	    hash_complete <= wk_index_complete;
         end
@@ -150,18 +148,8 @@ module hash_process_1 #(parameter WK_LENGTH = 64
 	end
     end
 
-    always @(*)
-    begin
-        if(enable && !hash_complete)
-            begin
-                for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-		    begin
-                    	w[block_bit] = w_vector[block_bit + (wk_vector_index)*32];
-			k[block_bit] = k_vector[block_bit + (wk_vector_index)*32];		    	
-		    end
-            end
-        else begin w = 0; k = 0; end
-    end
+assign w = (hash_complete) ? 0 : cur_w;
+assign k = (hash_complete) ? 0 : cur_k;
 
     always @(*)
     begin
@@ -240,10 +228,8 @@ begin
     g_new = f;
     h_new = g;
 end
-else
+else if(!hash_complete)
 begin
-  
-
     a_new = a + h0;
     b_new = b + h1;
     c_new = c + h2;
@@ -252,6 +238,17 @@ begin
     f_new = f + h5;
     g_new = g + h6;
     h_new = h + h7;
+end
+else if(!hash_complete)
+begin
+    a_new = a;
+    b_new = b;
+    c_new = c;
+    d_new = d;
+    e_new = e;
+    f_new = f;
+    g_new = g;
+    h_new = h;
 end
 end
 
