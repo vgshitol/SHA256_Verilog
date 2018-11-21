@@ -77,7 +77,6 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 	wire k_vector_complete;
 	wire [31:0] cur_k_value;
 
-	wire [2047:0] w_vector;
 	wire w_vector_complete;
 	wire [31:0] cur_w_value;
 	
@@ -117,7 +116,7 @@ k_vector #(.K_LENGTH(NUMBER_OF_Ks)) kBlock (.clock(clk), .reset(reset), .enable(
 
 /** Creating the W Vector**/
 w64 #(.W_LENGTH(NUMBER_OF_Ks)) wBlock (.clock(clk), .reset(reset), .enable(dut__kmem__enable), .w_vector_index(dut__kmem__address), .w_index_complete(k_address_complete), .message_vector(message_vector), 
-.w_vector_complete(w_vector_complete), .w_vector(w_vector), .cur_w(cur_w_value));
+.w_vector_complete(w_vector_complete), .cur_w(cur_w_value));
 
 /** Processing Hash Update**/
 msgEn hashUpdateSignal(.clock(clk), .reset(reset), .start(dut__kmem__enable), .enable(wk_vector_enable));

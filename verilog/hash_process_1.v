@@ -214,14 +214,14 @@ begin
 end
 else if(!hash_complete)
 begin
-    a_new = a + h0;
-    b_new = b + h1;
-    c_new = c + h2;
-    d_new = d + h3;
-    e_new = e + h4;
-    f_new = f + h5;
-    g_new = g + h6;
-    h_new = h + h7;
+    a_new = t1 + t2 + h0;
+    b_new = a + h1;
+    c_new = b + h2;
+    d_new = c + h3;
+    e_new = t1 + d + h4;
+    f_new = e + h5;
+    g_new = f + h6;
+    h_new = g + h7;
 end
 else
 begin

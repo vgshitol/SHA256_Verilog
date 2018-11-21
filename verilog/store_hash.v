@@ -18,7 +18,6 @@ module store_hash #(parameter HASH_LENGTH = 8
     );
 
     integer block_bit;
-    integer length_bit;
 
     always @(posedge clock)
     begin
@@ -27,7 +26,7 @@ module store_hash #(parameter HASH_LENGTH = 8
                 h_write <= 0;
 		h_output_address <= 0;
             end
-            else if(!address_read_complete) 		  
+            else if(!h_vector_complete) 		  
 	    begin
                 h_write <= 1;
 		    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)

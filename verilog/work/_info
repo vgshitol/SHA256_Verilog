@@ -19,17 +19,17 @@ n@_opt
 Z3 OL;O;10.7c;67
 R0
 T_opt1
-!s110 1542832565
-V8OSZVTfD[8A?I3Czz1<^43
+!s110 1542834637
+V9]bg4]JzlYA`zRA4^i0<j0
 04 6 4 work tb_top fast 0
-=43-509a4c3e1013-5bf5c1b5-d7ede-4455
+=54-509a4c3e1013-5bf5c9cd-578ef-4455
 R1
 R2
 n@_opt1
 R3
 vcounter
 Z4 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
-Z5 !s110 1542832561
+Z5 !s110 1542834631
 !i10b 1
 !s100 Dk5Y;bMaZ<Lz7FL0l7Ak[2
 IJAzldk?JCj1<6P_bf671`0
@@ -45,9 +45,9 @@ Z7 OL;L;10.7c;67
 r1
 !s85 0
 31
-Z8 !s108 1542832561.000000
-Z9 !s107 w64.v|k_vector.v|counter_wk.v|hash.v|counter_h.v|msg_vector.v|counter.v|msgEn.v|
-Z10 !s90 -sv|msgEn.v|counter.v|msg_vector.v|counter_h.v|hash.v|counter_wk.v|k_vector.v|w64.v|
+Z8 !s108 1542834631.000000
+Z9 !s107 MyDesign.v|store_hash.v|hash_process_1.v|w64.v|k_vector.v|counter_wk.v|hash.v|counter_h.v|msg_vector.v|counter.v|msgEn.v|
+Z10 !s90 -sv|msgEn.v|counter.v|msg_vector.v|counter_h.v|hash.v|counter_wk.v|k_vector.v|w64.v|hash_process_1.v|store_hash.v|MyDesign.v|
 !i113 0
 Z11 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R2
@@ -125,15 +125,15 @@ R11
 R2
 vhash_process_1
 R4
-Z12 !s110 1542822158
+R5
 !i10b 1
-!s100 cYP@;7XGi:DfVBhV>]69^0
-InNkaGXjEP;?CjLD`jkeCH2
+!s100 ncLfMkBcAK[_]92O8M65m3
+I>W5Y1b7h_d<6[Q^?UeSk_2
 R6
 !s105 hash_process_1_v_unit
 S1
 R0
-w1542595291
+w1542834454
 8hash_process_1.v
 Fhash_process_1.v
 L0 1
@@ -141,9 +141,9 @@ R7
 r1
 !s85 0
 31
-Z13 !s108 1542822158.000000
-Z14 !s107 sram.v|ece564_project_tb_top.v|MyDesign.v|store_hash.v|hash_process_1.v|w64.v|k_vector.v|hash.v|msg_vector.v|msgEn.v|counter_wk.v|counter_h.v|counter.v|
-Z15 !s90 -sv|counter.v|counter_h.v|counter_wk.v|msgEn.v|msg_vector.v|hash.v|k_vector.v|w64.v|hash_process_1.v|store_hash.v|MyDesign.v|ece564_project_tb_top.v|sram.v|
+R8
+R9
+R10
 !i113 0
 R11
 R2
@@ -222,7 +222,7 @@ R2
 nmsg@en
 vMyDesign
 R4
-R12
+R5
 !i10b 1
 !s100 7RR8H;0mQl0e5>9NBjj2A0
 IRfcMQ>BJ1<:m0aO2jW`6W1
@@ -230,7 +230,7 @@ R6
 !s105 MyDesign_v_unit
 S1
 R0
-w1542821720
+w1542834545
 8MyDesign.v
 FMyDesign.v
 L0 5
@@ -238,16 +238,16 @@ R7
 r1
 !s85 0
 31
-R13
-R14
-R15
+R8
+R9
+R10
 !i113 0
 R11
 R2
 n@my@design
 vsram
 R4
-R12
+Z12 !s110 1542822158
 !i10b 1
 !s100 2EFG>XYnV196zbc=Hi]SI3
 IV_2f6=MO>F]Zjn:ABkfmT3
@@ -263,23 +263,23 @@ R7
 r1
 !s85 0
 31
-R13
-R14
-R15
+Z13 !s108 1542822158.000000
+Z14 !s107 sram.v|ece564_project_tb_top.v|MyDesign.v|store_hash.v|hash_process_1.v|w64.v|k_vector.v|hash.v|msg_vector.v|msgEn.v|counter_wk.v|counter_h.v|counter.v|
+Z15 !s90 -sv|counter.v|counter_h.v|counter_wk.v|msgEn.v|msg_vector.v|hash.v|k_vector.v|w64.v|hash_process_1.v|store_hash.v|MyDesign.v|ece564_project_tb_top.v|sram.v|
 !i113 0
 R11
 R2
 vstore_hash
 R4
-R12
+R5
 !i10b 1
-!s100 g9DlPc]Glgk?L`l8jKU;h0
-IZMk9F=lQ5QCVZQfO:Nzdz0
+!s100 7o>n]V;]Ij:dKd>?lL7fQ0
+IzVZBAa4cCf3AcB0Mz[?4H2
 R6
 !s105 store_hash_v_unit
 S1
 R0
-w1542594918
+w1542834624
 8store_hash.v
 Fstore_hash.v
 L0 1
@@ -287,9 +287,9 @@ R7
 r1
 !s85 0
 31
-R13
-R14
-R15
+R8
+R9
+R10
 !i113 0
 R11
 R2
@@ -327,7 +327,7 @@ R6
 !s105 w64_v_unit
 S1
 R0
-w1542832558
+w1542832813
 8w64.v
 Fw64.v
 L0 1
