@@ -66,7 +66,7 @@
 # NOTE: THESE ARE INITIAL ASSUMPTIONS ONLY             
 #---------------------------------------------------------
 #
- set DFF_CKQ 0.638
+ set DFF_CKQ 0.200
  set IP_DELAY [expr 0.02 + $DFF_CKQ]
  set_input_delay $IP_DELAY -clock $clkname [remove_from_collection [all_inputs] $clkname]
 
@@ -76,7 +76,7 @@
 # Same wire delay as mentioned above           
 # NOTE: THESE ARE INITIAL ASSUMPTIONS ONLY             
 #---------------------------------------------------------
- set DFF_SETUP 0.546
+ set DFF_SETUP 0.250
  set OP_DELAY [expr 0.02 + $DFF_SETUP]
  set_output_delay $OP_DELAY -clock $clkname [all_outputs]
 

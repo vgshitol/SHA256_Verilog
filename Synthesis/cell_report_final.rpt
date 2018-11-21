@@ -1,0 +1,58 @@
+ 
+****************************************
+Report : cell
+Design : MyDesign
+Version: K-2015.06-SP1
+Date   : Wed Nov 21 12:36:35 2018
+****************************************
+
+Attributes:
+    b - black box (unknown)
+    h - hierarchical
+    n - noncombinational
+    p - parameterized
+    r - removable
+    u - contains unmapped logic
+
+Cell                      Reference       Library             Area  Attributes
+--------------------------------------------------------------------------------
+Hcounter                  counter_h_1                      23.9400  h, n, p
+U1                        AND2_X1         NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+                                                            1.0640  
+U2                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+                                                            0.5320  
+U4                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+                                                            0.5320  
+U6                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+                                                            0.5320  
+U8                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+                                                            0.5320  
+U10                       INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+                                                            0.5320  
+U12                       INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+                                                            0.5320  
+U14                       INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+                                                            0.5320  
+U16                       INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+                                                            0.5320  
+U17                       INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+                                                            0.5320  
+hashBlock                 hash                            1507.9540 h, n, p
+hashSignal                msgEn_4                           0.5320  h
+hashStore                 store_hash                      474.8100  h, n, p
+hashUpdateCounter         counter_wk_0                     57.4560  h, n, p
+hashUpdateSignal          msgEn_2                           0.5320  h
+kBlock                    k_vector                        222.3760  h, n, p
+msgBlock                  msg_vector                      2596.4261 h, n, p
+msgCounter                counter                          82.9920  h, n, p
+msgSignal                 msgEn_0                           0.5320  h
+storeHashCounter          counter_h_0                      26.3340  h, n, p
+storeHashSignal           msgEn_1                           0.5320  h
+u12                       hash_process_1                  4989.3621 h, n, p
+wBlock                    w64                             20229.8323
+                                                                    h, n, p
+wkCounter                 counter_wk_1                     57.1900  h, n, p
+wkSignal                  msgEn_3                           0.5320  h
+--------------------------------------------------------------------------------
+Total 26 cells                                            30277.1845
+1

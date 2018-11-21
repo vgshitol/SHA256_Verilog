@@ -19,4 +19,13 @@
 # latches                                            
 #---------------------------------------------------------
 
+read_verilog $RTL_DIR/msgEn.v
+#read_verilog $RTL_DIR/counter.v
+#read_verilog $RTL_DIR/counter_h.v
+#read_verilog $RTL_DIR/msg512Block.v
+#read_verilog $RTL_DIR/hash.v
+#read_verilog $RTL_DIR/counter_wk.v
+#read_verilog $RTL_DIR/k_vector.v
 read_verilog $RTL_DIR/${modname}.v
+
+

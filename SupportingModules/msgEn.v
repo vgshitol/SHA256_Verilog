@@ -3,8 +3,8 @@ module msgEn (
     /*-----------Inputs--------------------------------*/
 
     input       clock,  /* clock */
-    input 	    reset,		// resets
-    input  reg  start,  /* Go message Signal*/
+    input 	reset,		// resets
+    input wire  start,  /* Go message Signal*/
 
     /*-----------Outputs--------------------------------*/
 

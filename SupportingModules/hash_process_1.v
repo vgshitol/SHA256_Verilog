@@ -5,12 +5,12 @@ module hash_process_1 #(parameter WK_LENGTH = 64
 
     input                                   clock,  /* clock */
     input                                   reset,
-    input  reg                              enable, /* Previous Enable to decide what to do for the next enable*/
-    input  reg                              wk_index_complete,
-    input  reg [ $clog2(WK_LENGTH)-1:0]     wk_vector_index,
-    input  reg [255:0]                      prev_hash,
-    input  reg [31:0]  			    cur_w,
-    input  reg [31:0]  			    cur_k,
+    input  wire                              enable, /* Previous Enable to decide what to do for the next enable*/
+    input  wire                              wk_index_complete,
+    input  wire [ $clog2(WK_LENGTH)-1:0]     wk_vector_index,
+    input  wire [255:0]                      prev_hash,
+    input  wire [31:0]  			    cur_w,
+    input  wire [31:0]  			    cur_k,
 
     /*-----------Outputs--------------------------------*/
 

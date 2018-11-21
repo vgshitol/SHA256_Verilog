@@ -5,10 +5,10 @@ module store_hash #(parameter HASH_LENGTH = 8
 
     input                                   clock,  /* clock */
     input                                   reset,
-    input  reg                              enable, /* Previous Enable to decide what to do for the next enable*/
-    input  reg                              address_read_complete,
-    input  reg [ $clog2(HASH_LENGTH)-1:0]   h_address,
-    input  reg [255:0]                      hash_vector,
+    input  wire                              enable, /* Previous Enable to decide what to do for the next enable*/
+    input  wire                              address_read_complete,
+    input  wire [ $clog2(HASH_LENGTH)-1:0]   h_address,
+    input  wire [255:0]                      hash_vector,
     
     /*-----------Outputs--------------------------------*/
     output reg [31:0]                       h_data,

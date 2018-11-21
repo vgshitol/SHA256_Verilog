@@ -5,11 +5,11 @@ module hash #(parameter HASH_LENGTH = 8
 
     input                                   clock,  /* clock */
     input                                   reset,
-    input  reg                              enable, /* Previous Enable to decide what to do for the next enable*/
-    input  reg                              address_read_complete,
-    input  reg [ $clog2(HASH_LENGTH)-1:0]   hash_address,
-    input  reg [31:0]                       hash_data,
-    input  reg [255:0]                      prev_hash_vector,
+    input  wire                              enable, /* Previous Enable to decide what to do for the next enable*/
+    input  wire                              address_read_complete,
+    input  wire [ $clog2(HASH_LENGTH)-1:0]   hash_address,
+    input  wire [31:0]                       hash_data,
+    input  wire [255:0]                      prev_hash_vector,
 
     /*-----------Outputs--------------------------------*/
 
@@ -24,7 +24,7 @@ module hash #(parameter HASH_LENGTH = 8
     always @(posedge clock)
         begin
             if(reset || !enable) begin
-                hash_vector = 0;
+                hash_vector <= 0;
                 hash_vector_complete <= 0;
             end
             else begin

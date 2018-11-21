@@ -5,11 +5,11 @@ module w64 #(parameter W_LENGTH = 64
 
     input                                   clock,  /* clock */
     input                                   reset,
-    input  reg                              enable, /* Previous Enable to decide what to do for the next enable*/
-    input  reg                              w_index_complete,
-    input  reg [511:0]                      message_vector,
-    input  reg [ $clog2(W_LENGTH)-1:0]      w_vector_index,
-    input  reg [2047:0]                     prev_w_vector,
+    input  wire                              enable, /* Previous Enable to decide what to do for the next enable*/
+    input  wire                              w_index_complete,
+    input  wire [511:0]                      message_vector,
+    input  wire [ $clog2(W_LENGTH)-1:0]      w_vector_index,
+    input  wire [2047:0]                     prev_w_vector,
 
     /*-----------Outputs--------------------------------*/
 

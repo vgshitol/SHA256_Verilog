@@ -5,10 +5,10 @@ module k_vector #(parameter K_LENGTH = 64
 
     input                                   clock,  /* clock */
     input                                   reset,
-    input  reg                              enable, /* Previous Enable to decide what to do for the next enable*/
-    input  reg                              address_read_complete,
-    input  reg [ $clog2(K_LENGTH)-1:0]      k_address,
-    input  reg [31:0]                       k_data,
+    input  wire                              enable, /* Previous Enable to decide what to do for the next enable*/
+    input  wire                              address_read_complete,
+    input  wire [ $clog2(K_LENGTH)-1:0]      k_address,
+    input  wire [31:0]                       k_data,
    
     /*-----------Outputs--------------------------------*/
 

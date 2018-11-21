@@ -1,15 +1,16 @@
-module msg512Block #(parameter MSG_LENGTH = 55
+module msg512Block #(parameter MSG_LENGTH = 55, 
+parameter MSG_BIT_LENGTH = 440
 ) (
 
     /*-----------Inputs--------------------------------*/
 
-    input                                   clock,  /* clock */
-    input                                   reset,
-    input  reg                              enable, /* Previous Enable to decide what to do for the next enable*/
-    input  reg                              address_read_complete,
-    input  reg [ $clog2(MSG_LENGTH)-1:0]    msg_address,
-    input  reg [7:0]                        msg_data,
-    input  reg [511:0]                      prev_message_vector,
+    input                                    clock,  /* clock */
+    input                                    reset,
+    input  wire                              enable, /* Previous Enable to decide what to do for the next enable*/
+    input  wire                              address_read_complete,
+    input  wire [ $clog2(MSG_LENGTH)-1:0]    msg_address,
+    input  wire [7:0]                        msg_data,
+    input  wire [511:0]                      prev_message_vector,
     
     /*-----------Outputs--------------------------------*/
 
@@ -21,7 +22,7 @@ module msg512Block #(parameter MSG_LENGTH = 55
 integer block_bit;
 integer length_bit;
 
-parameter MSG_BIT_LENGTH = 440;
+
 reg [ $clog2(MSG_BIT_LENGTH)-1:0] message_bit_length;
 
 always @(posedge clock)

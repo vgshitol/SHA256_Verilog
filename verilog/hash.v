@@ -1,0 +1,46 @@
+module hash #(parameter HASH_LENGTH = 8
+) (
+
+    /*-----------Inputs--------------------------------*/
+
+    input                                   clock,  /* clock */
+    input                                   reset,
+    input  wire                              enable, /* Previous Enable to decide what to do for the next enable*/
+    input  wire                              address_read_complete,
+    input  wire [ $clog2(HASH_LENGTH)-1:0]   hash_address,
+    input  wire [31:0]                       hash_data,
+
+    /*-----------Outputs--------------------------------*/
+
+    output reg 	                            hash_write,
+    output reg                              hash_vector_complete,  /* hash formation complete flag */
+    output reg [255:0]                      hash_vector
+);
+
+    integer block_bit;
+    integer length_bit;
+
+    always @(posedge clock)
+        begin
+            if(reset || !enable) 
+	    begin
+                hash_vector <= 0;
+                hash_vector_complete <= 0;
+            end
+            else if(!address_read_complete)
+	    begin
+                for (block_bit = 0 ; block_bit < 256; block_bit = block_bit + 1)
+                begin
+		    hash_vector <= 0;
+	            if(block_bit < hash_address*32) hash_vector[block_bit] <= hash_vector[block_bit];
+               	    else if(block_bit >= hash_address*32) hash_vector[block_bit] <= hash_data[block_bit - hash_address*32];
+		    else hash_vector <= hash_vector;
+		end
+            end
+	    else hash_vector <= hash_vector;
+
+ 	    hash_write <= 0;
+            hash_vector_complete <= address_read_complete;   
+        end
+
+endmodule

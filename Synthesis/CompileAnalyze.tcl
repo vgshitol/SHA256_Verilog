@@ -79,7 +79,7 @@
 # later verification.                                  
 #---------------------------------------------------------
 
- write_sdf counter_min.sdf
+ write_sdf ${modname}_min.sdf
 
 #---------------------------------------------------------
 # Since Synopsys has to insert logic to meet hold      
@@ -134,4 +134,4 @@
 # later verification.                                  
 #---------------------------------------------------------
 
- write_sdf counter_max.sdf
+ write_sdf ${modname}_max.sdf
