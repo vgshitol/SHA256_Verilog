@@ -8,13 +8,56 @@ z2
 !i10f 100
 cModel Technology
 Z0 d/afs/unity.ncsu.edu/users/v/vgshitol/Downloads/SHA256/verilog
+T_opt
+!s110 1542822190
+VCoX33Pc[ooVRIlNV==FLA2
+04 7 4 work counter fast 0
+=1-509a4c3e1013-5bf5992c-cc3e5-443c
+Z1 o-quiet -auto_acc_if_foreign -work work +acc
+Z2 tCvgOpt 0
+n@_opt
+Z3 OL;O;10.7c;67
+R0
+T_opt1
+!s110 1542832565
+V8OSZVTfD[8A?I3Czz1<^43
+04 6 4 work tb_top fast 0
+=43-509a4c3e1013-5bf5c1b5-d7ede-4455
+R1
+R2
+n@_opt1
+R3
+vcounter
+Z4 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
+Z5 !s110 1542832561
+!i10b 1
+!s100 Dk5Y;bMaZ<Lz7FL0l7Ak[2
+IJAzldk?JCj1<6P_bf671`0
+Z6 VDg1SIo80bB@j0V0VzS_@n1
+!s105 counter_v_unit
+S1
+R0
+w1542764554
+8counter.v
+Fcounter.v
+L0 1
+Z7 OL;L;10.7c;67
+r1
+!s85 0
+31
+Z8 !s108 1542832561.000000
+Z9 !s107 w64.v|k_vector.v|counter_wk.v|hash.v|counter_h.v|msg_vector.v|counter.v|msgEn.v|
+Z10 !s90 -sv|msgEn.v|counter.v|msg_vector.v|counter_h.v|hash.v|counter_wk.v|k_vector.v|w64.v|
+!i113 0
+Z11 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R2
 vcounter_h
-Z1 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
-!s110 1542765817
+R4
+R5
 !i10b 1
 !s100 aDCg>f0BDADA1:P8P>U0>0
 I>A:N25QeBi7iG_0ITMGO>2
-Z2 VDg1SIo80bB@j0V0VzS_@n1
+R6
 !s105 counter_h_v_unit
 S1
 R0
@@ -22,37 +65,279 @@ w1542765774
 8counter_h.v
 Fcounter_h.v
 L0 1
-Z3 OL;L;10.7c;67
+R7
 r1
 !s85 0
 31
-!s108 1542765817.000000
-!s107 counter_h.v|
-!s90 -sv|counter_h.v|
+R8
+R9
+R10
 !i113 0
-Z4 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
-Z5 tCvgOpt 0
-vw64
-R1
-!s110 1542767547
-!i10b 1
-!s100 FTlfZ8jJGgo9?eT4ndb<03
-Ik?=ecoa]@679DB<AmebXH0
+R11
 R2
+vcounter_wk
+R4
+R5
+!i10b 1
+!s100 CY57?Y[>Wc=lL6@d4L9`40
+I3ImgDRI7jc]FeKe43N:2?2
+R6
+!s105 counter_wk_v_unit
+S1
+R0
+w1542824937
+8counter_wk.v
+Fcounter_wk.v
+L0 1
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R2
+vhash
+R4
+R5
+!i10b 1
+!s100 ;Qja0ZJ7V3UE05IbA@9z_2
+I`gKe4@:o@LCS7f?PnLV7P3
+R6
+!s105 hash_v_unit
+S1
+R0
+w1542824688
+8hash.v
+Fhash.v
+L0 1
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R2
+vhash_process_1
+R4
+Z12 !s110 1542822158
+!i10b 1
+!s100 cYP@;7XGi:DfVBhV>]69^0
+InNkaGXjEP;?CjLD`jkeCH2
+R6
+!s105 hash_process_1_v_unit
+S1
+R0
+w1542595291
+8hash_process_1.v
+Fhash_process_1.v
+L0 1
+R7
+r1
+!s85 0
+31
+Z13 !s108 1542822158.000000
+Z14 !s107 sram.v|ece564_project_tb_top.v|MyDesign.v|store_hash.v|hash_process_1.v|w64.v|k_vector.v|hash.v|msg_vector.v|msgEn.v|counter_wk.v|counter_h.v|counter.v|
+Z15 !s90 -sv|counter.v|counter_h.v|counter_wk.v|msgEn.v|msg_vector.v|hash.v|k_vector.v|w64.v|hash_process_1.v|store_hash.v|MyDesign.v|ece564_project_tb_top.v|sram.v|
+!i113 0
+R11
+R2
+vk_vector
+R4
+R5
+!i10b 1
+!s100 LPB<5N9[CASaF=9@_lmIY1
+Iz[5P2HDB7iZGR6mjf[0773
+R6
+!s105 k_vector_v_unit
+S1
+R0
+w1542825146
+8k_vector.v
+Fk_vector.v
+L0 1
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R2
+vmsg_vector
+R4
+R5
+!i10b 1
+!s100 ckOmeg4nE`azT<?5ICMIG0
+I<[ZYRDbPzmCCdP6O^fTk@3
+R6
+!s105 msg_vector_v_unit
+S1
+R0
+w1542823765
+8msg_vector.v
+Fmsg_vector.v
+L0 1
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R2
+vmsgEn
+R4
+R5
+!i10b 1
+!s100 BnoXSlQMVK^Xm]?NMEhMO1
+ITTHP?d5]X`b2GP;oeMn<a2
+R6
+!s105 msgEn_v_unit
+S1
+R0
+w1542822377
+8msgEn.v
+FmsgEn.v
+L0 1
+R7
+r1
+!s85 0
+31
+R8
+R9
+R10
+!i113 0
+R11
+R2
+nmsg@en
+vMyDesign
+R4
+R12
+!i10b 1
+!s100 7RR8H;0mQl0e5>9NBjj2A0
+IRfcMQ>BJ1<:m0aO2jW`6W1
+R6
+!s105 MyDesign_v_unit
+S1
+R0
+w1542821720
+8MyDesign.v
+FMyDesign.v
+L0 5
+R7
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 0
+R11
+R2
+n@my@design
+vsram
+R4
+R12
+!i10b 1
+!s100 2EFG>XYnV196zbc=Hi]SI3
+IV_2f6=MO>F]Zjn:ABkfmT3
+R6
+!s105 sram_v_unit
+S1
+R0
+w1539277634
+8sram.v
+Fsram.v
+L0 16
+R7
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 0
+R11
+R2
+vstore_hash
+R4
+R12
+!i10b 1
+!s100 g9DlPc]Glgk?L`l8jKU;h0
+IZMk9F=lQ5QCVZQfO:Nzdz0
+R6
+!s105 store_hash_v_unit
+S1
+R0
+w1542594918
+8store_hash.v
+Fstore_hash.v
+L0 1
+R7
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 0
+R11
+R2
+vtb_top
+R4
+R12
+!i10b 1
+!s100 Ym@0Sl3R=PlNB2bAYVUFj0
+IVAh2d160nkc`dU6;znPGF2
+R6
+!s105 ece564_project_tb_top_v_unit
+S1
+R0
+w1540776062
+8ece564_project_tb_top.v
+Fece564_project_tb_top.v
+L0 39
+R7
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 0
+R11
+R2
+vw64
+R4
+R5
+!i10b 1
+!s100 jIUnVf6WYj5>`0OiO@VfG3
+I28<0[53F;YHLkU?_bF=[F3
+R6
 !s105 w64_v_unit
 S1
 R0
-w1542767506
+w1542832558
 8w64.v
 Fw64.v
 L0 1
-R3
+R7
 r1
 !s85 0
 31
-!s108 1542767547.000000
-!s107 w64.v|
-!s90 -sv|w64.v|
+R8
+R9
+R10
 !i113 0
-R4
-R5
+R11
+R2

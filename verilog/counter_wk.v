@@ -7,8 +7,6 @@ module counter_wk #(
 		input 						clock,  /* clock */
 		input       					reset,  /* reset */
 		input wire      				start,   /* start */
-		input wire  [ $clog2(MAX_MESSAGE_LENGTH)-1 : 0] 	msg_length,
-
 		/*-----------Outputs--------------------------------*/
 
 		output reg [ $clog2(MAX_MESSAGE_LENGTH)-1 : 0] 	read_address,  /* read_complete flag */

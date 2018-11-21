@@ -74,10 +74,9 @@ module w64 #(parameter W_LENGTH = 64
             begin
 		for (word_bit = 0 ; word_bit < 2048; word_bit = word_bit + 1)
   		begin
-                    if((word_bit < w_vector_index) || (word_bit >= w_vector_index*32)) w_vector[word_bit] <= w_vector[word_bit];
-		    else if((w_vector_index < 16) && (word_bit < 512)) w_vector[word_bit] <= message_vector[word_bit];	 		 
-		    else if(w_vector_index >= 16) w_vector[word_bit] <= new_word[word_bit - w_vector_index*32];
-                    else w_vector[word_bit] <= 0;
+                    if((w_vector_index < 16) && (word_bit >= w_vector_index*32) && (word_bit < (w_vector_index+1)*32)) w_vector[ 31 + 32*w_vector_index*2 - word_bit] <= message_vector[511- word_bit];	
+		    else if((w_vector_index >= 16) && (word_bit >= w_vector_index*32) && (word_bit < (w_vector_index+1)*32)) w_vector[word_bit] <= new_word[word_bit - w_vector_index*32];
+                    else w_vector[word_bit] <= w_vector[word_bit];
 	    	end
 		for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
   		begin

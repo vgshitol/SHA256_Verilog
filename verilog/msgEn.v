@@ -13,10 +13,9 @@ module msgEn (
 
 always @(posedge clock)
     begin
-	enable <=0;
-        if(reset) enable <= 0;
-        else if (!start && !enable) enable <= 0;
-        else enable <= enable;
+	enable <= 0;
+	if(reset) enable <= 0;
+        else enable <= start || enable;
     end
 
 endmodule

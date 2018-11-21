@@ -27,7 +27,7 @@ module k_vector #(parameter K_LENGTH = 64
                 k_vector_complete <= 0;
             end
             else begin
-                if(!address_read_complete) for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
+                if(!k_vector_complete) for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                     begin
 		        cur_k_value[block_bit] <= k_data[block_bit];
 		    end	

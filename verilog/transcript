@@ -11,16 +11,22 @@
 # //  is prohibited from disclosure under the Trade Secrets Act,
 # //  18 U.S.C. Section 1905.
 # //
+vsim -voptargs=+acc work.counter
+# vsim -voptargs="+acc" work.counter 
+# Start time: 12:43:07 on Nov 21,2018
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading sv_std.std
+# Loading work.counter(fast)
 vsim -voptargs=+acc work.tb_top
+# End time: 12:43:19 on Nov 21,2018, Elapsed time: 0:00:12
+# Errors: 0, Warnings: 0
 # vsim -voptargs="+acc" work.tb_top 
-# Start time: 17:07:40 on Nov 20,2018
-# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
-# ** Warning: MyDesign.v(102): (vopt-2685) [TFMPC] - Too few port connections for 'hashCounter'.  Expected 6, found 5.
-# ** Warning: MyDesign.v(102): (vopt-2718) [TFMPC] - Missing connection for port 'msg_length'.
-# ** Warning: MyDesign.v(107): (vopt-2685) [TFMPC] - Too few port connections for 'wkCounter'.  Expected 6, found 5.
-# ** Warning: MyDesign.v(107): (vopt-2718) [TFMPC] - Missing connection for port 'msg_length'.
-# ** Warning: MyDesign.v(111): (vopt-2685) [TFMPC] - Too few port connections for 'hashUpdateCounter'.  Expected 6, found 5.
-# ** Warning: MyDesign.v(111): (vopt-2718) [TFMPC] - Missing connection for port 'msg_length'.
+# Start time: 12:43:19 on Nov 21,2018
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: MyDesign.v(113): (vopt-2685) [TFMPC] - Too few port connections for 'wkCounter'.  Expected 6, found 5.
+# ** Warning: MyDesign.v(113): (vopt-2718) [TFMPC] - Missing connection for port 'msg_length'.
+# ** Warning: MyDesign.v(125): (vopt-2685) [TFMPC] - Too few port connections for 'hashUpdateCounter'.  Expected 6, found 5.
+# ** Warning: MyDesign.v(125): (vopt-2718) [TFMPC] - Missing connection for port 'msg_length'.
 # Loading sv_std.std
 # Loading work.tb_top(fast)
 # Loading work.sram(fast)
@@ -30,118 +36,22 @@ vsim -voptargs=+acc work.tb_top
 # Loading work.MyDesign(fast)
 # Loading work.msgEn(fast)
 # Loading work.counter(fast)
-# Loading work.counter_hash(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
 # Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
 #    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
-# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (32) for port 'msg_length'. The port definition is at: counter_hash.v(11).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/storeHashCounter File: MyDesign.v Line: 115
-add wave sim:/tb_top/dut/hashCounter/*
+add wave sim:/tb_top/dut/msgSignal/*
 run
 # INFO::readmem : ./message.dat 
 # INFO::readmem : K.dat 
 # INFO::readmem : H.dat 
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
 # @315, go asserted
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-# Hash[x] = xxxxxxxx
-vlog -sv msgEn.v
-# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
-# Start time: 17:16:18 on Nov 20,2018
-# vlog -reportprogress 300 -sv msgEn.v 
-# -- Compiling module msgEn
-# 
-# Top level modules:
-# 	msgEn
-# End time: 17:16:18 on Nov 20,2018, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-add wave sim:/tb_top/dut/msgSignal/*
 restart
 # ** Note: (vsim-3813) Design is being optimized due to module recompilation...
 # Loading sv_std.std
@@ -153,26 +63,1395 @@ restart
 # Loading work.MyDesign(fast)
 # Loading work.msgEn(fast)
 # Loading work.counter(fast)
-# Loading work.counter_hash(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
 # Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
 #    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
-# ** Warning: (vsim-3015) [PCDPC] - Port size (3) does not match connection size (32) for port 'msg_length'. The port definition is at: counter_hash.v(11).
-#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut/storeHashCounter File: MyDesign.v Line: 115
 run
 # INFO::readmem : ./message.dat 
 # INFO::readmem : K.dat 
 # INFO::readmem : H.dat 
 # @315, go asserted
-vlog -sv MyDesign.v
-# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
-# Start time: 18:05:17 on Nov 20,2018
-# vlog -reportprogress 300 -sv MyDesign.v 
-# -- Compiling module MyDesign
-# 
-# Top level modules:
-# 	MyDesign
-# End time: 18:05:17 on Nov 20,2018, Elapsed time: 0:00:00
-# Errors: 0, Warnings: 0
-# End time: 19:23:46 on Nov 20,2018, Elapsed time: 2:16:06
-# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+add wave sim:/tb_top/dut/msgCounter/*
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+add wave sim:/tb_top/dut/msgBlock/*
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+add wave sim:/tb_top/dut/hashSignal/*
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+add wave sim:/tb_top/dut/Hcounter/*
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+add wave sim:/tb_top/dut/hashBlock/*
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+add wave sim:/tb_top/dut/wkSignal/*
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+add wave sim:/tb_top/dut/wkCounter/*
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[1] = xxxxxxxx
+# Hash[2] = xxxxxxxx
+# Hash[3] = xxxxxxxx
+# Hash[4] = xxxxxxxx
+# Hash[5] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = xxxxxxxx
+# Store result to result_0.txt
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+add wave sim:/tb_top/dut/kBlock/*
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[1] = xxxxxxxx
+# Hash[2] = xxxxxxxx
+# Hash[3] = xxxxxxxx
+# Hash[4] = xxxxxxxx
+# Hash[5] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = xxxxxxxx
+# Store result to result_0.txt
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[1] = xxxxxxxx
+# Hash[2] = xxxxxxxx
+# Hash[3] = xxxxxxxx
+# Hash[4] = xxxxxxxx
+# Hash[5] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = xxxxxxxx
+# Store result to result_0.txt
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+add wave sim:/tb_top/dut/wBlock/*
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[1] = xxxxxxxx
+# Hash[2] = xxxxxxxx
+# Hash[3] = xxxxxxxx
+# Hash[4] = xxxxxxxx
+# Hash[5] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = xxxxxxxx
+# Store result to result_0.txt
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[1] = xxxxxxxx
+# Hash[2] = xxxxxxxx
+# Hash[3] = xxxxxxxx
+# Hash[4] = xxxxxxxx
+# Hash[5] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = xxxxxxxx
+# Store result to result_0.txt
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[1] = xxxxxxxx
+# Hash[2] = xxxxxxxx
+# Hash[3] = xxxxxxxx
+# Hash[4] = xxxxxxxx
+# Hash[5] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = xxxxxxxx
+# Store result to result_0.txt
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 40b286d3
+# Hash[1] = 528cc8a2
+# Hash[2] = b6f44182
+# Hash[3] = d6cd7ad7
+# Hash[4] = 97458c84
+# Hash[5] = bb45aef0
+# Hash[6] = 06c42b3f
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = 06c42b3f
+# Store result to result_0.txt
+# Hash[6] = 06c42b3f
+# Hash[6] = 06c42b3f
+# Hash[6] = 06c42b3f
+# Hash[6] = 06c42b3f
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt1
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 40b286d3
+# Hash[1] = 528cc8a2
+# Hash[2] = b6f44182
+# Hash[3] = d6cd7ad7
+# Hash[4] = 97458c84
+# Hash[5] = bb45aef0
+# Hash[6] = 06c42b3f
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = 06c42b3f
+# Store result to result_0.txt
+# Hash[6] = 06c42b3f
+# Hash[6] = 06c42b3f
+# Hash[6] = 06c42b3f
+# Hash[6] = 06c42b3f
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 361614ce
+# Hash[1] = 84c16e66
+# Hash[2] = 1ab31f60
+# Hash[3] = 5b4d77b8
+# Hash[4] = 30012b55
+# Hash[5] = 83e546d3
+# Hash[6] = b59c2baa
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = b59c2baa
+# Store result to result_0.txt
+# Hash[6] = b59c2baa
+# Hash[6] = b59c2baa
+# Hash[6] = b59c2baa
+# Hash[6] = b59c2baa
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[1] = xxxxxxxx
+# Hash[2] = xxxxxxxx
+# Hash[3] = xxxxxxxx
+# Hash[4] = xxxxxxxx
+# Hash[5] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = xxxxxxxx
+# Store result to result_0.txt
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 361614ce
+# Hash[1] = 84c16e66
+# Hash[2] = 1ab31f60
+# Hash[3] = 5b4d77b8
+# Hash[4] = 30012b55
+# Hash[5] = 83e546d3
+# Hash[6] = b59c2baa
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = b59c2baa
+# Store result to result_0.txt
+# Hash[6] = b59c2baa
+# Hash[6] = b59c2baa
+# Hash[6] = b59c2baa
+# Hash[6] = b59c2baa
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 7c944744
+# Hash[1] = 3c1dccdd
+# Hash[2] = 0e7dde55
+# Hash[3] = d2c19b2a
+# Hash[4] = 2d149885
+# Hash[5] = 50d98883
+# Hash[6] = 97d5ffe5
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = 97d5ffe5
+# Store result to result_0.txt
+# Hash[6] = 97d5ffe5
+# Hash[6] = 97d5ffe5
+# Hash[6] = 97d5ffe5
+# Hash[6] = 97d5ffe5
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 6d7c6b55
+# Hash[1] = af1dbb6a
+# Hash[2] = 4629c3cf
+# Hash[3] = 0f610e03
+# Hash[4] = 90f11eda
+# Hash[5] = a50096f2
+# Hash[6] = bc0d1028
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = bc0d1028
+# Store result to result_0.txt
+# Hash[6] = bc0d1028
+# Hash[6] = bc0d1028
+# Hash[6] = bc0d1028
+# Hash[6] = bc0d1028
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 361614ce
+# Hash[1] = 84c16e66
+# Hash[2] = 1ab31f60
+# Hash[3] = 5b4d77b8
+# Hash[4] = 30012b55
+# Hash[5] = 83e546d3
+# Hash[6] = b59c2baa
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = b59c2baa
+# Store result to result_0.txt
+# Hash[6] = b59c2baa
+# Hash[6] = b59c2baa
+# Hash[6] = b59c2baa
+# Hash[6] = b59c2baa
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 00cfd23c
+# Hash[1] = 7afa07c8
+# Hash[2] = 087b93ab
+# Hash[3] = 45efb3c2
+# Hash[4] = 72d536ef
+# Hash[5] = 78dc1c4e
+# Hash[6] = 9454783a
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = 9454783a
+# Store result to result_0.txt
+# Hash[6] = 9454783a
+# Hash[6] = 9454783a
+# Hash[6] = 9454783a
+# Hash[6] = 9454783a
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[1] = xxxxxxxx
+# Hash[2] = xxxxxxxx
+# Hash[3] = xxxxxxxx
+# Hash[4] = xxxxxxxx
+# Hash[5] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = xxxxxxxx
+# Store result to result_0.txt
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+# Hash[6] = xxxxxxxx
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 00cfd23c
+# Hash[1] = 7afa07c8
+# Hash[2] = 087b93ab
+# Hash[3] = 45efb3c2
+# Hash[4] = 72d536ef
+# Hash[5] = 78dc1c4e
+# Hash[6] = 9454783a
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = 9454783a
+# Store result to result_0.txt
+# Hash[6] = 9454783a
+# Hash[6] = 9454783a
+# Hash[6] = 9454783a
+# Hash[6] = 9454783a
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 8b8ab3d2
+# Hash[1] = 2c794c5c
+# Hash[2] = f0e01119
+# Hash[3] = b45f5cf1
+# Hash[4] = eb457725
+# Hash[5] = 29015b36
+# Hash[6] = 959f5477
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = 959f5477
+# Store result to result_0.txt
+# Hash[6] = 959f5477
+# Hash[6] = 959f5477
+# Hash[6] = 959f5477
+# Hash[6] = 959f5477
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 8b8ab3d2
+# Hash[1] = 2c794c5c
+# Hash[2] = f0e01119
+# Hash[3] = b45f5cf1
+# Hash[4] = eb457725
+# Hash[5] = 29015b36
+# Hash[6] = 959f5477
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = 959f5477
+# Store result to result_0.txt
+# Hash[6] = 959f5477
+# Hash[6] = 959f5477
+# Hash[6] = 959f5477
+# Hash[6] = 959f5477
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = 00cfd23c
+# Hash[1] = 7afa07c8
+# Hash[2] = 087b93ab
+# Hash[3] = 45efb3c2
+# Hash[4] = 72d536ef
+# Hash[5] = 78dc1c4e
+# Hash[6] = 9454783a
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = 9454783a
+# Store result to result_0.txt
+# Hash[6] = 9454783a
+# Hash[6] = 9454783a
+# Hash[6] = 9454783a
+# Hash[6] = 9454783a
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.hash_process_1(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = d1143607
+# Hash[1] = 745a620f
+# Hash[2] = 2aaa2c5e
+# Hash[3] = 252c4d6d
+# Hash[4] = 04e33b73
+# Hash[5] = 83530529
+# Hash[6] = e9db25fb
+# @1155, dut finished, # of clocks = 83
+# Hash[6] = e9db25fb
+# Store result to result_0.txt
+# Hash[6] = e9db25fb
+# Hash[6] = e9db25fb
+# Hash[6] = e9db25fb
+# Hash[6] = e9db25fb

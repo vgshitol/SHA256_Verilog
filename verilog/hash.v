@@ -18,7 +18,6 @@ module hash #(parameter HASH_LENGTH = 8
 );
 
     integer block_bit;
-    integer length_bit;
 
     always @(posedge clock)
         begin
@@ -27,14 +26,12 @@ module hash #(parameter HASH_LENGTH = 8
                 hash_vector <= 0;
                 hash_vector_complete <= 0;
             end
-            else if(!address_read_complete)
+            else if(!hash_vector_complete)
 	    begin
                 for (block_bit = 0 ; block_bit < 256; block_bit = block_bit + 1)
                 begin
-		    hash_vector <= 0;
-	            if(block_bit < hash_address*32) hash_vector[block_bit] <= hash_vector[block_bit];
-               	    else if(block_bit >= hash_address*32) hash_vector[block_bit] <= hash_data[block_bit - hash_address*32];
-		    else hash_vector <= hash_vector;
+		     if((block_bit >= hash_address*32) && (block_bit < (hash_address+1)*32)) hash_vector[block_bit] <= hash_data[block_bit - hash_address*32];
+		    else hash_vector[block_bit] <= hash_vector[block_bit];
 		end
             end
 	    else hash_vector <= hash_vector;

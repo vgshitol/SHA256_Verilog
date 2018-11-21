@@ -33,16 +33,16 @@ always @(posedge clock)
 	begin
        		for(block_bit = 0; block_bit < 512 ; block_bit = block_bit + 1)
 		begin
-			if(!address_read_complete) message_vector[511 - block_bit] <= msg_data[7 - block_bit  + msg_address*8];
+			if((!message_vector_complete) && (block_bit < (msg_address+1)*8) && (block_bit >= (msg_address)*8)) message_vector[511 - block_bit] <= msg_data[7 - block_bit  + msg_address*8];
             		else if(block_bit == message_bit_length) message_vector[511 - block_bit] <= 1; // appending 1 bit 
 			else if ((511 - block_bit) <=  ($clog2(MSG_BIT_LENGTH)-1)) message_vector[511 - block_bit] <= message_bit_length[511 - block_bit];
-			else message_vector[511 - block_bit] <= 0;					
+			else message_vector[511 - block_bit] <= message_vector[511 - block_bit];					
 		end	               
         end
     message_vector_complete <= address_read_complete;
     msg_write <= 0;	    
 end
 
-assign message_bit_length = msg_address*8;
+assign message_bit_length = (msg_address+1)*8;
 
 endmodule
