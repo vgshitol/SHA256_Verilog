@@ -107,7 +107,7 @@ hash #(.HASH_LENGTH(NUMBER_OF_Hs)) hashBlock (.clock(clk), .reset(reset), .enabl
 .hash_data(hmem__dut__data) , .hash_vector_complete(hash_vector_complete), .hash_vector(hash_vector));
 	  
 /** Creating K Vector **/
-msgEn wkSignal(.clock(clk), .reset(reset), .start(message_vector_complete && hash_vector_complete), .enable(dut__kmem__enable));
+wEn wkSignal(.clock(clk), .reset(reset), .start1(message_vector_complete), .start2(hash_vector_complete), .enable(dut__kmem__enable));
 	
 counter_wk #(.MAX_MESSAGE_LENGTH(NUMBER_OF_Ks)) wkCounter (.clock(clk), .reset(reset), .start(dut__kmem__enable), .read_address(dut__kmem__address), .read_complete(k_address_complete));
 
@@ -123,7 +123,7 @@ msgEn hashUpdateSignal(.clock(clk), .reset(reset), .start(dut__kmem__enable), .e
 	
 counter_wk #(.MAX_MESSAGE_LENGTH(NUMBER_OF_Ks)) hashUpdateCounter (.clock(clk), .reset(reset), .start(wk_vector_enable), .read_address(wk_vector_index), .read_complete(wk_vector_index_complete));
 	
-hash_process_1 #(.WK_LENGTH(NUMBER_OF_Ks)) u12 (.clock(clk), .reset(reset), .enable(wk_vector_enable), .wk_index_complete(wk_vector_index_complete) , .wk_vector_index(wk_vector_index),
+hash_update #(.WK_LENGTH(NUMBER_OF_Ks)) hashUpdate (.clock(clk), .reset(reset), .enable(wk_vector_enable), .wk_index_complete(wk_vector_index_complete) , .wk_vector_index(wk_vector_index),
 .prev_hash(hash_vector) , .hash_complete(hash_complete) , .updated_hash(updated_hash) , .cur_k(cur_k_value), .cur_w(cur_w_value));
 	
 /** Storing the Hash Vector **/
