@@ -9,7 +9,7 @@ module w64 #(parameter W_LENGTH = 64
     input  wire                              w_index_complete,
     input  wire [511:0]                      message_vector,
     input  wire [ $clog2(W_LENGTH)-1:0]      w_vector_index,
-   
+
     /*-----------Outputs--------------------------------*/
 
     output reg                              w_vector_complete,  /* message formation complete flag */
@@ -24,7 +24,7 @@ module w64 #(parameter W_LENGTH = 64
     reg  [31:0] s0word;
     reg  [63:0] double_s0word;
     reg  [31:0] sigma0_s0word;
-    
+
     reg  [31:0] s1w_r1;
     reg  [31:0] s1w_r2;
     reg  [31:0] s1w_r3;
@@ -42,41 +42,47 @@ module w64 #(parameter W_LENGTH = 64
         begin
 
             if(reset || !enable) w_vector <=0;
-  	    else if(enable && !w_vector_complete )
-            begin
-		for (word_bit = 0 ; word_bit < 2048; word_bit = word_bit + 1)
-  		begin
-                    if((w_vector_index < 16) && (word_bit >= w_vector_index*32) && (word_bit < (w_vector_index+1)*32)) w_vector[ 31 + 32*w_vector_index*2 - word_bit] <= message_vector[511- word_bit];	
-		    else if((w_vector_index >= 16) && (word_bit >= w_vector_index*32) && (word_bit < (w_vector_index+1)*32)) w_vector[word_bit] <= new_word[word_bit - w_vector_index*32];
-                    else w_vector[word_bit] <= w_vector[word_bit];
-	    	end
-		for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-  		begin
-                    if(w_vector_index < 16) cur_w[block_bit] <= message_vector[511-31 + block_bit - w_vector_index*32];
-		    else if(w_vector_index >= 16) cur_w[block_bit] <= new_word[block_bit];
-                    else cur_w[word_bit] <= 0;
-	    	end
-	    end
-	    else w_vector <= w_vector;
-            
-            w_vector_complete <= w_index_complete;		                    
+            else if(enable && !w_vector_complete )
+                begin
+                    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
+                        begin
+                            if(w_vector_index < 16)
+                                begin
+                                    w_vector[block_bit + w_vector_index*32] <= message_vector[511-31 + block_bit - w_vector_index*32];
+                                    cur_w[block_bit] <= message_vector[511-31 + block_bit - w_vector_index*32];
+                                end
+                            else if(w_vector_index >= 16)
+                                begin
+                                    w_vector[block_bit+ w_vector_index*32] <= new_word[block_bit];
+                                    cur_w[block_bit] <= new_word[block_bit];
+                                end
+                            else
+                                begin
+                                    w_vector[block_bit+ w_vector_index*32] <=  w_vector[block_bit+ w_vector_index*32];
+                                    cur_w[block_bit] <= cur_w[block_bit];
+                                end
+                        end
+                end
+            else w_vector <= w_vector;
+
+            w_vector_complete <= w_index_complete;
         end
 
     always @(*)
-    begin
-        if(enable && !w_vector_complete && w_vector_index >= 16)
-            begin
-                for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                    s0word[block_bit] = w_vector[block_bit + (w_vector_index-15)*32];
+        begin
+            if(enable && !w_vector_complete && w_vector_index >= 16)
+                begin
+                    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
+                        s0word[block_bit] = w_vector[block_bit + (w_vector_index-15)*32];
 
-                double_s0word = {s0word, s0word};
-                s0w_r1 = double_s0word >> 7;
-                s0w_r2 = double_s0word >> 18;
-                s0w_r3 = s0word >> 3;
-                sigma0_s0word = (s0w_r1 ^ s0w_r2) ^ s0w_r3;
-            end
-        else sigma0_s0word = 0;
-    end
+                    double_s0word = {s0word, s0word};
+                    s0w_r1 = double_s0word >> 7;
+                    s0w_r2 = double_s0word >> 18;
+                    s0w_r3 = s0word >> 3;
+                    sigma0_s0word = (s0w_r1 ^ s0w_r2) ^ s0w_r3;
+                end
+            else sigma0_s0word = 0;
+        end
 
     always @(*)
         begin
@@ -100,9 +106,9 @@ module w64 #(parameter W_LENGTH = 64
                 begin
                     for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                         begin
-			word16[block_bit] = w_vector[block_bit + (w_vector_index-16)*32];
-                    	word7[block_bit] = w_vector[block_bit + (w_vector_index-7)*32];
-                	end
+                            word16[block_bit] = w_vector[block_bit + (w_vector_index-16)*32];
+                            word7[block_bit] = w_vector[block_bit + (w_vector_index-7)*32];
+                        end
                 end
             else begin word16 = 0; word7 = 0; end
         end
