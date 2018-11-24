@@ -8,7 +8,7 @@ Report : timing
         -max_paths 1
 Design : MyDesign
 Version: K-2015.06-SP1
-Date   : Sat Nov 24 12:39:16 2018
+Date   : Sat Nov 24 18:43:36 2018
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -16,9 +16,9 @@ Date   : Sat Nov 24 12:39:16 2018
 Operating Conditions: fast   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_fast_nldm
 Wire Load Model Mode: top
 
-  Startpoint: hashUpdateCounter/read_address_reg[0]
+  Startpoint: wkCounter/read_address_reg[0]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: hashUpdateCounter/read_address_reg[0]
+  Endpoint: wkCounter/read_address_reg[0]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: min
@@ -27,23 +27,24 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock clk (rise edge)                                 0.0000     0.0000
   clock network delay (ideal)                           0.0000     0.0000
-  hashUpdateCounter/read_address_reg[0]/CK (DFF_X1)     0.0000 #   0.0000 r
-  hashUpdateCounter/read_address_reg[0]/Q (DFF_X1)      0.0664     0.0664 r
-  hashUpdateCounter/U14/ZN (OAI21_X2)                   0.0177     0.0841 f
-  hashUpdateCounter/read_address_reg[0]/D (DFF_X1)      0.0000     0.0841 f
-  data arrival time                                                0.0841
+  wkCounter/read_address_reg[0]/CK (DFF_X2)             0.0000 #   0.0000 r
+  wkCounter/read_address_reg[0]/QN (DFF_X2)             0.0548     0.0548 f
+  wkCounter/U15/ZN (NAND2_X2)                           0.0150     0.0698 r
+  wkCounter/U13/ZN (NAND2_X2)                           0.0103     0.0801 f
+  wkCounter/read_address_reg[0]/D (DFF_X2)              0.0000     0.0801 f
+  data arrival time                                                0.0801
 
   clock clk (rise edge)                                 0.0000     0.0000
   clock network delay (ideal)                           0.0000     0.0000
   clock uncertainty                                     0.0500     0.0500
-  hashUpdateCounter/read_address_reg[0]/CK (DFF_X1)     0.0000     0.0500 r
-  library hold time                                     0.0006     0.0506
-  data required time                                               0.0506
+  wkCounter/read_address_reg[0]/CK (DFF_X2)             0.0000     0.0500 r
+  library hold time                                     0.0004     0.0504
+  data required time                                               0.0504
   --------------------------------------------------------------------------
-  data required time                                               0.0506
-  data arrival time                                               -0.0841
+  data required time                                               0.0504
+  data arrival time                                               -0.0801
   --------------------------------------------------------------------------
-  slack (MET)                                                      0.0335
+  slack (MET)                                                      0.0297
 
 
 1
