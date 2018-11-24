@@ -44,6 +44,8 @@ module w64 #(parameter W_LENGTH = 64
             if(reset || !enable) w_vector <=0;
             else if(enable && !w_vector_complete )
                 begin
+                    w_vector <= w_vector;
+                    cur_w <= cur_w;
                     for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
                         begin
                             if(w_vector_index < 16)
