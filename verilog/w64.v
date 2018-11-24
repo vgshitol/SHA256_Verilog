@@ -13,10 +13,10 @@ module w64 #(parameter W_LENGTH = 64
     /*-----------Outputs--------------------------------*/
 
     output reg                              w_vector_complete,  /* message formation complete flag */
-    output reg [2047:0]                     w_vector,
     output reg [31:0]			    cur_w
 );
 
+    reg [2047:0]                     w_vector;
     integer unsigned block_bit;
     reg  [31:0] s0w_r1;
     reg  [31:0] s0w_r2;
