@@ -42,34 +42,6 @@ module w64 #(parameter W_LENGTH = 64
         begin
 
             if(reset || !enable) w_vector <=0;
-	    /**else if(enable && !w_vector_complete && w_vector_index < 16)
-            begin
-		    for (word_16_bit = 0 ; word_16_bit < w_vector_index*32; word_16_bit = word_16_bit + 1)
-                            w_vector[word_16_bit] <= prev_w_vector[word_16_bit];
-
-		    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1) 
-		    begin
-                        w_vector[block_bit + w_vector_index*32] <= message_vector[511-31 + block_bit - w_vector_index*32];
-			cur_w[block_bit] <= message_vector[511-31 + block_bit - w_vector_index*32];
-		    end
-
-		    for (word_16_bit = (w_vector_index+1)*32 ; word_16_bit < 2047; word_16_bit = word_16_bit + 1)
-                            w_vector[word_16_bit] <= prev_w_vector[word_16_bit];
-	    end
-	    else if(enable && !w_vector_complete && w_vector_index >= 16)
-            begin
-    			for (word_16_bit = 0 ; word_16_bit < w_vector_index*32; word_16_bit = word_16_bit + 1)
-                            w_vector[word_16_bit] <= prev_w_vector[word_16_bit];
-
-                        for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1) 
-			    w_vector[block_bit + w_vector_index*32] <= new_word[block_bit];
-			    
-    			for (word_16_bit = (w_vector_index+1)*32 ; word_16_bit < 2047; word_16_bit = word_16_bit + 1)
-                            w_vector[word_16_bit] <= prev_w_vector[word_16_bit];
-
-			cur_w <= new_word;
- 	    end
-**/
   	    else if(enable && !w_vector_complete )
             begin
 		for (word_bit = 0 ; word_bit < 2048; word_bit = word_bit + 1)

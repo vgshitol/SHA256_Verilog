@@ -1,0 +1,149 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'MyDesign' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -max_paths 1
+Design : MyDesign
+Version: K-2015.06-SP1
+Date   : Sat Nov 24 12:38:56 2018
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: slow   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+Wire Load Model Mode: top
+
+  Startpoint: wkCounter/read_address_reg[0]
+              (rising edge-triggered flip-flop clocked by clk)
+  Endpoint: wBlock/w_vector_reg[1791]
+            (rising edge-triggered flip-flop clocked by clk)
+  Path Group: clk
+  Path Type: max
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clk (rise edge)                                 0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  wkCounter/read_address_reg[0]/CK (DFF_X2)             0.0000 #   0.0000 r
+  wkCounter/read_address_reg[0]/QN (DFF_X2)             0.4108     0.4108 r
+  wkCounter/U15/ZN (INV_X4)                             0.0521     0.4629 f
+  wkCounter/read_address[0] (counter_wk_1)              0.0000     0.4629 f
+  wBlock/w_vector_index[0] (w64)                        0.0000     0.4629 f
+  wBlock/U1666/ZN (INV_X8)                              0.0684     0.5313 r
+  wBlock/U1532/ZN (INV_X8)                              0.0458     0.5770 f
+  wBlock/U604/ZN (NAND2_X4)                             0.1290     0.7060 r
+  wBlock/U305/ZN (INV_X8)                               0.0474     0.7535 f
+  wBlock/U2912/ZN (NAND2_X4)                            0.1027     0.8562 r
+  wBlock/U304/ZN (INV_X4)                               0.0637     0.9199 f
+  wBlock/U345/ZN (NAND2_X2)                             0.1684     1.0883 r
+  wBlock/U346/ZN (INV_X4)                               0.0608     1.1491 f
+  wBlock/U347/ZN (INV_X8)                               0.0753     1.2244 r
+  wBlock/U48/ZN (OR2_X2)                                0.1202     1.3446 r
+  wBlock/U52/ZN (OAI221_X1)                             0.1555     1.5001 f
+  wBlock/U3299/ZN (NOR4_X2)                             0.4430     1.9430 r
+  wBlock/U3300/ZN (NAND4_X2)                            0.1662     2.1092 f
+  wBlock/U1386/ZN (INV_X4)                              0.0708     2.1800 r
+  wBlock/U527/ZN (NAND2_X2)                             0.0508     2.2308 f
+  wBlock/U529/ZN (NAND2_X2)                             0.1292     2.3600 r
+  wBlock/U7/ZN (NAND2_X2)                               0.0631     2.4231 f
+  wBlock/U1540/ZN (NAND2_X2)                            0.1405     2.5636 r
+  wBlock/U1542/ZN (NAND2_X2)                            0.0739     2.6375 f
+  wBlock/U754/ZN (INV_X4)                               0.0829     2.7204 r
+  wBlock/U605/ZN (NOR2_X2)                              0.0521     2.7725 f
+  wBlock/U3452/ZN (OAI22_X2)                            0.3275     3.1001 r
+  wBlock/U1216/ZN (INV_X4)                              0.0687     3.1687 f
+  wBlock/U1222/ZN (NOR2_X4)                             0.0995     3.2683 r
+  wBlock/U1428/ZN (OR2_X4)                              0.1264     3.3947 r
+  wBlock/U1821/ZN (NOR2_X2)                             0.0373     3.4320 f
+  wBlock/U3738/ZN (OAI22_X2)                            0.3300     3.7620 r
+  wBlock/U3882/ZN (NOR2_X2)                             0.0780     3.8400 f
+  wBlock/U562/ZN (OR2_X2)                               0.2250     4.0651 f
+  wBlock/U563/ZN (NAND2_X2)                             0.1304     4.1954 r
+  wBlock/U1586/ZN (NOR2_X1)                             0.0708     4.2663 f
+  wBlock/U1901/ZN (NOR2_X2)                             0.1509     4.4172 r
+  wBlock/U4134/ZN (NOR2_X2)                             0.0763     4.4935 f
+  wBlock/U4135/ZN (OAI22_X2)                            0.3143     4.8078 r
+  wBlock/U4237/ZN (NOR2_X2)                             0.0857     4.8935 f
+  wBlock/U4238/ZN (OAI22_X2)                            0.3282     5.2217 r
+  wBlock/U4306/ZN (NOR2_X2)                             0.0857     5.3074 f
+  wBlock/U4307/ZN (OAI22_X2)                            0.3265     5.6339 r
+  wBlock/U1728/ZN (NOR2_X2)                             0.0857     5.7196 f
+  wBlock/U4412/ZN (OAI22_X2)                            0.3265     6.0460 r
+  wBlock/U4519/ZN (NOR2_X2)                             0.1046     6.1506 f
+  wBlock/U1364/ZN (OAI22_X2)                            0.3353     6.4859 r
+  wBlock/U1585/ZN (INV_X4)                              0.0548     6.5407 f
+  wBlock/U1063/ZN (NOR2_X4)                             0.1061     6.6468 r
+  wBlock/U1353/ZN (OR2_X4)                              0.1249     6.7717 r
+  wBlock/U1633/ZN (OR2_X4)                              0.1044     6.8761 r
+  wBlock/U1346/ZN (AOI22_X2)                            0.0830     6.9591 f
+  wBlock/U1347/ZN (INV_X2)                              0.1082     7.0673 r
+  wBlock/U1345/ZN (XNOR2_X2)                            0.2556     7.3229 r
+  wBlock/U1246/ZN (OR2_X4)                              0.1780     7.5009 r
+  wBlock/U1245/ZN (NOR2_X2)                             0.0363     7.5372 f
+  wBlock/U1356/ZN (OAI22_X2)                            0.3117     7.8489 r
+  wBlock/U6241/ZN (NOR2_X2)                             0.0857     7.9346 f
+  wBlock/U6244/ZN (OAI22_X2)                            0.3265     8.2611 r
+  wBlock/U6247/ZN (NOR2_X2)                             0.1046     8.3657 f
+  wBlock/U6251/ZN (OAI22_X2)                            0.3120     8.6777 r
+  wBlock/U6255/ZN (NOR2_X2)                             0.0757     8.7534 f
+  wBlock/U66/ZN (OR2_X1)                                0.2194     8.9729 f
+  wBlock/U549/ZN (NAND2_X2)                             0.1210     9.0939 r
+  wBlock/U113/ZN (NOR2_X1)                              0.0603     9.1542 f
+  wBlock/U551/ZN (OR2_X1)                               0.2242     9.3784 f
+  wBlock/U552/ZN (NAND2_X2)                             0.1334     9.5118 r
+  wBlock/U416/ZN (NOR2_X2)                              0.0559     9.5677 f
+  wBlock/U11452/ZN (OAI22_X2)                           0.3237     9.8915 r
+  wBlock/U11456/ZN (NOR2_X2)                            0.0970     9.9885 f
+  wBlock/U11460/ZN (OAI22_X2)                           0.3108    10.2993 r
+  wBlock/U12990/ZN (NOR2_X2)                            0.0847    10.3840 f
+  wBlock/U12991/ZN (OAI22_X2)                           0.3267    10.7107 r
+  wBlock/U12995/ZN (NOR2_X2)                            0.0857    10.7964 f
+  wBlock/U12999/ZN (OAI22_X2)                           0.3265    11.1229 r
+  wBlock/U13003/ZN (NOR2_X2)                            0.1046    11.2275 f
+  wBlock/U13006/ZN (OAI22_X2)                           0.2943    11.5218 r
+  wBlock/U1372/ZN (OR2_X4)                              0.1977    11.7194 r
+  wBlock/U751/ZN (AOI22_X2)                             0.0963    11.8157 f
+  wBlock/U752/ZN (INV_X4)                               0.0942    11.9099 r
+  wBlock/U13011/ZN (NOR2_X2)                            0.0480    11.9579 f
+  wBlock/U1332/ZN (NOR2_X4)                             0.1082    12.0661 r
+  wBlock/U1357/ZN (NOR2_X2)                             0.0613    12.1274 f
+  wBlock/U125/ZN (NOR2_X2)                              0.1254    12.2528 r
+  wBlock/U1630/ZN (NOR2_X2)                             0.0661    12.3189 f
+  wBlock/U1653/ZN (INV_X4)                              0.0607    12.3796 r
+  wBlock/U1896/ZN (NOR2_X2)                             0.0375    12.4171 f
+  wBlock/U13018/ZN (OAI22_X2)                           0.3083    12.7254 r
+  wBlock/U13020/ZN (NOR2_X2)                            0.0857    12.8111 f
+  wBlock/U13021/ZN (OAI22_X2)                           0.3265    13.1376 r
+  wBlock/U15258/ZN (NOR2_X2)                            0.0857    13.2233 f
+  wBlock/U15259/ZN (OAI22_X2)                           0.3265    13.5497 r
+  wBlock/U2847/ZN (NOR2_X2)                             0.0970    13.6468 f
+  wBlock/U15263/ZN (OAI22_X2)                           0.3108    13.9575 r
+  wBlock/U15727/ZN (NOR2_X2)                            0.0847    14.0423 f
+  wBlock/U15728/ZN (OAI22_X2)                           0.3274    14.3697 r
+  wBlock/U2684/ZN (XNOR2_X2)                            0.3393    14.7090 r
+  wBlock/U2141/ZN (XNOR2_X2)                            0.1088    14.8178 f
+  wBlock/U15793/ZN (NAND2_X2)                           0.1171    14.9349 r
+  wBlock/U1913/ZN (INV_X4)                              0.0659    15.0008 f
+  wBlock/U2461/ZN (INV_X4)                              0.1148    15.1156 r
+  wBlock/U1968/ZN (NOR2_X1)                             0.0776    15.1932 f
+  wBlock/U1502/ZN (OR3_X4)                              0.3443    15.5375 f
+  wBlock/w_vector_reg[1791]/D (DFF_X2)                  0.0000    15.5375 f
+  data arrival time                                               15.5375
+
+  clock clk (rise edge)                                15.0000    15.0000
+  clock network delay (ideal)                           0.0000    15.0000
+  clock uncertainty                                    -0.0500    14.9500
+  wBlock/w_vector_reg[1791]/CK (DFF_X2)                 0.0000    14.9500 r
+  library setup time                                   -0.3153    14.6347
+  data required time                                              14.6347
+  --------------------------------------------------------------------------
+  data required time                                              14.6347
+  data arrival time                                              -15.5375
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.9028
+
+
+1
