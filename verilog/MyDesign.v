@@ -68,7 +68,6 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 	wire message_vector_complete;
 	wire [511:0] message_vector;
 
-	wire [$clog2(NUMBER_OF_Hs)-1:0]   hash_vector_index;  // index of hash
 	wire hash_address_complete;
 	wire [255:0] hash_vector;
 	wire hash_vector_complete;
@@ -88,7 +87,6 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 
 	wire [$clog2(NUMBER_OF_Hs)-1:0]   hash_output_vector_index;  // index of hash
 	wire hash_output_address_complete;
-	wire hash_store_complete;
 
 /** Creating Message Vector **/	
 msgEn msgSignal(.clock(clk), .reset(reset), .start(xxx__dut__go), .enable(dut__msg__enable));
