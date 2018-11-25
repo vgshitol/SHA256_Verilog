@@ -77,12 +77,17 @@ module hash_update #(parameter WK_LENGTH = 64
     reg [31:0] g_new;
     reg [31:0] h_new;
 
+    reg                              hash_complete1; 
+    reg                              hash_complete2;     
+
+    reg                              enable1; 
+    reg                              enable2;  
     always @(posedge clock)
         begin
             if(reset) begin
                 updated_hash <= 0;
             end
-            else if(!enable) begin
+            else if(!enable2) begin
                 updated_hash <= prev_hash;
             end
             else if(!hash_complete)
@@ -100,7 +105,13 @@ module hash_update #(parameter WK_LENGTH = 64
                         end
                 end
             else updated_hash <= updated_hash;
-            hash_complete <= wk_index_complete;
+            
+	hash_complete1 <= wk_index_complete;
+	hash_complete2 <= hash_complete1;
+	hash_complete <= hash_complete2;
+
+	enable1 <= enable;
+	enable2 <= enable1;	
         end
 
     always @(*)
@@ -137,7 +148,7 @@ module hash_update #(parameter WK_LENGTH = 64
 
     always @(*)
         begin
-            if(enable && !hash_complete)
+            if(enable2 && !hash_complete)
                 begin
                     a_n = {a, a};
                     a_r1 = a_n >> 2;
@@ -150,7 +161,7 @@ module hash_update #(parameter WK_LENGTH = 64
 
     always @(*)
         begin
-            if(enable && !hash_complete)
+            if(enable2 && !hash_complete)
                 begin
                     e_n = {e, e};
                     e_r1 = e_n >> 6;
@@ -163,7 +174,7 @@ module hash_update #(parameter WK_LENGTH = 64
 
     always @(*)
         begin
-            if(enable && !hash_complete)
+            if(enable2 && !hash_complete)
                 begin
                     m1 = a & b;
                     m2 = a & c;
@@ -175,7 +186,7 @@ module hash_update #(parameter WK_LENGTH = 64
 
     always @(*)
         begin
-            if(enable && !hash_complete)
+            if(enable2 && !hash_complete)
                 begin
                     c1 = e & f;
                     c2 = (~e) & g;
@@ -201,7 +212,7 @@ module hash_update #(parameter WK_LENGTH = 64
                     h7[block_bit] = prev_hash[block_bit + 32*7];
                 end
 
-            if(!wk_index_complete)
+            if(!hash_complete2)
                 begin
                     a_new = t1 + t2;
                     b_new = a;

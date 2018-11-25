@@ -20,9 +20,14 @@ module k_vector #(parameter K_LENGTH = 64
     integer block_bit;
     integer length_bit;
 
+	reg                              k_vector_complete1; 
+    	reg                              k_vector_complete2;     	
+ 	reg                              enable1; 
+    	reg                              enable2;  
+
     always @(posedge clock)
         begin
-            if(reset || !enable) begin
+            if(reset || !enable2) begin
 		cur_k_value <= 0;
                 k_vector_complete <= 0;
             end
@@ -33,7 +38,14 @@ module k_vector #(parameter K_LENGTH = 64
 		    end	
             end
   	    k_write <= 0;  
-            k_vector_complete <= address_read_complete;
-        end
+           
+        k_vector_complete1 <= address_read_complete;
+        k_vector_complete2 <= k_vector_complete1;
+        k_vector_complete  <= k_vector_complete2;
+
+	enable1 <= enable;
+	enable2 <= enable1;	
+        
+	end
 
 endmodule

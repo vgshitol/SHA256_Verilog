@@ -101,12 +101,21 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
         reg                                     hashWrite;
 	reg [31:0]                              hashData;  // read each letter
 
+	reg 					kEnable;
+	reg [ $clog2(NUMBER_OF_Ks)-1:0]   	kAddress;  // address of letter
+        reg                                     kWrite;
+	reg [31:0]                              kData;  // read each letter
+
 /**Register All Inputs and Outputs **/
 /**Inputs **/
 registerIO #(.REGISTER_LENGTH(1)) registerGO(.clock(clk), .reset(reset), .input_to_register(xxx__dut__go), .outputRegister(go));
+
 registerIO #(.REGISTER_LENGTH($clog2(MAX_MESSAGE_LENGTH))) registerMSGLength(.clock(clk), .reset(reset), .input_to_register(xxx__dut__msg_length), .outputRegister(msgLength));
 registerIO #(.REGISTER_LENGTH(8)) registerMSGData(.clock(clk), .reset(reset), .input_to_register(msg__dut__data), .outputRegister(msgData));
+
 registerIO #(.REGISTER_LENGTH(32)) registerHashData(.clock(clk), .reset(reset), .input_to_register(hmem__dut__data), .outputRegister(hashData));
+
+registerIO #(.REGISTER_LENGTH(32)) registerKData(.clock(clk), .reset(reset), .input_to_register(kmem__dut__data), .outputRegister(kData));
 
 /**Outputs**/
 registerIO #(.REGISTER_LENGTH(1)) registerMSGEnable(.clock(clk), .reset(reset), .input_to_register(msgEnable), .outputRegister(dut__msg__enable));
@@ -116,11 +125,11 @@ registerIO #(.REGISTER_LENGTH(1)) registerMSGWrite(.clock(clk), .reset(reset), .
 registerIO #(.REGISTER_LENGTH(1)) registerHashEnable(.clock(clk), .reset(reset), .input_to_register(hashEnable), .outputRegister(dut__hmem__enable));
 registerIO #(.REGISTER_LENGTH($clog2(NUMBER_OF_Hs))) registerHashAddress(.clock(clk), .reset(reset), .input_to_register(hashAddress), .outputRegister(dut__hmem__address));
 registerIO #(.REGISTER_LENGTH(1)) registerHashWrite(.clock(clk), .reset(reset), .input_to_register(hashWrite), .outputRegister(dut__hmem__write));
-/*
-registerIO #(.REGISTER_LENGTH(1)) registerKEnable(.clock(clk), .reset(reset), .input_to_register(hashEnable), .outputRegister(dut__hmem__enable));
-registerIO #(.REGISTER_LENGTH($clog2(NUMBER_OF_Hs))) registerKAddress(.clock(clk), .reset(reset), .input_to_register(hashAddress), .outputRegister(dut__hmem__address));
-registerIO #(.REGISTER_LENGTH(1)) registerKWrite(.clock(clk), .reset(reset), .input_to_register(hashWrite), .outputRegister(dut__hmem__write));
-*/
+
+registerIO #(.REGISTER_LENGTH(1)) registerKEnable(.clock(clk), .reset(reset), .input_to_register(kEnable), .outputRegister(dut__kmem__enable));
+registerIO #(.REGISTER_LENGTH($clog2(NUMBER_OF_Ks))) registerKAddress(.clock(clk), .reset(reset), .input_to_register(kAddress), .outputRegister(dut__kmem__address));
+registerIO #(.REGISTER_LENGTH(1)) registerKWrite(.clock(clk), .reset(reset), .input_to_register(kWrite), .outputRegister(dut__kmem__write));
+
 registerIO #(.REGISTER_LENGTH(1)) registerFINISH(.clock(clk), .reset(reset), .input_to_register(finish), .outputRegister(dut__xxx__finish));
 
 /** Creating Message Vector **/	
@@ -140,19 +149,19 @@ hash #(.HASH_LENGTH(NUMBER_OF_Hs)) hashBlock (.clock(clk), .reset(reset), .enabl
 .hash_data(hashData) , .hash_vector_complete(hash_vector_complete), .hash_vector(hash_vector));
 	  
 /** Creating K Vector **/
-wEn wkSignal(.clock(clk), .reset(reset), .start1(message_vector_complete), .start2(hash_vector_complete), .enable(dut__kmem__enable));
+wEn wkSignal(.clock(clk), .reset(reset), .start1(message_vector_complete), .start2(hash_vector_complete), .enable(kEnable));
 	
-counter_wk #(.MAX_MESSAGE_LENGTH(NUMBER_OF_Ks)) wkCounter (.clock(clk), .reset(reset), .start(dut__kmem__enable), .read_address(dut__kmem__address), .read_complete(k_address_complete));
+counter_wk #(.MAX_MESSAGE_LENGTH(NUMBER_OF_Ks)) wkCounter (.clock(clk), .reset(reset), .start(kEnable), .read_address(kAddress), .read_complete(k_address_complete));
 
-k_vector #(.K_LENGTH(NUMBER_OF_Ks)) kBlock (.clock(clk), .reset(reset), .enable(dut__kmem__enable), .address_read_complete(k_address_complete), .k_address(dut__kmem__address), .k_write(dut__kmem__write), 
-.k_data(kmem__dut__data) , .k_vector_complete(k_vector_complete), .cur_k_value(cur_k_value));
+k_vector #(.K_LENGTH(NUMBER_OF_Ks)) kBlock (.clock(clk), .reset(reset), .enable(kEnable), .address_read_complete(k_address_complete), .k_address(kAddress), .k_write(kWrite), 
+.k_data(kData) , .k_vector_complete(k_vector_complete), .cur_k_value(cur_k_value));
 
 /** Creating the W Vector**/
-w64 #(.W_LENGTH(NUMBER_OF_Ks)) wBlock (.clock(clk), .reset(reset), .enable(dut__kmem__enable), .w_vector_index(dut__kmem__address), .w_index_complete(k_address_complete), .message_vector(message_vector), 
+w64 #(.W_LENGTH(NUMBER_OF_Ks)) wBlock (.clock(clk), .reset(reset), .enable(kEnable), .w_vector_index(kAddress), .w_index_complete(k_address_complete), .message_vector(message_vector), 
 .w_vector_complete(w_vector_complete), .cur_w(cur_w_value));
 
 /** Processing Hash Update**/
-msgEn hashUpdateSignal(.clock(clk), .reset(reset), .start(dut__kmem__enable), .enable(wk_vector_enable));
+msgEn hashUpdateSignal(.clock(clk), .reset(reset), .start(kEnable), .enable(wk_vector_enable));
 	
 counter_wk #(.MAX_MESSAGE_LENGTH(NUMBER_OF_Ks)) hashUpdateCounter (.clock(clk), .reset(reset), .start(wk_vector_enable), .read_address(wk_vector_index), .read_complete(wk_vector_index_complete));
 	
