@@ -15,7 +15,7 @@ always @(posedge clock)
     begin
 	enable <= 0;
 	if(reset) enable <= 0;
-    else enable <= start || enable;
+    else enable <= start;
     end
 
 endmodule

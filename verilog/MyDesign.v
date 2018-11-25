@@ -88,21 +88,56 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 	wire [$clog2(NUMBER_OF_Hs)-1:0]   hash_output_vector_index;  // index of hash
 	wire hash_output_address_complete;
 
-/** Creating Message Vector **/	
-msgEn msgSignal(.clock(clk), .reset(reset), .start(xxx__dut__go), .enable(dut__msg__enable));
-	
-counter #(.MAX_MESSAGE_LENGTH(MAX_MESSAGE_LENGTH)) msgCounter (.clock(clk), .reset(reset), .start(dut__msg__enable), .msg_length(xxx__dut__msg_length), .read_address(dut__msg__address), .read_complete(msg_address_read_complete));
+	reg go;
+	reg finish;
+	reg msgEnable;
+   	reg [ $clog2(MAX_MESSAGE_LENGTH)-1:0] 	msgLength;
+	reg [ $clog2(MAX_MESSAGE_LENGTH)-1:0]   msgAddress;  // address of letter
+        reg                                     msgWrite;
+        reg [7:0]                               msgData;  // read each letter
+    
+	reg 					hashEnable;
+	reg [ $clog2(NUMBER_OF_Hs)-1:0]   	hashAddress;  // address of letter
+        reg                                     hashWrite;
+	reg [31:0]                              hashData;  // read each letter
 
-msg_vector #(.MSG_LENGTH(MAX_MESSAGE_LENGTH)) msgBlock (.clock(clk), .reset(reset), .enable(dut__msg__enable), .address_read_complete(msg_address_read_complete), .msg_address(dut__msg__address), 
- .msg_data(msg__dut__data), .msg_write(dut__msg__write), .message_vector(message_vector), .message_vector_complete(message_vector_complete));
+/**Register All Inputs and Outputs **/
+/**Inputs **/
+registerIO #(.REGISTER_LENGTH(1)) registerGO(.clock(clk), .reset(reset), .input_to_register(xxx__dut__go), .outputRegister(go));
+registerIO #(.REGISTER_LENGTH($clog2(MAX_MESSAGE_LENGTH))) registerMSGLength(.clock(clk), .reset(reset), .input_to_register(xxx__dut__msg_length), .outputRegister(msgLength));
+registerIO #(.REGISTER_LENGTH(8)) registerMSGData(.clock(clk), .reset(reset), .input_to_register(msg__dut__data), .outputRegister(msgData));
+registerIO #(.REGISTER_LENGTH(32)) registerHashData(.clock(clk), .reset(reset), .input_to_register(hmem__dut__data), .outputRegister(hashData));
+
+/**Outputs**/
+registerIO #(.REGISTER_LENGTH(1)) registerMSGEnable(.clock(clk), .reset(reset), .input_to_register(msgEnable), .outputRegister(dut__msg__enable));
+registerIO #(.REGISTER_LENGTH($clog2(MAX_MESSAGE_LENGTH))) registerMSGAddress(.clock(clk), .reset(reset), .input_to_register(msgAddress), .outputRegister(dut__msg__address));
+registerIO #(.REGISTER_LENGTH(1)) registerMSGWrite(.clock(clk), .reset(reset), .input_to_register(msgWrite), .outputRegister(dut__msg__write));
+
+registerIO #(.REGISTER_LENGTH(1)) registerHashEnable(.clock(clk), .reset(reset), .input_to_register(hashEnable), .outputRegister(dut__hmem__enable));
+registerIO #(.REGISTER_LENGTH($clog2(NUMBER_OF_Hs))) registerHashAddress(.clock(clk), .reset(reset), .input_to_register(hashAddress), .outputRegister(dut__hmem__address));
+registerIO #(.REGISTER_LENGTH(1)) registerHashWrite(.clock(clk), .reset(reset), .input_to_register(hashWrite), .outputRegister(dut__hmem__write));
+/*
+registerIO #(.REGISTER_LENGTH(1)) registerKEnable(.clock(clk), .reset(reset), .input_to_register(hashEnable), .outputRegister(dut__hmem__enable));
+registerIO #(.REGISTER_LENGTH($clog2(NUMBER_OF_Hs))) registerKAddress(.clock(clk), .reset(reset), .input_to_register(hashAddress), .outputRegister(dut__hmem__address));
+registerIO #(.REGISTER_LENGTH(1)) registerKWrite(.clock(clk), .reset(reset), .input_to_register(hashWrite), .outputRegister(dut__hmem__write));
+*/
+registerIO #(.REGISTER_LENGTH(1)) registerFINISH(.clock(clk), .reset(reset), .input_to_register(finish), .outputRegister(dut__xxx__finish));
+
+/** Creating Message Vector **/	
+go msgSignal(.clock(clk), .reset(reset), .start(go), .restart(finish), .enable(msgEnable));
+	
+counter #(.MAX_MESSAGE_LENGTH(MAX_MESSAGE_LENGTH)) msgCounter (.clock(clk), .reset(reset), .start(msgEnable), .msg_length(msgLength), .read_address(msgAddress), .read_complete(msg_address_read_complete));
+
+msg_vector #(.MSG_LENGTH(MAX_MESSAGE_LENGTH)) msgBlock (.clock(clk), .reset(reset), .enable(msgEnable), .address_read_complete(msg_address_read_complete), .msg_address(msgAddress), 
+ .msg_data(msgData), .msg_write(msgWrite), .message_vector(message_vector), .message_vector_complete(message_vector_complete));
 
 /** Creating Hash Vector **/
-msgEn hashSignal (.clock(clk), .reset(reset), .start(xxx__dut__go), .enable(dut__hmem__enable));
+go hashSignal (.clock(clk), .reset(reset), .start(go), .restart(finish),  .enable(hashEnable));
 
-counter_h #(.NUMBER_OF_BLOCKS(NUMBER_OF_Hs)) Hcounter (.clock(clk), .reset(reset), .start(dut__hmem__enable), .read_address(dut__hmem__address), .read_complete(hash_address_complete));
+counter_h #(.NUMBER_OF_BLOCKS(NUMBER_OF_Hs)) Hcounter (.clock(clk), .reset(reset), .start(hashEnable), .read_address(hashAddress), .read_complete(hash_address_complete));
 
-hash #(.HASH_LENGTH(NUMBER_OF_Hs)) hashBlock (.clock(clk), .reset(reset), .enable(dut__hmem__enable), .address_read_complete(hash_address_complete), .hash_address(dut__hmem__address), .hash_write(dut__hmem__write), 
-.hash_data(hmem__dut__data) , .hash_vector_complete(hash_vector_complete), .hash_vector(hash_vector));
+hash #(.HASH_LENGTH(NUMBER_OF_Hs)) hashBlock (.clock(clk), .reset(reset), .enable(hashEnable), .address_read_complete(hash_address_complete), .hash_address(hashAddress), .hash_write(hashWrite), 
+.hash_data(hashData) , .hash_vector_complete(hash_vector_complete), .hash_vector(hash_vector));
 	  
 /** Creating K Vector **/
 wEn wkSignal(.clock(clk), .reset(reset), .start1(message_vector_complete), .start2(hash_vector_complete), .enable(dut__kmem__enable));
@@ -130,7 +165,7 @@ msgEn storeHashSignal(.clock(clk), .reset(reset), .start(hash_complete), .enable
 counter_h #(.NUMBER_OF_BLOCKS(NUMBER_OF_Hs)) storeHashCounter (.clock(clk), .reset(reset), .start(dut__dom__enable), .read_address(hash_output_vector_index), .read_complete(hash_output_address_complete));
 
 store_hash #(.HASH_LENGTH(NUMBER_OF_Hs)) hashStore (.clock(clk), .reset(reset), .enable(dut__dom__enable), .address_read_complete(hash_output_address_complete), .h_address(hash_output_vector_index), .hash_vector(updated_hash), .h_write(dut__dom__write), 
-.h_data(dut__dom__data) , .h_vector_complete(dut__xxx__finish), .h_output_address(dut__dom__address));
+.h_data(dut__dom__data) , .h_vector_complete(finish), .h_output_address(dut__dom__address));
 
 endmodule
 

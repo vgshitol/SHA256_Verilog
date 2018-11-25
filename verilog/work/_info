@@ -39,17 +39,17 @@ n@_opt2
 R3
 R0
 T_opt3
-!s110 1543101241
-VJJDZon;73LkQ<AWUfldMI2
+!s110 1543176916
+VBf_lz@TU<7E@Y^A9YNd4A1
 R4
-=1-005056890110-5bf9db39-2574b-574d
+=6-54bf64688e6d-5bfb02d4-5fd6b-35bc
 R1
 R2
 n@_opt3
 R3
 vcounter
 Z5 DXx6 sv_std 3 std 0 22 d=_JfHTnXCN[H5FjiaJJc0
-Z6 !s110 1543101199
+Z6 !s110 1543176912
 !i10b 1
 !s100 Dk5Y;bMaZ<Lz7FL0l7Ak[2
 IJAzldk?JCj1<6P_bf671`0
@@ -65,9 +65,9 @@ Z10 OL;L;10.7c;67
 r1
 !s85 0
 31
-Z11 !s108 1543101198.000000
-Z12 !s107 ece564_project_tb_top.v|sram.v|MyDesign.v|store_hash.v|hash_update.v|w64.v|hash.v|k_vector.v|msg_vector.v|counter_wk.v|counter_h.v|counter.v|wEn.v|msgEn.v|
-Z13 !s90 -reportprogress|300|-sv|msgEn.v|wEn.v|counter.v|counter_h.v|counter_wk.v|msg_vector.v|k_vector.v|hash.v|w64.v|hash_update.v|store_hash.v|MyDesign.v|sram.v|ece564_project_tb_top.v|
+Z11 !s108 1543176912.000000
+Z12 !s107 ece564_project_tb_top.v|sram.v|MyDesign.v|store_hash.v|hash_update.v|w64.v|k_vector.v|hash.v|msg_vector.v|wEn.v|counter_wk.v|counter_h.v|counter.v|msgEn.v|go.v|registerIO.v|
+Z13 !s90 -reportprogress|300|-sv|registerIO.v|go.v|msgEn.v|counter.v|counter_h.v|counter_wk.v|wEn.v|msg_vector.v|hash.v|k_vector.v|w64.v|hash_update.v|store_hash.v|MyDesign.v|sram.v|ece564_project_tb_top.v|
 !i113 0
 Z14 o-sv -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R2
@@ -119,17 +119,41 @@ R13
 !i113 0
 R14
 R2
+vgo
+R5
+R6
+!i10b 1
+!s100 c<Cbb9Q6^fg8?Tn<YLd_60
+I3JEFJQR`:G1j94fgF3?lD0
+R7
+!s105 go_v_unit
+S1
+R8
+w1543168758
+8go.v
+Fgo.v
+L0 1
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2
 vhash
 R5
 R6
 !i10b 1
-!s100 :Tb50WE;Ta5Rz_f>UVdhI3
-I^]QU9zf=TRgRlzIC__B0X3
+!s100 PA8Aa?IG:j2Q291Y=o[4:1
+Ic^[0_UlV]N_QhjnkhkW9z1
 R7
 !s105 hash_v_unit
 S1
 R8
-Z15 w1543094499
+w1543176506
 8hash.v
 Fhash.v
 L0 1
@@ -177,7 +201,7 @@ R7
 !s105 hash_update_v_unit
 S1
 R8
-R15
+Z15 w1543094499
 8hash_update.v
 Fhash_update.v
 L0 1
@@ -219,13 +243,13 @@ vmsg_vector
 R5
 R6
 !i10b 1
-!s100 ckOmeg4nE`azT<?5ICMIG0
-I<[ZYRDbPzmCCdP6O^fTk@3
+!s100 5R>nzBZLSb`fo?fY]z;U<3
+I@>?LAE^WHb=1a8PnZldH:0
 R7
 !s105 msg_vector_v_unit
 S1
 R8
-R15
+w1543171846
 8msg_vector.v
 Fmsg_vector.v
 L0 1
@@ -243,13 +267,13 @@ vmsgEn
 R5
 R6
 !i10b 1
-!s100 BnoXSlQMVK^Xm]?NMEhMO1
-ITTHP?d5]X`b2GP;oeMn<a2
+!s100 @j4`TLW:9oiYfaCX4fmTF3
+IlhNX=CCJ[@^WeCH3Gz_Sd3
 R7
 !s105 msgEn_v_unit
 S1
 R8
-R15
+w1543168260
 8msgEn.v
 FmsgEn.v
 L0 1
@@ -268,13 +292,13 @@ vMyDesign
 R5
 R6
 !i10b 1
-!s100 e;nU]GC^G[?@<5nR]A_V@1
-IZ?2fWLVAJl`h0el6dNI[O3
+!s100 Eho1oz3TYkbePeLkT5U322
+I0BFMXRQ<Rn6MeoLHHgC;g1
 R7
 !s105 MyDesign_v_unit
 S1
 R8
-w1543095903
+w1543176874
 8MyDesign.v
 FMyDesign.v
 L0 5
@@ -289,6 +313,31 @@ R13
 R14
 R2
 n@my@design
+vregisterIO
+R5
+R6
+!i10b 1
+!s100 jdKEMK85_?6B4>@4z6BOE2
+IfdooeOngmOVo0O:?EaO:I3
+R7
+!s105 registerIO_v_unit
+S1
+R8
+w1543169411
+8registerIO.v
+FregisterIO.v
+L0 1
+R10
+r1
+!s85 0
+31
+R11
+R12
+R13
+!i113 0
+R14
+R2
+nregister@i@o
 vsram
 R5
 R6
@@ -389,13 +438,13 @@ vwEn
 R5
 R6
 !i10b 1
-!s100 [oihTX52kbLf]lMm^4F2<3
-IDgJVHnoX61RbkenS^85J21
+!s100 Gz^VK@fX6_n@P_6ionZ:70
+I_Lia9b=j4IKTajO9;na=l0
 R7
 !s105 wEn_v_unit
 S1
 R8
-w1543095942
+w1543168091
 8wEn.v
 FwEn.v
 L0 1
