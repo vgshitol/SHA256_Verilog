@@ -7,7 +7,6 @@ module hash_update #(parameter WK_LENGTH = 64
     input                                   reset,
     input  wire                             enable, /* Previous Enable to decide what to do for the next enable*/
     input  wire                             wk_index_complete,
-    input  wire [ $clog2(WK_LENGTH)-1:0]    wk_vector_index,
     input  wire [255:0]                     prev_hash,
     input  wire [31:0]  		            cur_w,
     input  wire [31:0]  		            cur_k,

@@ -1,5 +1,5 @@
 module registerIO #(
-	parameter REGISTER_LENGTH = 1
+	parameter REGISTER_LENGTH = 32
 	) (
 		
 		/*-----------Inputs--------------------------------*/

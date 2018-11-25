@@ -7,7 +7,6 @@ module k_vector #(parameter K_LENGTH = 64
     input                                   reset,
     input  wire                              enable, /* Previous Enable to decide what to do for the next enable*/
     input  wire                              address_read_complete,
-    input  wire [ $clog2(K_LENGTH)-1:0]      k_address,
     input  wire [31:0]                       k_data,
    
     /*-----------Outputs--------------------------------*/

@@ -3,7 +3,7 @@
 Report : cell
 Design : MyDesign
 Version: K-2015.06-SP1
-Date   : Sat Nov 24 18:44:04 2018
+Date   : Sun Nov 25 17:54:29 2018
 ****************************************
 
 Attributes:
@@ -19,34 +19,53 @@ Cell                      Reference       Library             Area  Attributes
 Hcounter                  counter_h_1                      23.9400  h, n, p
 U1                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
                                                             0.5320  
-U3                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+U2                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
                                                             0.5320  
-U5                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+U4                        INV_X1          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
                                                             0.5320  
-U7                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+U5                        INV_X1          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
                                                             0.5320  
-U8                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+U6                        INV_X1          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
                                                             0.5320  
-U9                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+U7                        INV_X1          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
                                                             0.5320  
-U10                       INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
+U8                        INV_X1          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
                                                             0.5320  
-hashBlock                 hash                            1626.3240 h, n, p
-hashSignal                msgEn_3                           6.3840  h, n
-hashStore                 store_hash                      474.5440  h, n, p
-hashUpdate                hash_update                     5105.3381 h, n, p
-hashUpdateCounter         counter_wk_0                     57.4560  h, n, p
-hashUpdateSignal          msgEn_2                           6.3840  h, n
-kBlock                    k_vector                        222.3760  h, n, p
-msgBlock                  msg_vector                      3892.6441 h, n, p
+hashBlock                 hash                            1688.0360 h, n, p
+hashSignal                go_0                              6.6500  h, n
+hashStore                 store_hash                      517.3700  h, n, p
+hashUpdate                hash_update                     5878.6000 h, n, p
+hashUpdateCounter         counter_hashupdate               57.1900  h, n, p
+hashUpdateSignal          msgEn_1                           6.1180  h, n
+kBlock                    k_vector                        240.7300  h, n, p
+msgBlock                  msg_vector                      3961.8041 h, n, p
 msgCounter                counter                          82.9920  h, n, p
-msgSignal                 msgEn_1                           6.3840  h, n
+msgSignal                 go_1                              6.6500  h, n
+registerFINISH            registerIO1_0                     6.1180  h, n
+registerGO                registerIO1_1                     6.1180  h, n
+registerHashAddress       registerIO3_1                    18.0880  h, n
+registerHashData          registerIO32_1                  187.7960  h, n
+registerHashEnable        registerIO1_7                     6.1180  h, n
+registerHashWrite         registerIO1_6                     6.1180  h, n
+registerKAddress          registerIO6_0                    35.6440  h, n
+registerKData             registerIO32_2                  187.7960  h, n
+registerKEnable           registerIO1_5                     6.1180  h, n
+registerKWrite            registerIO1_4                     6.1180  h, n
+registerMSGAddress        registerIO6_2                    35.6440  h, n
+registerMSGData           registerIO8                      47.3480  h, n
+registerMSGEnable         registerIO1_9                     6.1180  h, n
+registerMSGLength         registerIO6_1                    35.6440  h, n
+registerMSGWrite          registerIO1_8                     6.1180  h, n
+registerOutputAddress     registerIO3_0                    18.0880  h, n
+registerOutputData        registerIO32_0                  187.7960  h, n
+registerOutputEnable      registerIO1_3                     6.1180  h, n
+registerOutputWrite       registerIO1_2                     6.1180  h, n
 storeHashCounter          counter_h_0                      26.3340  h, n, p
-storeHashSignal           msgEn_0                           6.3840  h, n
-wBlock                    w64                             19932.7104
+storeHashSignal           msgEn_0                           6.1180  h, n
+wBlock                    w64                             20368.9502
                                                                     h, n, p
-wkCounter                 counter_wk_1                     58.2540  h, n, p
+wkCounter                 counter_wk                       57.1900  h, n, p
 wkSignal                  wEn                               6.6500  h, n
 --------------------------------------------------------------------------------
-Total 23 cells                                            31538.8226
+Total 42 cells                                            33754.0703
 1

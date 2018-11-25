@@ -183,13 +183,19 @@ module tb_top ();
         xxx__dut__go = 1;
         repeat(1) @(posedge clk);
         xxx__dut__go = 0;
-        repeat(500) @(posedge clk);
+        repeat(120) @(posedge clk);
 
         repeat(1) @(posedge clk);
         xxx__dut__go = 1;
         repeat(1) @(posedge clk);
         xxx__dut__go = 0;
-        repeat(500) @(posedge clk);
+        repeat(40) @(posedge clk);
+
+ 	repeat(1) @(posedge clk);
+        xxx__dut__go = 1;
+        repeat(1) @(posedge clk);
+        xxx__dut__go = 0;
+        repeat(400) @(posedge clk);
 
         $finish;
     end
