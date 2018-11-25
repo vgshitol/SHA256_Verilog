@@ -3,7 +3,7 @@
 Report : cell
 Design : MyDesign
 Version: K-2015.06-SP1
-Date   : Sun Nov 25 17:54:29 2018
+Date   : Sun Nov 25 18:20:00 2018
 ****************************************
 
 Attributes:
@@ -21,24 +21,14 @@ U1                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_1
                                                             0.5320  
 U2                        INV_X4          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
                                                             0.5320  
-U4                        INV_X1          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
-                                                            0.5320  
-U5                        INV_X1          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
-                                                            0.5320  
-U6                        INV_X1          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
-                                                            0.5320  
-U7                        INV_X1          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
-                                                            0.5320  
-U8                        INV_X1          NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
-                                                            0.5320  
 hashBlock                 hash                            1688.0360 h, n, p
 hashSignal                go_0                              6.6500  h, n
 hashStore                 store_hash                      517.3700  h, n, p
-hashUpdate                hash_update                     5878.6000 h, n, p
+hashUpdate                hash_update                     5121.0321 h, n, p
 hashUpdateCounter         counter_hashupdate               57.1900  h, n, p
 hashUpdateSignal          msgEn_1                           6.1180  h, n
-kBlock                    k_vector                        240.7300  h, n, p
-msgBlock                  msg_vector                      3961.8041 h, n, p
+kBlock                    k_vector                        240.9960  h, n, p
+msgBlock                  msg_vector                      3961.5381 h, n, p
 msgCounter                counter                          82.9920  h, n, p
 msgSignal                 go_1                              6.6500  h, n
 registerFINISH            registerIO1_0                     6.1180  h, n
@@ -62,10 +52,10 @@ registerOutputEnable      registerIO1_3                     6.1180  h, n
 registerOutputWrite       registerIO1_2                     6.1180  h, n
 storeHashCounter          counter_h_0                      26.3340  h, n, p
 storeHashSignal           msgEn_0                           6.1180  h, n
-wBlock                    w64                             20368.9502
+wBlock                    w64                             20915.5803
                                                                     h, n, p
 wkCounter                 counter_wk                       57.1900  h, n, p
 wkSignal                  wEn                               6.6500  h, n
 --------------------------------------------------------------------------------
-Total 42 cells                                            33754.0703
+Total 37 cells                                            33540.4725
 1

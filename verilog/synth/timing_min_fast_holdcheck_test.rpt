@@ -8,7 +8,7 @@ Report : timing
         -max_paths 1
 Design : MyDesign
 Version: K-2015.06-SP1
-Date   : Sun Nov 25 17:54:16 2018
+Date   : Sun Nov 25 18:19:49 2018
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -31,20 +31,20 @@ Wire Load Model Mode: top
   hashUpdateSignal/enable_reg/Q (SDFF_X1)               0.0578     0.0578 f
   hashUpdateSignal/enable (msgEn_1)                     0.0000     0.0578 f
   hashUpdate/enable (hash_update)                       0.0000     0.0578 f
-  hashUpdate/enable1_reg/D (DFF_X2)                     0.0000     0.0578 f
+  hashUpdate/enable1_reg/D (DFF_X1)                     0.0000     0.0578 f
   data arrival time                                                0.0578
 
   clock clk (rise edge)                                 0.0000     0.0000
   clock network delay (ideal)                           0.0000     0.0000
   clock uncertainty                                     0.0500     0.0500
-  hashUpdate/enable1_reg/CK (DFF_X2)                    0.0000     0.0500 r
-  library hold time                                    -0.0014     0.0486
-  data required time                                               0.0486
+  hashUpdate/enable1_reg/CK (DFF_X1)                    0.0000     0.0500 r
+  library hold time                                    -0.0003     0.0497
+  data required time                                               0.0497
   --------------------------------------------------------------------------
-  data required time                                               0.0486
+  data required time                                               0.0497
   data arrival time                                               -0.0578
   --------------------------------------------------------------------------
-  slack (MET)                                                      0.0091
+  slack (MET)                                                      0.0080
 
 
 1
