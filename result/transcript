@@ -1,0 +1,1621 @@
+# //  ModelSim SE-64 10.7c Aug 17 2018Linux 3.10.0-957.el7.x86_64
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+vsim -voptargs=+acc work.tb_top
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:11:19 on Nov 25,2018
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Error: MyDesign.v(115): Module 'registerIO1' is not defined.
+# ** Error: MyDesign.v(117): Module 'registerIO6' is not defined.
+# ** Error: MyDesign.v(118): Module 'registerIO8' is not defined.
+# ** Error: MyDesign.v(120): Module 'registerIO32' is not defined.
+# ** Error: MyDesign.v(122): Module 'registerIO32' is not defined.
+# ** Error: MyDesign.v(124): Module 'registerIO32' is not defined.
+# ** Error: MyDesign.v(127): Module 'registerIO1' is not defined.
+# ** Error: MyDesign.v(128): Module 'registerIO6' is not defined.
+# ** Error: MyDesign.v(129): Module 'registerIO1' is not defined.
+# ** Error: MyDesign.v(131): Module 'registerIO1' is not defined.
+# ** Error: MyDesign.v(132): Module 'registerIO3' is not defined.
+# ** Error: MyDesign.v(133): Module 'registerIO1' is not defined.
+# ** Error: MyDesign.v(135): Module 'registerIO1' is not defined.
+# ** Error: MyDesign.v(136): Module 'registerIO6' is not defined.
+# ** Error: MyDesign.v(137): Module 'registerIO1' is not defined.
+# ** Error: MyDesign.v(139): Module 'registerIO1' is not defined.
+# ** Error: MyDesign.v(140): Module 'registerIO3' is not defined.
+# ** Error: MyDesign.v(141): Module 'registerIO1' is not defined.
+# ** Error: MyDesign.v(143): Module 'registerIO1' is not defined.
+# Optimization failed
+# Error loading design
+# End time: 17:11:19 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 19, Warnings: 0
+vlog -sv registerIO.v registerIO1.v registerIO3.v registerIO6.v registerIO8.v registerIO32.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:11:49 on Nov 25,2018
+# vlog -reportprogress 300 -sv registerIO.v registerIO1.v registerIO3.v registerIO6.v registerIO8.v registerIO32.v 
+# -- Compiling module registerIO
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# 
+# Top level modules:
+# 	registerIO
+# 	registerIO1
+# 	registerIO3
+# 	registerIO6
+# 	registerIO8
+# 	registerIO32
+# End time: 17:11:49 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -voptargs=+acc work.tb_top
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:11:52 on Nov 25,2018
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: MyDesign.v(166): (vopt-2685) [TFMPC] - Too few port connections for 'kBlock'.  Expected 9, found 8.
+# ** Warning: MyDesign.v(166): (vopt-2718) [TFMPC] - Missing connection for port 'k_address'.
+# ** Warning: MyDesign.v(176): (vopt-2685) [TFMPC] - Too few port connections for 'hashUpdateCounter'.  Expected 5, found 4.
+# ** Warning: MyDesign.v(176): (vopt-2718) [TFMPC] - Missing connection for port 'read_address'.
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+add wave sim:/tb_top/dut/*
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+vlog -sv registerIO.v registerIO1.v registerIO3.v registerIO6.v registerIO8.v registerIO32.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:13:09 on Nov 25,2018
+# vlog -reportprogress 300 -sv registerIO.v registerIO1.v registerIO3.v registerIO6.v registerIO8.v registerIO32.v 
+# -- Compiling module registerIO
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# 
+# Top level modules:
+# 	registerIO
+# 	registerIO1
+# 	registerIO3
+# 	registerIO6
+# 	registerIO8
+# 	registerIO32
+# End time: 17:13:09 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -sv msgEn.v counter.v counter_h.v counter_wk.v wEn.v msg_vector.v hash.v k_vector.v w64.v hash_update.v store_hash.v MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:13:19 on Nov 25,2018
+# vlog -reportprogress 300 -sv msgEn.v counter.v counter_h.v counter_wk.v wEn.v msg_vector.v hash.v k_vector.v w64.v hash_update.v store_hash.v MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module counter_h
+# -- Compiling module counter_wk
+# -- Compiling module wEn
+# -- Compiling module msg_vector
+# -- Compiling module hash
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module MyDesign
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 17:13:19 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+add wave sim:/tb_top/dut/*
+vlog -sv msgEn.v counter.v counter_h.v counter_wk.v wEn.v msg_vector.v hash.v k_vector.v w64.v hash_update.v store_hash.v MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:13:56 on Nov 25,2018
+# vlog -reportprogress 300 -sv msgEn.v counter.v counter_h.v counter_wk.v wEn.v msg_vector.v hash.v k_vector.v w64.v hash_update.v store_hash.v MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module counter_h
+# -- Compiling module counter_wk
+# -- Compiling module wEn
+# -- Compiling module msg_vector
+# -- Compiling module hash
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module MyDesign
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 17:13:56 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -voptargs=+acc work.tb_top
+# End time: 17:14:01 on Nov 25,2018, Elapsed time: 0:02:09
+# Errors: 0, Warnings: 5
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:14:01 on Nov 25,2018
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# ** Warning: MyDesign.v(176): (vopt-2685) [TFMPC] - Too few port connections for 'hashUpdateCounter'.  Expected 5, found 4.
+# ** Warning: MyDesign.v(176): (vopt-2718) [TFMPC] - Missing connection for port 'read_address'.
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+add wave sim:/tb_top/dut/*
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+vlog -sv MyDesign.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:35:37 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v 
+# -- Compiling module MyDesign
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# 
+# Top level modules:
+# 	MyDesign
+# End time: 17:35:37 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -sv MyDesign.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:37:33 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v 
+# -- Compiling module MyDesign
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# 
+# Top level modules:
+# 	MyDesign
+# End time: 17:37:33 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -sv MyDesign.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:38:07 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v 
+# -- Compiling module MyDesign
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# 
+# Top level modules:
+# 	MyDesign
+# End time: 17:38:07 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -sv MyDesign.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:39:31 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v 
+# -- Compiling module MyDesign
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# 
+# Top level modules:
+# 	MyDesign
+# End time: 17:39:31 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:40:52 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 17:40:52 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -voptargs=+acc work.tb_top
+# End time: 17:40:59 on Nov 25,2018, Elapsed time: 0:26:58
+# Errors: 0, Warnings: 3
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:40:59 on Nov 25,2018
+# ** Error: (vsim-7) Failed to open info file "/afs/unity.ncsu.edu/users/v/vgshitol/Downloads/SHA256/verilog/work/_info" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open info file "/afs/unity.ncsu.edu/users/v/vgshitol/Downloads/SHA256/verilog/work/_info" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: MyDesign.v(176): (vopt-2685) [TFMPC] - Too few port connections for 'hashUpdateCounter'.  Expected 5, found 4.
+# ** Warning: MyDesign.v(176): (vopt-2718) [TFMPC] - Missing connection for port 'read_address'.
+# ** Error: (vsim-7) Failed to open info file "/afs/unity.ncsu.edu/users/v/vgshitol/Downloads/SHA256/verilog/work/_info" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Fatal: Internal Error - vopt returned success but vsim could not find a design to simulate!. Please contact customer support for further assistance.
+# Error loading design
+# End time: 17:41:00 on Nov 25,2018, Elapsed time: 0:00:01
+# Errors: 4, Warnings: 0
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:43:56 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 17:43:57 on Nov 25,2018, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+vsim -voptargs=+acc work.tb_top
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:45:22 on Nov 25,2018
+# ** Error: (vsim-7) Failed to open info file "/afs/unity.ncsu.edu/users/v/vgshitol/Downloads/SHA256/verilog/work/_info" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Error: (vsim-7) Failed to open info file "/afs/unity.ncsu.edu/users/v/vgshitol/Downloads/SHA256/verilog/work/_info" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Error: (vsim-7) Failed to open info file "/afs/unity.ncsu.edu/users/v/vgshitol/Downloads/SHA256/verilog/work/_info" in read mode.
+# No such file or directory. (errno = ENOENT)
+# ** Fatal: Internal Error - vopt returned success but vsim could not find a design to simulate!. Please contact customer support for further assistance.
+# Error loading design
+# End time: 17:45:23 on Nov 25,2018, Elapsed time: 0:00:01
+# Errors: 4, Warnings: 0
+vlib workvsim -voptargs=+acc work.tb_top
+# Usage: vlib -help
+#        vlib [-short | -dos | -long | -unix ]
+#             [-type (directory|flat)]
+#             [-compress | -nocompress]
+#             [-dirpath] <path>
+#             [-unnamed_designs <count>] [(-lock|-unlock) <design>]
+#             [-locklib|-unlocklib] <library_name>
+vlib work
+# ** Error: (vlib-35) Failed to create directory "work".
+# File exists. (errno = EEXIST)
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:48:07 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 17:48:07 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -voptargs=+acc work.tb_top
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:48:14 on Nov 25,2018
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+add wave sim:/tb_top/dut/*
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+run
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:54:10 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 17:54:11 on Nov 25,2018, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+vsim -voptargs=+acc work.tb_top
+# End time: 17:54:18 on Nov 25,2018, Elapsed time: 0:06:04
+# Errors: 0, Warnings: 1
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:54:18 on Nov 25,2018
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 273
+add wave sim:/tb_top/dut/*
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:55:41 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 17:55:41 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 273
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+run
+run
+# @5335, go asserted
+# Hash[0] = 26381969
+# Hash[0] = 26381969
+# Hash[0] = 26381969
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @6255, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_1.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:56:41 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 17:56:41 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vsim -voptargs=+acc work.tb_top
+# End time: 17:56:58 on Nov 25,2018, Elapsed time: 0:02:40
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 17:56:58 on Nov 25,2018
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 273
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+run
+add wave sim:/tb_top/dut/*
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 273
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:58:09 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 17:58:09 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 273
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+run
+run
+# @5335, go asserted
+# Hash[0] = 26381969
+# Hash[0] = 26381969
+# Hash[0] = 26381969
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @6255, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_1.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 17:59:22 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 17:59:22 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 18:02:54 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 18:02:54 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+run
+# @2335, go asserted
+# Hash[0] = 26381969
+# Hash[0] = 26381969
+# Hash[0] = 26381969
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @3255, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_1.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+run
+run
+# ** Note: $finish    : ece564_project_tb_top.v(194)
+#    Time: 7335 ns  Iteration: 1  Instance: /tb_top
+# 1
+# Break in Module tb_top at ece564_project_tb_top.v line 194
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 18:03:32 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 18:03:33 on Nov 25,2018, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 18:03:53 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 18:03:53 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# @1335, go asserted
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 18:04:21 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 18:04:21 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 267
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# @1535, go asserted
+run
+# Hash[0] = 26381969
+# Hash[0] = 26381969
+# Hash[0] = 26381969
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @2455, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_1.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+vlog -sv MyDesign.v sram.v ece564_project_tb_top.v
+# Model Technology ModelSim SE-64 vlog 10.7c Compiler 2018.08 Aug 17 2018
+# Start time: 18:05:54 on Nov 25,2018
+# vlog -reportprogress 300 -sv MyDesign.v sram.v ece564_project_tb_top.v 
+# -- Compiling module MyDesign
+# -- Compiling module counter_hashupdate
+# -- Compiling module go
+# -- Compiling module registerIO1
+# -- Compiling module registerIO3
+# -- Compiling module registerIO6
+# -- Compiling module registerIO8
+# -- Compiling module registerIO32
+# -- Compiling module msgEn
+# -- Compiling module counter
+# -- Compiling module msg_vector
+# -- Compiling module counter_h
+# -- Compiling module hash
+# -- Compiling module wEn
+# -- Compiling module counter_wk
+# -- Compiling module k_vector
+# -- Compiling module w64
+# -- Compiling module hash_update
+# -- Compiling module store_hash
+# -- Compiling module sram
+# -- Compiling module tb_top
+# 
+# Top level modules:
+# 	tb_top
+# End time: 18:05:54 on Nov 25,2018, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+restart
+# ** Note: (vsim-3813) Design is being optimized due to module recompilation...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 273
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# @1535, go asserted
+restart
+# ** Note: (vsim-8009) Loading existing optimized design _opt
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 273
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# Hash[2] = f561a6fc
+# Hash[3] = 938b2e26
+# Hash[4] = 4306ec30
+# Hash[5] = 4eda5180
+# Hash[6] = 07d17648
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 26381969
+# Store result to result_0.txt
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# Hash[7] = 26381969
+# @1535, go asserted
+# Hash[0] = 26381969
+# Hash[0] = 26381969
+# Hash[0] = 26381969
+# Hash[0] = 185f8db3
+# Hash[1] = 2271fe25
+# End time: 18:07:51 on Nov 25,2018, Elapsed time: 0:10:53
+# Errors: 0, Warnings: 0

@@ -1,0 +1,4 @@
+area = 33540.47
+Number of cycles(for secret1 input file) = Total simulation time / clock period (in your testbench) = 84
+clock period = 24 ns
+performance = area × number of cycles × clock period = 33540.47 * 84 * 24 = 6.7 * 10^7 (um^2)(ns)
