@@ -8,7 +8,7 @@ Report : timing
         -max_paths 1
 Design : MyDesign
 Version: K-2015.06-SP1
-Date   : Sun Nov 25 18:19:34 2018
+Date   : Fri Nov 30 14:29:22 2018
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -16,9 +16,9 @@ Date   : Sun Nov 25 18:19:34 2018
 Operating Conditions: slow   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
 Wire Load Model Mode: top
 
-  Startpoint: hashUpdate/hash_complete_reg
+  Startpoint: wBlock/w_vector_index2_reg[0]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: hashUpdate/updated_hash_reg[31]
+  Endpoint: wBlock/w_vector_reg[255]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -27,67 +27,70 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock clk (rise edge)                                 0.0000     0.0000
   clock network delay (ideal)                           0.0000     0.0000
-  hashUpdate/hash_complete_reg/CK (DFF_X2)              0.0000 #   0.0000 r
-  hashUpdate/hash_complete_reg/Q (DFF_X2)               0.7675     0.7675 r
-  hashUpdate/U209/ZN (INV_X4)                           0.2941     1.0616 f
-  hashUpdate/U131/ZN (INV_X4)                           0.7656     1.8272 r
-  hashUpdate/U133/ZN (INV_X4)                           0.3536     2.1809 f
-  hashUpdate/U1205/ZN (NAND2_X2)                        0.4315     2.6123 r
-  hashUpdate/U1304/ZN (INV_X4)                          0.0511     2.6635 f
-  hashUpdate/U205/ZN (AOI22_X2)                         0.3196     2.9831 r
-  hashUpdate/U1201/ZN (NOR2_X2)                         0.0944     3.0775 f
-  hashUpdate/U13/ZN (AND2_X4)                           0.2470     3.3245 f
-  hashUpdate/add_955/U1_1/CO (FA_X1)                    0.4821     3.8065 f
-  hashUpdate/add_955/U1_2/CO (FA_X1)                    0.5172     4.3238 f
-  hashUpdate/add_955/U1_3/CO (FA_X1)                    0.5172     4.8410 f
-  hashUpdate/add_955/U1_4/CO (FA_X1)                    0.5172     5.3583 f
-  hashUpdate/add_955/U1_5/CO (FA_X1)                    0.5172     5.8755 f
-  hashUpdate/add_955/U1_6/CO (FA_X1)                    0.5172     6.3928 f
-  hashUpdate/add_955/U1_7/CO (FA_X1)                    0.5172     6.9100 f
-  hashUpdate/add_955/U1_8/CO (FA_X1)                    0.5172     7.4272 f
-  hashUpdate/add_955/U1_9/CO (FA_X1)                    0.5172     7.9445 f
-  hashUpdate/add_955/U1_10/CO (FA_X1)                   0.5172     8.4617 f
-  hashUpdate/add_955/U1_11/CO (FA_X1)                   0.5172     8.9790 f
-  hashUpdate/add_955/U1_12/CO (FA_X1)                   0.5172     9.4962 f
-  hashUpdate/add_955/U1_13/CO (FA_X1)                   0.5172    10.0135 f
-  hashUpdate/add_955/U1_14/CO (FA_X1)                   0.5172    10.5307 f
-  hashUpdate/add_955/U1_15/CO (FA_X1)                   0.5172    11.0479 f
-  hashUpdate/add_955/U1_16/CO (FA_X1)                   0.5172    11.5652 f
-  hashUpdate/add_955/U1_17/CO (FA_X1)                   0.5172    12.0824 f
-  hashUpdate/add_955/U1_18/CO (FA_X1)                   0.5172    12.5997 f
-  hashUpdate/add_955/U1_19/CO (FA_X1)                   0.5172    13.1169 f
-  hashUpdate/add_955/U1_20/CO (FA_X1)                   0.5172    13.6342 f
-  hashUpdate/add_955/U1_21/CO (FA_X1)                   0.5172    14.1514 f
-  hashUpdate/add_955/U1_22/CO (FA_X1)                   0.5172    14.6686 f
-  hashUpdate/add_955/U1_23/CO (FA_X1)                   0.5172    15.1859 f
-  hashUpdate/add_955/U1_24/CO (FA_X1)                   0.5172    15.7031 f
-  hashUpdate/add_955/U1_25/CO (FA_X1)                   0.5172    16.2204 f
-  hashUpdate/add_955/U1_26/CO (FA_X1)                   0.5172    16.7376 f
-  hashUpdate/add_955/U1_27/CO (FA_X1)                   0.5172    17.2549 f
-  hashUpdate/add_955/U1_28/CO (FA_X1)                   0.5172    17.7721 f
-  hashUpdate/add_955/U1_29/CO (FA_X1)                   0.5172    18.2894 f
-  hashUpdate/add_955/U1_30/CO (FA_X1)                   0.5172    18.8066 f
-  hashUpdate/add_955/U1_31/S (FA_X1)                    0.7144    19.5210 f
-  hashUpdate/add_1_root_add_955_4/U1_31/S (FA_X1)       0.9073    20.4283 f
-  hashUpdate/add_0_root_add_955_4/U1_31/S (FA_X1)       0.9375    21.3658 f
-  hashUpdate/r439/U1_31/S (FA_X1)                       0.9708    22.3366 f
-  hashUpdate/add_0_root_add_984_2/U1_31/S (FA_X1)       0.7975    23.1341 f
-  hashUpdate/U218/ZN (AOI22_X2)                         0.3349    23.4690 r
-  hashUpdate/U496/ZN (NAND2_X2)                         0.0995    23.5685 f
-  hashUpdate/updated_hash_reg[31]/D (DFF_X1)            0.0000    23.5685 f
-  data arrival time                                               23.5685
+  wBlock/w_vector_index2_reg[0]/CK (DFF_X2)             0.0000 #   0.0000 r
+  wBlock/w_vector_index2_reg[0]/Q (DFF_X2)              0.6166     0.6166 f
+  wBlock/U1226/ZN (NOR3_X2)                             0.8335     1.4501 r
+  wBlock/U7462/ZN (NAND2_X2)                            0.5116     1.9618 f
+  wBlock/U815/ZN (INV_X4)                               0.6117     2.5735 r
+  wBlock/U583/ZN (INV_X4)                               0.4009     2.9744 f
+  wBlock/U1125/ZN (OAI222_X2)                           0.6135     3.5879 r
+  wBlock/U5255/ZN (NOR4_X2)                             0.2187     3.8067 f
+  wBlock/U5244/ZN (NAND4_X2)                            0.3068     4.1134 r
+  wBlock/U5222/Z (XOR2_X2)                              0.4385     4.5520 r
+  wBlock/U5221/Z (XOR2_X2)                              0.3672     4.9191 r
+  wBlock/U5220/ZN (NOR2_X2)                             0.1056     5.0247 f
+  wBlock/U107/ZN (AND2_X4)                              0.2266     5.2513 f
+  wBlock/add_755/U1_1/S (FA_X1)                         0.6840     5.9353 f
+  wBlock/add_755_3/U1_1/CO (FA_X1)                      0.5987     6.5341 f
+  wBlock/add_755_3/U1_2/CO (FA_X1)                      0.5172     7.0513 f
+  wBlock/add_755_3/U1_3/CO (FA_X1)                      0.5172     7.5686 f
+  wBlock/add_755_3/U1_4/CO (FA_X1)                      0.5172     8.0858 f
+  wBlock/add_755_3/U1_5/CO (FA_X1)                      0.5172     8.6030 f
+  wBlock/add_755_3/U1_6/CO (FA_X1)                      0.5172     9.1203 f
+  wBlock/add_755_3/U1_7/CO (FA_X1)                      0.5172     9.6375 f
+  wBlock/add_755_3/U1_8/CO (FA_X1)                      0.5172    10.1548 f
+  wBlock/add_755_3/U1_9/CO (FA_X1)                      0.5172    10.6720 f
+  wBlock/add_755_3/U1_10/CO (FA_X1)                     0.5172    11.1893 f
+  wBlock/add_755_3/U1_11/CO (FA_X1)                     0.5172    11.7065 f
+  wBlock/add_755_3/U1_12/CO (FA_X1)                     0.5172    12.2237 f
+  wBlock/add_755_3/U1_13/CO (FA_X1)                     0.5172    12.7410 f
+  wBlock/add_755_3/U1_14/CO (FA_X1)                     0.5172    13.2582 f
+  wBlock/add_755_3/U1_15/CO (FA_X1)                     0.5172    13.7755 f
+  wBlock/add_755_3/U1_16/CO (FA_X1)                     0.5172    14.2927 f
+  wBlock/add_755_3/U1_17/CO (FA_X1)                     0.5172    14.8100 f
+  wBlock/add_755_3/U1_18/CO (FA_X1)                     0.5172    15.3272 f
+  wBlock/add_755_3/U1_19/CO (FA_X1)                     0.5172    15.8444 f
+  wBlock/add_755_3/U1_20/CO (FA_X1)                     0.5172    16.3617 f
+  wBlock/add_755_3/U1_21/CO (FA_X1)                     0.5172    16.8789 f
+  wBlock/add_755_3/U1_22/CO (FA_X1)                     0.5172    17.3962 f
+  wBlock/add_755_3/U1_23/CO (FA_X1)                     0.5172    17.9134 f
+  wBlock/add_755_3/U1_24/CO (FA_X1)                     0.5172    18.4307 f
+  wBlock/add_755_3/U1_25/CO (FA_X1)                     0.5172    18.9479 f
+  wBlock/add_755_3/U1_26/CO (FA_X1)                     0.5172    19.4652 f
+  wBlock/add_755_3/U1_27/CO (FA_X1)                     0.5172    19.9824 f
+  wBlock/add_755_3/U1_28/CO (FA_X1)                     0.5172    20.4996 f
+  wBlock/add_755_3/U1_29/CO (FA_X1)                     0.5172    21.0169 f
+  wBlock/add_755_3/U1_30/CO (FA_X1)                     0.5172    21.5341 f
+  wBlock/add_755_3/U1_31/S (FA_X1)                      0.7450    22.2792 r
+  wBlock/U4105/ZN (NAND2_X2)                            0.0579    22.3370 f
+  wBlock/U43/ZN (AND2_X4)                               0.2271    22.5641 f
+  wBlock/U596/ZN (INV_X4)                               0.3941    22.9582 r
+  wBlock/U1754/ZN (NAND3_X2)                            0.1363    23.0945 f
+  wBlock/U1348/ZN (OAI21_X2)                            0.2508    23.3452 r
+  wBlock/w_vector_reg[255]/D (DFF_X1)                   0.0000    23.3452 r
+  data arrival time                                               23.3452
 
   clock clk (rise edge)                                24.0000    24.0000
   clock network delay (ideal)                           0.0000    24.0000
   clock uncertainty                                    -0.0500    23.9500
-  hashUpdate/updated_hash_reg[31]/CK (DFF_X1)           0.0000    23.9500 r
-  library setup time                                   -0.3205    23.6295
-  data required time                                              23.6295
+  wBlock/w_vector_reg[255]/CK (DFF_X1)                  0.0000    23.9500 r
+  library setup time                                   -0.2297    23.7203
+  data required time                                              23.7203
   --------------------------------------------------------------------------
-  data required time                                              23.6295
-  data arrival time                                              -23.5685
+  data required time                                              23.7203
+  data arrival time                                              -23.3452
   --------------------------------------------------------------------------
-  slack (MET)                                                      0.0610
+  slack (MET)                                                      0.3751
 
 
 1

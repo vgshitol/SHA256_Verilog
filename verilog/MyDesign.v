@@ -112,35 +112,35 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 
     /**Register All Inputs and Outputs **/
     /**Inputs **/
-    registerIO1 registerGO(.clock(clk), .reset(reset), .input_to_register(xxx__dut__go), .outputRegister(go));
+    registerIO1 registerGO(.clock(clk), .input_to_register(xxx__dut__go), .outputRegister(go));
 
-    registerIO6 registerMSGLength(.clock(clk), .reset(reset), .input_to_register(xxx__dut__msg_length), .outputRegister(msgLength));
-    registerIO8 registerMSGData(.clock(clk), .reset(reset), .input_to_register(msg__dut__data), .outputRegister(msgData));
+    registerIO6 registerMSGLength(.clock(clk), .input_to_register(xxx__dut__msg_length), .outputRegister(msgLength));
+    registerIO8 registerMSGData(.clock(clk), .input_to_register(msg__dut__data), .outputRegister(msgData));
 
-    registerIO32 registerHashData(.clock(clk), .reset(reset), .input_to_register(hmem__dut__data), .outputRegister(hashData));
+    registerIO32 registerHashData(.clock(clk), .input_to_register(hmem__dut__data), .outputRegister(hashData));
 
-    registerIO32  registerKData(.clock(clk), .reset(reset), .input_to_register(kmem__dut__data), .outputRegister(kData));
+    registerIO32  registerKData(.clock(clk), .input_to_register(kmem__dut__data), .outputRegister(kData));
 
-    registerIO32  registerOutputData(.clock(clk), .reset(reset), .input_to_register(outputData), .outputRegister(dut__dom__data));
+    registerIO32  registerOutputData(.clock(clk), .input_to_register(outputData), .outputRegister(dut__dom__data));
 
     /**Outputs**/
-    registerIO1  registerMSGEnable(.clock(clk), .reset(reset), .input_to_register(msgEnable), .outputRegister(dut__msg__enable));
-    registerIO6  registerMSGAddress(.clock(clk), .reset(reset), .input_to_register(msgAddress), .outputRegister(dut__msg__address));
-    registerIO1  registerMSGWrite(.clock(clk), .reset(reset), .input_to_register(msgWrite), .outputRegister(dut__msg__write));
+    registerIO1  registerMSGEnable(.clock(clk), .input_to_register(msgEnable), .outputRegister(dut__msg__enable));
+    registerIO6  registerMSGAddress(.clock(clk),  .input_to_register(msgAddress), .outputRegister(dut__msg__address));
+    registerIO1  registerMSGWrite(.clock(clk), .input_to_register(msgWrite), .outputRegister(dut__msg__write));
 
-    registerIO1  registerHashEnable(.clock(clk), .reset(reset), .input_to_register(hashEnable), .outputRegister(dut__hmem__enable));
-    registerIO3  registerHashAddress(.clock(clk), .reset(reset), .input_to_register(hashAddress), .outputRegister(dut__hmem__address));
-    registerIO1  registerHashWrite(.clock(clk), .reset(reset), .input_to_register(hashWrite), .outputRegister(dut__hmem__write));
+    registerIO1  registerHashEnable(.clock(clk),.input_to_register(hashEnable), .outputRegister(dut__hmem__enable));
+    registerIO3  registerHashAddress(.clock(clk),  .input_to_register(hashAddress), .outputRegister(dut__hmem__address));
+    registerIO1  registerHashWrite(.clock(clk), .input_to_register(hashWrite), .outputRegister(dut__hmem__write));
 
-    registerIO1  registerKEnable(.clock(clk), .reset(reset), .input_to_register(kEnable), .outputRegister(dut__kmem__enable));
-    registerIO6  registerKAddress(.clock(clk), .reset(reset), .input_to_register(kAddress), .outputRegister(dut__kmem__address));
-    registerIO1  registerKWrite(.clock(clk), .reset(reset), .input_to_register(kWrite), .outputRegister(dut__kmem__write));
+    registerIO1  registerKEnable(.clock(clk),  .input_to_register(kEnable), .outputRegister(dut__kmem__enable));
+    registerIO6  registerKAddress(.clock(clk),  .input_to_register(kAddress), .outputRegister(dut__kmem__address));
+    registerIO1  registerKWrite(.clock(clk),  .input_to_register(kWrite), .outputRegister(dut__kmem__write));
 
-    registerIO1 registerOutputEnable(.clock(clk), .reset(reset), .input_to_register(outputEnable), .outputRegister(dut__dom__enable));
-    registerIO3 registerOutputAddress(.clock(clk), .reset(reset), .input_to_register(outputAddress), .outputRegister(dut__dom__address));
-    registerIO1 registerOutputWrite(.clock(clk), .reset(reset), .input_to_register(outputWrite), .outputRegister(dut__dom__write));
+    registerIO1 registerOutputEnable(.clock(clk), .input_to_register(outputEnable), .outputRegister(dut__dom__enable));
+    registerIO3 registerOutputAddress(.clock(clk),  .input_to_register(outputAddress), .outputRegister(dut__dom__address));
+    registerIO1 registerOutputWrite(.clock(clk),  .input_to_register(outputWrite), .outputRegister(dut__dom__write));
 
-    registerIO1 registerFINISH(.clock(clk), .reset(reset), .input_to_register(finish), .outputRegister(dut__xxx__finish));
+    registerIO1 registerFINISH(.clock(clk), .input_to_register(finish), .outputRegister(dut__xxx__finish));
 
     /** Creating Message Vector **/
     go msgSignal(.clock(clk), .reset(reset), .start(go), .restart(finish), .enable(msgEnable));
@@ -159,7 +159,7 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
                                                   .hash_data(hashData) , .hash_vector_complete(hash_vector_complete), .hash_vector(hash_vector));
 
     /** Creating K Vector **/
-    wEn wkSignal(.clock(clk), .reset(reset), .start1(message_vector_complete), .start2(hash_vector_complete), .enable(kEnable));
+    wEn wkSignal(.clock(clk), .reset(reset), .start1(message_vector_complete), .start2(hash_vector_complete),  .restart(finish), .enable(kEnable));
 
     counter_wk #(.MAX_MESSAGE_LENGTH(NUMBER_OF_Ks)) wkCounter (.clock(clk), .reset(reset), .start(kEnable), .read_address(kAddress), .read_complete(k_address_complete));
 
@@ -171,7 +171,7 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
                                            .w_vector_complete(w_vector_complete), .cur_w(cur_w_value));
 
     /** Processing Hash Update**/
-    msgEn hashUpdateSignal(.clock(clk), .reset(reset), .start(kEnable), .enable(wk_vector_enable));
+    msgEn hashUpdateSignal(.clock(clk), .reset(reset), .start(kEnable),  .restart(finish), .enable(wk_vector_enable));
 
     counter_hashupdate #(.MAX_MESSAGE_LENGTH(NUMBER_OF_Ks)) hashUpdateCounter (.clock(clk), .reset(reset), .start(wk_vector_enable), .read_complete(wk_vector_index_complete));
 
@@ -179,7 +179,7 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
                                                         .prev_hash(hash_vector) , .hash_complete(hash_complete) , .updated_hash(updated_hash) , .cur_k(cur_k_value), .cur_w(cur_w_value));
 
     /** Storing the Hash Vector **/
-    msgEn storeHashSignal(.clock(clk), .reset(reset), .start(hash_complete), .enable(outputEnable));
+    msgEn storeHashSignal(.clock(clk), .reset(reset), .start(hash_complete), .restart(finish),  .enable(outputEnable));
 
     counter_h #(.NUMBER_OF_BLOCKS(NUMBER_OF_Hs)) storeHashCounter (.clock(clk), .reset(reset), .start(outputEnable), .read_address(hash_output_vector_index), .read_complete(hash_output_address_complete));
 
@@ -317,7 +317,7 @@ module msgEn (
     input       clock,  /* clock */
     input 	    reset,		// resets
     input wire  start,  /* Go message Signal*/
-
+    input wire restart,
     /*-----------Outputs--------------------------------*/
     output reg enable  /* zero flag */
 );
@@ -326,7 +326,7 @@ module msgEn (
         begin
             enable <= 0;
             if(reset) enable <= 0;
-            else enable <= start;
+            else enable <= (start && !restart);
         end
 
 endmodule
@@ -342,19 +342,29 @@ module counter #(
 
     /*-----------Outputs--------------------------------*/
     output reg [ $clog2(MAX_MESSAGE_LENGTH)-1 : 0] 	read_address,  /* read_complete flag */
-    output wire read_complete  /* read_complete flag */
+    output reg read_complete  /* read_complete flag */
 );
 
     always@(posedge clock)
         begin
             read_address <= 0;
-            if (reset || !start) read_address <= 0;
-            else if (start && !read_complete) read_address <= read_address + 1;
-            else read_address <= read_address;
-        end
+            if (reset || !start) begin 
+		read_address <= 0;      
+		read_complete <= 0;
+	    end
+            else if (start && !read_complete) 
+		begin
+		read_address <= read_address + 1;
+		read_complete <= (msg_length-1 == read_address);
+		end        	
+	    else 
+		begin
+		read_address <= read_address;
+		read_complete <= read_complete;
+		end       
+	end
 
-    assign read_complete = (msg_length-1 == read_address);
-
+     
 endmodule
 
 module msg_vector #(parameter MSG_LENGTH = 55
@@ -394,16 +404,18 @@ module msg_vector #(parameter MSG_LENGTH = 55
                     message_vector <= 0;
                     message_vector_complete <= 0;
                 end
-            else
+            else if(!message_vector_complete2)
                 begin
                     for(block_bit = 0; block_bit < 512 ; block_bit = block_bit + 1)
                         begin
-                            if((!message_vector_complete) && (block_bit < (msgAddress2+1)*8) && (block_bit >= (msgAddress2)*8)) message_vector[511 - block_bit] <= msg_data[7 - block_bit  + msgAddress2*8];
+                            if((block_bit < (msgAddress2+1)*8) && (block_bit >= (msgAddress2)*8)) message_vector[511 - block_bit] <= msg_data[7 - block_bit  + msgAddress2*8];
                             else if(block_bit == message_bit_length) message_vector[511 - block_bit] <= 1; // appending 1 bit
                             else if ((511 - block_bit) <=  ($clog2(MSG_BIT_LENGTH)-1)) message_vector[511 - block_bit] <= message_bit_length[511 - block_bit];
                             else message_vector[511 - block_bit] <= message_vector[511 - block_bit];
                         end
                 end
+	    else message_vector <= message_vector;
+
             message_vector_complete1 <= address_read_complete;
             message_vector_complete2 <= message_vector_complete1;
             message_vector_complete <= message_vector_complete2;
@@ -513,7 +525,7 @@ module wEn (
     input 	    reset,		// resets
     input wire  start1,  /* Go message Signal*/
     input wire  start2,  /* Go message Signal*/
-
+    input wire restart,
     /*-----------Outputs--------------------------------*/
 
     output reg enable  /* zero flag */
@@ -523,7 +535,7 @@ module wEn (
         begin
             enable <= 0;
             if(reset) enable <= 0;
-            else enable <= start1 && start2;
+            else enable <= start1 && start2 && !restart;
         end
 
 endmodule
