@@ -122,7 +122,7 @@
 # 'replace_synthetic' is the cleanest way of doing this
 #------------------------------------------------------
 
- replace_synthetic -ungroup
+ungroup -flatten -all
 
 #---------------------------------------------------------
 # check the design before optimization  

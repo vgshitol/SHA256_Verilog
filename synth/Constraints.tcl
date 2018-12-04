@@ -112,17 +112,11 @@
  set_fix_multiple_port_nets -all -buffer_constants [get_designs]
 
 #------------------------------------------------------
-# During the initial map (synthesis), Synopsys might   
-# have built parts (such as adders) using its          
-# DesignWare(TM) library.  In order to remap the       
-# design to our TSMC025 library AND to create scope    
-# for logic reduction, I want to 'flatten out' the     
-# DesignWare components.  i.e. Make one flat design    
 #                                                      
-# 'replace_synthetic' is the cleanest way of doing this
+# Removing hierarchy and flattening the design may improve timing
 #------------------------------------------------------
 
- replace_synthetic -ungroup
+ungroup -flatten -all
 
 #---------------------------------------------------------
 # check the design before optimization  

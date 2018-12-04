@@ -6,7 +6,7 @@ Report : timing
         -max_paths 1
 Design : MyDesign
 Version: K-2015.06-SP1
-Date   : Sun Nov 25 18:20:00 2018
+Date   : Mon Dec  3 22:59:38 2018
 ****************************************
 
  # A fanout number of 1000 was used for high fanout net computations.
@@ -14,9 +14,9 @@ Date   : Sun Nov 25 18:20:00 2018
 Operating Conditions: slow   Library: NangateOpenCellLibrary_PDKv1_2_v2008_10_slow_nldm
 Wire Load Model Mode: top
 
-  Startpoint: hashUpdate/hash_complete_reg
+  Startpoint: wBlock/w_vector_index2_reg[2]
               (rising edge-triggered flip-flop clocked by clk)
-  Endpoint: hashUpdate/updated_hash_reg[31]
+  Endpoint: wBlock/w_vector_reg[1375]
             (rising edge-triggered flip-flop clocked by clk)
   Path Group: clk
   Path Type: max
@@ -25,65 +25,75 @@ Wire Load Model Mode: top
   --------------------------------------------------------------------------
   clock clk (rise edge)                                 0.0000     0.0000
   clock network delay (ideal)                           0.0000     0.0000
-  hashUpdate/hash_complete_reg/CK (DFF_X2)              0.0000 #   0.0000 r
-  hashUpdate/hash_complete_reg/Q (DFF_X2)               0.7675     0.7675 r
-  hashUpdate/U71/ZN (INV_X4)                            0.3719     1.1394 f
-  hashUpdate/U1202/ZN (NAND2_X2)                        0.7533     1.8927 r
-  hashUpdate/U219/ZN (INV_X4)                           0.0813     1.9739 f
-  hashUpdate/U35/ZN (INV_X4)                            0.6062     2.5801 r
-  hashUpdate/U851/ZN (NOR2_X2)                          0.1730     2.7531 f
-  hashUpdate/U13/ZN (AND2_X4)                           0.2901     3.0432 f
-  hashUpdate/add_955/U1_1/CO (FA_X1)                    0.4821     3.5253 f
-  hashUpdate/add_955/U1_2/CO (FA_X1)                    0.5172     4.0425 f
-  hashUpdate/add_955/U1_3/CO (FA_X1)                    0.5172     4.5598 f
-  hashUpdate/add_955/U1_4/CO (FA_X1)                    0.5172     5.0770 f
-  hashUpdate/add_955/U1_5/CO (FA_X1)                    0.5172     5.5942 f
-  hashUpdate/add_955/U1_6/CO (FA_X1)                    0.5172     6.1115 f
-  hashUpdate/add_955/U1_7/CO (FA_X1)                    0.5172     6.6287 f
-  hashUpdate/add_955/U1_8/CO (FA_X1)                    0.5172     7.1460 f
-  hashUpdate/add_955/U1_9/CO (FA_X1)                    0.5172     7.6632 f
-  hashUpdate/add_955/U1_10/CO (FA_X1)                   0.5172     8.1805 f
-  hashUpdate/add_955/U1_11/CO (FA_X1)                   0.5172     8.6977 f
-  hashUpdate/add_955/U1_12/CO (FA_X1)                   0.5172     9.2150 f
-  hashUpdate/add_955/U1_13/CO (FA_X1)                   0.5172     9.7322 f
-  hashUpdate/add_955/U1_14/CO (FA_X1)                   0.5172    10.2494 f
-  hashUpdate/add_955/U1_15/CO (FA_X1)                   0.5172    10.7667 f
-  hashUpdate/add_955/U1_16/CO (FA_X1)                   0.5172    11.2839 f
-  hashUpdate/add_955/U1_17/CO (FA_X1)                   0.5172    11.8012 f
-  hashUpdate/add_955/U1_18/CO (FA_X1)                   0.5172    12.3184 f
-  hashUpdate/add_955/U1_19/CO (FA_X1)                   0.5172    12.8357 f
-  hashUpdate/add_955/U1_20/CO (FA_X1)                   0.5172    13.3529 f
-  hashUpdate/add_955/U1_21/CO (FA_X1)                   0.5172    13.8701 f
-  hashUpdate/add_955/U1_22/CO (FA_X1)                   0.5172    14.3874 f
-  hashUpdate/add_955/U1_23/CO (FA_X1)                   0.5172    14.9046 f
-  hashUpdate/add_955/U1_24/CO (FA_X1)                   0.5172    15.4219 f
-  hashUpdate/add_955/U1_25/CO (FA_X1)                   0.5172    15.9391 f
-  hashUpdate/add_955/U1_26/CO (FA_X1)                   0.5172    16.4564 f
-  hashUpdate/add_955/U1_27/CO (FA_X1)                   0.5172    16.9736 f
-  hashUpdate/add_955/U1_28/CO (FA_X1)                   0.5172    17.4908 f
-  hashUpdate/add_955/U1_29/CO (FA_X1)                   0.5172    18.0081 f
-  hashUpdate/add_955/U1_30/CO (FA_X1)                   0.5172    18.5253 f
-  hashUpdate/add_955/U1_31/S (FA_X1)                    0.7144    19.2398 f
-  hashUpdate/add_1_root_add_955_4/U1_31/S (FA_X1)       0.9073    20.1471 f
-  hashUpdate/add_0_root_add_955_4/U1_31/S (FA_X1)       0.9375    21.0846 f
-  hashUpdate/r439/U1_31/S (FA_X1)                       0.9708    22.0553 f
-  hashUpdate/add_0_root_add_984_2/U1_31/S (FA_X1)       0.7975    22.8528 f
-  hashUpdate/U218/ZN (AOI22_X2)                         0.3349    23.1877 r
-  hashUpdate/U496/ZN (NAND2_X2)                         0.0995    23.2872 f
-  hashUpdate/updated_hash_reg[31]/D (DFF_X1)            0.0000    23.2872 f
-  data arrival time                                               23.2872
+  wBlock/w_vector_index2_reg[2]/CK (DFF_X2)             0.0000 #   0.0000 r
+  wBlock/w_vector_index2_reg[2]/Q (DFF_X2)              0.6390     0.6390 f
+  U8255/ZN (NOR3_X2)                                    0.5173     1.1563 r
+  U7000/ZN (NAND2_X2)                                   0.3679     1.5242 f
+  U37237/ZN (INV_X4)                                    0.6365     2.1607 r
+  U36381/ZN (INV_X4)                                    0.3862     2.5469 f
+  U37363/ZN (OAI222_X2)                                 0.5696     3.1165 r
+  U4986/ZN (NOR4_X2)                                    0.2271     3.3437 f
+  U4985/ZN (NAND4_X2)                                   0.3881     3.7317 r
+  U4963/Z (XOR2_X2)                                     0.4385     4.1702 r
+  U4962/Z (XOR2_X2)                                     0.3672     4.5374 r
+  U4961/ZN (NOR2_X2)                                    0.1061     4.6435 f
+  wBlock/add_800/A[0] (MyDesign_DW01_add_46)            0.0000     4.6435 f
+  wBlock/add_800/U1/ZN (AND2_X4)                        0.2878     4.9313 f
+  wBlock/add_800/U1_1/CO (FA_X1)                        0.4821     5.4134 f
+  wBlock/add_800/U1_2/CO (FA_X1)                        0.5172     5.9307 f
+  wBlock/add_800/U1_3/CO (FA_X1)                        0.5172     6.4479 f
+  wBlock/add_800/U1_4/CO (FA_X1)                        0.5172     6.9651 f
+  wBlock/add_800/U1_5/CO (FA_X1)                        0.5172     7.4824 f
+  wBlock/add_800/U1_6/CO (FA_X1)                        0.5172     7.9996 f
+  wBlock/add_800/U1_7/CO (FA_X1)                        0.5172     8.5169 f
+  wBlock/add_800/U1_8/CO (FA_X1)                        0.5172     9.0341 f
+  wBlock/add_800/U1_9/CO (FA_X1)                        0.5172     9.5514 f
+  wBlock/add_800/U1_10/CO (FA_X1)                       0.5172    10.0686 f
+  wBlock/add_800/U1_11/CO (FA_X1)                       0.5172    10.5859 f
+  wBlock/add_800/U1_12/CO (FA_X1)                       0.5172    11.1031 f
+  wBlock/add_800/U1_13/CO (FA_X1)                       0.5172    11.6203 f
+  wBlock/add_800/U1_14/CO (FA_X1)                       0.5172    12.1376 f
+  wBlock/add_800/U1_15/CO (FA_X1)                       0.5172    12.6548 f
+  wBlock/add_800/U1_16/CO (FA_X1)                       0.5172    13.1721 f
+  wBlock/add_800/U1_17/CO (FA_X1)                       0.5172    13.6893 f
+  wBlock/add_800/U1_18/CO (FA_X1)                       0.5172    14.2066 f
+  wBlock/add_800/U1_19/CO (FA_X1)                       0.5172    14.7238 f
+  wBlock/add_800/U1_20/CO (FA_X1)                       0.5172    15.2410 f
+  wBlock/add_800/U1_21/CO (FA_X1)                       0.5172    15.7583 f
+  wBlock/add_800/U1_22/CO (FA_X1)                       0.5172    16.2755 f
+  wBlock/add_800/U1_23/CO (FA_X1)                       0.5172    16.7928 f
+  wBlock/add_800/U1_24/CO (FA_X1)                       0.5172    17.3100 f
+  wBlock/add_800/U1_25/CO (FA_X1)                       0.5172    17.8273 f
+  wBlock/add_800/U1_26/CO (FA_X1)                       0.5172    18.3445 f
+  wBlock/add_800/U1_27/CO (FA_X1)                       0.5172    18.8618 f
+  wBlock/add_800/U1_28/CO (FA_X1)                       0.5172    19.3790 f
+  wBlock/add_800/U1_29/CO (FA_X1)                       0.5172    19.8962 f
+  wBlock/add_800/U1_30/CO (FA_X1)                       0.5172    20.4135 f
+  wBlock/add_800/U1_31/S (FA_X1)                        0.7144    21.1279 f
+  wBlock/add_800/SUM[31] (MyDesign_DW01_add_46)         0.0000    21.1279 f
+  wBlock/add_800_3/A[31] (MyDesign_DW01_add_45)         0.0000    21.1279 f
+  wBlock/add_800_3/U1_31/S (FA_X1)                      0.8758    22.0037 f
+  wBlock/add_800_3/SUM[31] (MyDesign_DW01_add_45)       0.0000    22.0037 f
+  U37091/ZN (NAND2_X1)                                  0.1428    22.1465 r
+  U37086/ZN (INV_X1)                                    0.0804    22.2269 f
+  U37090/ZN (INV_X4)                                    0.3354    22.5622 r
+  U36997/ZN (INV_X4)                                    0.0528    22.6150 f
+  U36370/ZN (INV_X4)                                    0.2886    22.9037 r
+  U6455/ZN (OAI22_X2)                                   0.1909    23.0946 f
+  wBlock/w_vector_reg[1375]/D (DFF_X1)                  0.0000    23.0946 f
+  data arrival time                                               23.0946
 
   clock clk (rise edge)                                24.0000    24.0000
   clock network delay (ideal)                           0.0000    24.0000
   clock uncertainty                                    -0.0500    23.9500
-  hashUpdate/updated_hash_reg[31]/CK (DFF_X1)           0.0000    23.9500 r
-  library setup time                                   -0.3205    23.6295
-  data required time                                              23.6295
+  wBlock/w_vector_reg[1375]/CK (DFF_X1)                 0.0000    23.9500 r
+  library setup time                                   -0.4011    23.5489
+  data required time                                              23.5489
   --------------------------------------------------------------------------
-  data required time                                              23.6295
-  data arrival time                                              -23.2872
+  data required time                                              23.5489
+  data arrival time                                              -23.0946
   --------------------------------------------------------------------------
-  slack (MET)                                                      0.3423
+  slack (MET)                                                      0.4543
 
 
 1

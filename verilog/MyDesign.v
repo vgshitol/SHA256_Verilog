@@ -73,10 +73,8 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
     wire hash_vector_complete;
 
     wire k_address_complete;
-    wire k_vector_complete;
-    wire [31:0] cur_k_value;
 
-    wire w_vector_complete;
+    wire [31:0] cur_k_value;
     wire [31:0] cur_w_value;
 
     wire wk_vector_enable;
@@ -164,11 +162,11 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
     counter_wk #(.MAX_MESSAGE_LENGTH(NUMBER_OF_Ks)) wkCounter (.clock(clk), .reset(reset), .start(kEnable), .read_address(kAddress), .read_complete(k_address_complete));
 
     k_vector #(.K_LENGTH(NUMBER_OF_Ks)) kBlock (.clock(clk), .reset(reset), .enable(kEnable), .address_read_complete(k_address_complete), .k_write(kWrite),
-                                                .k_data(kData) , .k_vector_complete(k_vector_complete), .cur_k_value(cur_k_value));
+                                                .k_data(kData) , .cur_k_value(cur_k_value));
 
     /** Creating the W Vector**/
     w64 #(.W_LENGTH(NUMBER_OF_Ks)) wBlock (.clock(clk), .reset(reset), .enable(kEnable), .w_vector_index(kAddress), .w_index_complete(k_address_complete), .message_vector(message_vector),
-                                           .w_vector_complete(w_vector_complete), .cur_w(cur_w_value));
+                                           .cur_w(cur_w_value));
 
     /** Processing Hash Update**/
     msgEn hashUpdateSignal(.clock(clk), .reset(reset), .start(kEnable),  .restart(finish), .enable(wk_vector_enable));
@@ -354,7 +352,7 @@ module counter #(
 	    end
             else if (start && !read_complete) 
 		begin
-		read_address <= read_address + 1;
+		read_address <= read_address+1;
 		read_complete <= (msg_length-1 == read_address);
 		end        	
 	    else 
@@ -580,13 +578,13 @@ module k_vector #(parameter K_LENGTH = 64
     /*-----------Outputs--------------------------------*/
 
     output reg                              k_write,
-    output reg                              k_vector_complete,  /* hash formation complete flag */
     output reg [31:0]			    cur_k_value
 );
 
     integer block_bit;
     integer length_bit;
 
+    reg                              k_vector_complete;  /* hash formation complete flag */
     reg                              k_vector_complete1;
     reg                              k_vector_complete2;
     reg                              enable1;
@@ -631,24 +629,24 @@ module w64 #(parameter W_LENGTH = 64
 
     /*-----------Outputs--------------------------------*/
 
-    output reg                              w_vector_complete,  /* message formation complete flag */
     output reg [31:0]			            cur_w
 );
 
+    reg                              w_vector_complete;  /* message formation complete flag */
     reg [2047:0]                     w_vector;
     integer unsigned block_bit;
     reg  [31:0] s0w_r1;
     reg  [31:0] s0w_r2;
     reg  [31:0] s0w_r3;
     reg  [31:0] s0word;
-    reg  [63:0] double_s0word;
+   // reg  [63:0] double_s0word;
     reg  [31:0] sigma0_s0word;
 
     reg  [31:0] s1w_r1;
     reg  [31:0] s1w_r2;
     reg  [31:0] s1w_r3;
     reg  [31:0] s1word;
-    reg  [63:0] double_s1word;
+  //  reg  [63:0] double_s1word;
     reg  [31:0] sigma1_s1word;
 
     reg  [31:0] word16;
@@ -670,31 +668,68 @@ module w64 #(parameter W_LENGTH = 64
     always @(posedge clock)
         begin
 
-            if(reset || !enable2) w_vector <=0;
+            cur_w <= cur_w;
+            if(reset || !enable2) 
+		begin
+			cur_w <= 0;
+            	end
             else if(enable2 && !w_vector_complete )
                 begin
-                    w_vector <= w_vector;
-                    cur_w <= cur_w;
-                    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                        begin
-                            if(w_vector_index2 < 16)
-                                begin
-                                    w_vector[block_bit + w_vector_index2*32] <= message_vector[511-31 + block_bit - w_vector_index2*32];
-                                    cur_w[block_bit] <= message_vector[511-31 + block_bit - w_vector_index2*32];
-                                end
-                            else if(w_vector_index2 >= 16)
-                                begin
-                                    w_vector[block_bit+ w_vector_index2*32] <= new_word[block_bit];
-                                    cur_w[block_bit] <= new_word[block_bit];
-                                end
-                            else
-                                begin
-                                    w_vector[block_bit+ w_vector_index2*32] <=  w_vector[block_bit+ w_vector_index2*32];
-                                    cur_w[block_bit] <= cur_w[block_bit];
-                                end
+                    if(w_vector_index2 < 16)
+                    begin
+                       if(w_vector_index2 == 0) cur_w[31:0] <= message_vector[511:480];
+		    else if(w_vector_index2 == 1) cur_w[31:0] <= message_vector[479:448];
+		    else if(w_vector_index2 == 2) cur_w[31:0] <= message_vector[447:416];
+		    else if(w_vector_index2 == 3) cur_w[31:0] <= message_vector[415:384];
+		    else if(w_vector_index2 == 4) cur_w[31:0] <= message_vector[383:352];
+		    else if(w_vector_index2 == 5) cur_w[31:0] <= message_vector[351:320];
+		    else if(w_vector_index2 == 6) cur_w[31:0] <= message_vector[319:288];
+		    else if(w_vector_index2 == 7) cur_w[31:0] <= message_vector[287:256];
+		    else if(w_vector_index2 == 8) cur_w[31:0] <= message_vector[255:224];
+		    else if(w_vector_index2 == 9) cur_w[31:0] <= message_vector[223:192];
+		    else if(w_vector_index2 == 10) cur_w[31:0] <= message_vector[191:160];
+		    else if(w_vector_index2 == 11) cur_w[31:0] <= message_vector[159:128];
+      		    else if(w_vector_index2 == 12) cur_w[31:0] <= message_vector[127:96];
+      		    else if(w_vector_index2 == 13) cur_w[31:0] <= message_vector[95:64];
+      		    else if(w_vector_index2 == 14) cur_w[31:0] <= message_vector[63:32];
+      		    else if(w_vector_index2 == 15) cur_w[31:0] <= message_vector[31:0];
+		    else cur_w <= 0;
+                             
+		    end
+                    else
+     	               begin
+     	               cur_w <= new_word;
                         end
                 end
-            else w_vector <= w_vector;
+
+	    w_vector <= w_vector;
+            if(reset || !enable2) 
+		begin
+			w_vector <=0;
+	    	end
+            else if(enable2 && !w_vector_complete && (w_vector_index2 < 16))
+                begin
+		    w_vector[31:0] <= message_vector[511:480];
+		    w_vector[63:32] <= message_vector[479:448];
+		    w_vector[95:64] <= message_vector[447:416];
+		    w_vector[127:96] <= message_vector[415:384];
+		    w_vector[159:128] <= message_vector[383:352];
+		    w_vector[191:160] <= message_vector[351:320];
+		    w_vector[223:192] <= message_vector[319:288];
+		    w_vector[255:224] <= message_vector[287:256];
+		    w_vector[287:256] <= message_vector[255:224];
+		    w_vector[319:288] <= message_vector[223:192];
+		    w_vector[351:320] <= message_vector[191:160];
+		    w_vector[383:352] <= message_vector[159:128];
+      		    w_vector[415:384] <= message_vector[127:96];
+      		    w_vector[447:416] <= message_vector[95:64];
+      		    w_vector[479:448] <= message_vector[63:32];
+      		    w_vector[511:480] <= message_vector[31:0];
+      		end                          
+            else if(enable2 && !w_vector_complete)
+                begin                
+                    w_vector[w_vector_index2*32 +: 32] <= new_word;           
+                end
 
             w_vector_complete1 <= w_index_complete;
             w_vector_complete2 <= w_vector_complete1;
@@ -711,45 +746,55 @@ module w64 #(parameter W_LENGTH = 64
         begin
             if(enable2 && !w_vector_complete && w_vector_index2 >= 16)
                 begin
-                    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                        s0word[block_bit] = w_vector[block_bit + (w_vector_index2-15)*32];
-
-                    double_s0word = {s0word, s0word};
-                    s0w_r1 = double_s0word >> 7;
-                    s0w_r2 = double_s0word >> 18;
-                    s0w_r3 = s0word >> 3;
+		    s0word = w_vector[(w_vector_index2-15)*32 + 31 -: 32];
+                    s0w_r1 = {s0word[6:0], s0word[31:7]};
+                    s0w_r2 = {s0word[17:0], s0word[31:18]};
+                    s0w_r3[28:0] = s0word[31:3];
+                    s0w_r3[31:29] = 0;
                     sigma0_s0word = (s0w_r1 ^ s0w_r2) ^ s0w_r3;
                 end
-            else sigma0_s0word = 0;
+            else 
+		begin 
+		    s0word = 0;
+		    s0w_r1 = 0;
+                    s0w_r2 = 0;
+                    s0w_r3 = 0;
+		    sigma0_s0word = 0;
+		end
+        end
+
+    always @(*)
+        begin
+            if(enable2 && !w_vector_complete && w_vector_index2 >= 16)
+                begin   
+                    s1word = w_vector[(w_vector_index2-2)*32 +31 -: 32];
+                    s1w_r1 ={s1word[16:0], s1word[31:17]};
+                    s1w_r2 = {s1word[18:0], s1word[31:19]};
+                    s1w_r3[21:0] = s1word[31:10];
+                    s1w_r3[31:22] = 0;
+                    sigma1_s1word = s1w_r1 ^ s1w_r2 ^ s1w_r3;
+                end
+            else begin
+		s1word = 0;
+	        s1w_r1 = 0;
+                s1w_r2 = 0;
+                s1w_r3 = 0;
+                sigma1_s1word = 0;
+		end
         end
 
     always @(*)
         begin
             if(enable2 && !w_vector_complete && w_vector_index2 >= 16)
                 begin
-                    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                        s1word[block_bit] = w_vector[block_bit + (w_vector_index2-2)*32];
-
-                    double_s1word = {s1word, s1word};
-                    s1w_r1 = double_s1word >> 17;
-                    s1w_r2 = double_s1word >> 19;
-                    s1w_r3 = s1word >> 10;
-                    sigma1_s1word = (s1w_r1 ^ s1w_r2) ^ s1w_r3;
+                   word16 = w_vector[(w_vector_index2-16)*32 +: 32];
+                   word7 = w_vector[(w_vector_index2-7)*32 +: 32];
                 end
-            else sigma1_s1word = 0;
-        end
-
-    always @(*)
-        begin
-            if(enable2 && !w_vector_complete && w_vector_index2 >= 16)
-                begin
-                    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                        begin
-                            word16[block_bit] = w_vector[block_bit + (w_vector_index2-16)*32];
-                            word7[block_bit] = w_vector[block_bit + (w_vector_index2-7)*32];
-                        end
-                end
-            else begin word16 = 0; word7 = 0; end
+            else 
+		begin 
+			word16 = 0; 
+			word7 = 0; 
+		end
         end
 
     assign new_word = (sigma0_s0word + sigma1_s1word) + (word16 + word7);
@@ -776,8 +821,6 @@ module hash_update #(parameter WK_LENGTH = 64
     output reg [255:0]                      updated_hash
 );
 
-    integer block_bit;
-    integer block_bit_1;
 
     reg [31:0] h0;
     reg [31:0] h1;
@@ -800,7 +843,7 @@ module hash_update #(parameter WK_LENGTH = 64
     wire [31:0] k;
 
     reg [31:0] summation0_output;
-    reg [63:0] a_n;
+   // reg [63:0] a_n;
     reg [31:0] a_r1;
     reg [31:0] a_r2;
     reg [31:0] a_r3;
@@ -850,17 +893,15 @@ module hash_update #(parameter WK_LENGTH = 64
             end
             else if(!hash_complete)
                 begin
-                    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                        begin
-                            updated_hash[block_bit + 32*0] <= a_new[block_bit];
-                            updated_hash[block_bit + 32*1] <= b_new[block_bit];
-                            updated_hash[block_bit + 32*2] <= c_new[block_bit];
-                            updated_hash[block_bit + 32*3] <= d_new[block_bit];
-                            updated_hash[block_bit + 32*4] <= e_new[block_bit];
-                            updated_hash[block_bit + 32*5] <= f_new[block_bit];
-                            updated_hash[block_bit + 32*6] <= g_new[block_bit];
-                            updated_hash[block_bit + 32*7] <= h_new[block_bit];
-                        end
+                            updated_hash[32*0 +: 32] <= a_new;
+                            updated_hash[32*1 +: 32] <= b_new;
+                            updated_hash[32*2 +: 32] <= c_new;
+                            updated_hash[32*3 +: 32] <= d_new;
+                            updated_hash[32*4 +: 32] <= e_new;
+                            updated_hash[32*5 +: 32] <= f_new;
+                            updated_hash[32*6 +: 32] <= g_new;
+                            updated_hash[32*7 +: 32] <= h_new;
+                      
                 end
             else updated_hash <= updated_hash;
 
@@ -876,17 +917,14 @@ module hash_update #(parameter WK_LENGTH = 64
         begin
             if(!hash_complete)
                 begin
-                    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                        begin
-                            a[block_bit] = updated_hash[block_bit + 32*0];
-                            b[block_bit] = updated_hash[block_bit + 32*1];
-                            c[block_bit] = updated_hash[block_bit + 32*2];
-                            d[block_bit] = updated_hash[block_bit + 32*3];
-                            e[block_bit] = updated_hash[block_bit + 32*4];
-                            f[block_bit] = updated_hash[block_bit + 32*5];
-                            g[block_bit] = updated_hash[block_bit + 32*6];
-                            h[block_bit] = updated_hash[block_bit + 32*7];
-                        end
+                            a = updated_hash[32*0 +: 32];
+                            b = updated_hash[32*1 +: 32];
+                            c = updated_hash[32*2 +: 32];
+                            d = updated_hash[32*3 +: 32];
+                            e = updated_hash[32*4 +: 32];
+                            f = updated_hash[32*5 +: 32];
+                            g = updated_hash[32*6 +: 32];
+                            h = updated_hash[32*7 +: 32];
                 end
             else
                 begin
@@ -908,26 +946,39 @@ module hash_update #(parameter WK_LENGTH = 64
         begin
             if(enable2 && !hash_complete)
                 begin
-                    a_n = {a, a};
-                    a_r1 = a_n >> 2;
-                    a_r2 = a_n >> 13;
-                    a_r3 = a_n >> 22;
+                    //a_n = {a, a};
+                    a_r1 = {a[1:0], a[31:2]};// >> 2;
+                    a_r2 = {a[12:0], a[31:13]}; //a_n >> 13;
+                    a_r3 = {a[21:0], a[31:22]}; //a_n >> 22;
                     summation0_output = a_r1 ^ a_r2 ^ a_r3;
                 end
-            else summation0_output = 0;
+            else 
+		begin
+		    a_r1 = 0;
+                    a_r2 = 0;
+                    a_r3 = 0;
+		    summation0_output = 0;
+		end
         end
 
     always @(*)
         begin
             if(enable2 && !hash_complete)
                 begin
-                    e_n = {e, e};
-                    e_r1 = e_n >> 6;
-                    e_r2 = e_n >> 11;
-                    e_r3 = e_n >> 25;
-                    summation1_output = (e_r1 ^ e_r2) ^ e_r3;
+                   // e_n = {e, e};
+                    e_r1 = {e[5:0], e[31:6]}; //e_n >> 6;
+                    e_r2 = {e[10:0], e[31:11]}; //e_n >> 11;
+                    e_r3 = {e[24:0], e[31:25]}; //e_n >> 25;
+                    summation1_output = e_r1 ^ e_r2 ^ e_r3;
                 end
-            else summation1_output = 0;
+		
+            else 
+		begin
+		    e_r1 = 0;
+                    e_r2 = 0;
+                    e_r3 = 0;
+			summation1_output = 0;
+		end
         end
 
     always @(*)
@@ -937,9 +988,14 @@ module hash_update #(parameter WK_LENGTH = 64
                     m1 = a & b;
                     m2 = a & c;
                     m3 = b & c;
-                    major_output = (m1 ^ m2) ^ m3;
+                    major_output = m1 ^ m2 ^ m3;
                 end
-            else major_output = 0;
+            else begin
+		m1 = 0;
+		m2 = 0;
+		m3 = 0;		
+		major_output = 0;
+		end
         end
 
     always @(*)
@@ -950,7 +1006,12 @@ module hash_update #(parameter WK_LENGTH = 64
                     c2 = (~e) & g;
                     choice_output = c1 ^ c2;
                 end
-            else choice_output = 0;
+            else 
+		begin
+		c1 = 0;
+		c2 = 0;
+		choice_output = 0;
+		end
         end
 
     assign t2 = summation0_output + major_output;
@@ -958,18 +1019,15 @@ module hash_update #(parameter WK_LENGTH = 64
 
     always @(*)
         begin
-            for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                begin
-                    h0[block_bit] = prev_hash[block_bit + 32*0];
-                    h1[block_bit] = prev_hash[block_bit + 32*1];
-                    h2[block_bit] = prev_hash[block_bit + 32*2];
-                    h3[block_bit] = prev_hash[block_bit + 32*3];
-                    h4[block_bit] = prev_hash[block_bit + 32*4];
-                    h5[block_bit] = prev_hash[block_bit + 32*5];
-                    h6[block_bit] = prev_hash[block_bit + 32*6];
-                    h7[block_bit] = prev_hash[block_bit + 32*7];
-                end
-
+                    h0 = prev_hash[32*0 +: 32];
+                    h1 = prev_hash[32*1 +: 32];
+                    h2 = prev_hash[32*2 +: 32];
+                    h3 = prev_hash[32*3 +: 32];
+                    h4 = prev_hash[32*4 +: 32];
+                    h5 = prev_hash[32*5 +: 32];
+                    h6 = prev_hash[32*6 +: 32];
+                    h7 = prev_hash[32*7 +: 32];
+         
             if(!hash_complete2)
                 begin
                     a_new = t1 + t2;
@@ -1026,8 +1084,7 @@ module store_hash #(parameter HASH_LENGTH = 8
     output reg [ $clog2(HASH_LENGTH)-1:0]    h_output_address
 );
 
-    integer block_bit;
-
+  
     reg [ $clog2(HASH_LENGTH)-1:0]   hash_address1;
     reg [ $clog2(HASH_LENGTH)-1:0]   hash_address2;
     reg                              h_vector_complete1;
@@ -1044,10 +1101,16 @@ module store_hash #(parameter HASH_LENGTH = 8
             else if(!h_vector_complete)
                 begin
                     h_write <= 1;
-                    for (block_bit = 0 ; block_bit < 32; block_bit = block_bit + 1)
-                        h_data[block_bit] <= hash_vector[block_bit + hash_address2*32];
-                    h_output_address <= hash_address2;
+                        h_data <= hash_vector[hash_address2*32 +: 32];
+                    	h_output_address <= hash_address2;
                 end
+	    else
+		begin
+		  h_data <= h_data;
+		  h_output_address <= h_output_address;
+	          h_write <= 0;
+		end
+
             h_vector_complete1 <= address_read_complete;
             h_vector_complete2 <= h_vector_complete1;
             h_vector_complete <= h_vector_complete2;
