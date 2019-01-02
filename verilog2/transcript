@@ -1,0 +1,86 @@
+# //  ModelSim SE-64 10.7c Aug 17 2018Linux 3.10.0-957.1.3.el7.x86_64
+# //
+# //  Copyright 1991-2018 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  ModelSim SE-64 and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+vsim -voptargs=+acc work.tb_top
+# vsim -voptargs="+acc" work.tb_top 
+# Start time: 16:07:07 on Nov 30,2018
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading sv_std.std
+# Loading work.tb_top(fast)
+# Loading work.sram(fast)
+# Loading work.sram(fast__1)
+# Loading work.sram(fast__2)
+# Loading work.sram(fast__3)
+# Loading work.MyDesign(fast)
+# Loading work.registerIO1(fast)
+# Loading work.registerIO6(fast)
+# Loading work.registerIO8(fast)
+# Loading work.registerIO32(fast)
+# Loading work.registerIO3(fast)
+# Loading work.go(fast)
+# Loading work.counter(fast)
+# Loading work.msg_vector(fast)
+# Loading work.counter_h(fast)
+# Loading work.hash(fast)
+# Loading work.wEn(fast)
+# Loading work.counter_wk(fast)
+# Loading work.k_vector(fast)
+# Loading work.w64(fast)
+# Loading work.msgEn(fast)
+# Loading work.counter_hashupdate(fast)
+# Loading work.hash_update(fast)
+# Loading work.store_hash(fast)
+# ** Warning: (vsim-3015) [PCDPC] - Port size (6) does not match connection size (7) for port 'xxx__dut__msg_length'. The port definition is at: MyDesign.v(17).
+#    Time: 0 ns  Iteration: 0  Instance: /tb_top/dut File: ece564_project_tb_top.v Line: 273
+add wave sim:/tb_top/dut/*
+run
+# INFO::readmem : ./message.dat 
+# INFO::readmem : K.dat 
+# INFO::readmem : H.dat 
+# @315, go asserted
+run
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = xxxxxxxx
+# Hash[0] = 44bd7ae6
+# Hash[1] = 0f478fae
+# Hash[2] = 1061e11a
+# Hash[3] = 7739f4b9
+# Hash[4] = 4d1daf91
+# Hash[5] = 7982d33b
+# Hash[6] = 6fc8a01a
+# @1235, dut finished, # of clocks = 91
+# Hash[7] = 63f89c21
+# Store result to result_0.txt
+# @1535, go asserted
+run
+# Hash[0] = 63f89c21
+# Hash[0] = 63f89c21
+# Hash[0] = 63f89c21
+# Hash[0] = 44bd7ae6
+# Hash[1] = 0f478fae
+# Hash[2] = 1061e11a
+# Hash[3] = 7739f4b9
+# Hash[4] = 4d1daf91
+# Hash[5] = 7982d33b
+# Hash[6] = 6fc8a01a
+# @2455, dut finished, # of clocks = 91
+# Hash[7] = 63f89c21
+# Store result to result_1.txt
+run
+run
+run
+# ** Note: $finish    : ece564_project_tb_top.v(200)
+#    Time: 5955 ns  Iteration: 1  Instance: /tb_top
+# End time: 16:08:10 on Nov 30,2018, Elapsed time: 0:01:03
+# Errors: 0, Warnings: 1
