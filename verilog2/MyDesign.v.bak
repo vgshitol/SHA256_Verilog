@@ -2,118 +2,272 @@
 //---------------------------------------------------------------------------
 // DUT
 
-
-`define MSG_LENGTH 5
-
-
 module MyDesign #(parameter OUTPUT_LENGTH       = 8,
                   parameter MAX_MESSAGE_LENGTH  = 55,
                   parameter NUMBER_OF_Ks        = 64,
                   parameter NUMBER_OF_Hs        = 8 ,
                   parameter SYMBOL_WIDTH        = 8  )
-            (
+(
 
-            //---------------------------------------------------------------------------
-            // Control
-            //
-            output reg                                   dut__xxx__finish     ,
-            input  wire                                  xxx__dut__go         ,  
-            input  wire  [ $clog2(MAX_MESSAGE_LENGTH):0] xxx__dut__msg_length ,
+    //---------------------------------------------------------------------------
+    // Control
+    //
+    output reg                                   dut__xxx__finish     ,
+    input  wire                                  xxx__dut__go         ,
+    input  wire  [ $clog2(MAX_MESSAGE_LENGTH)-1:0] xxx__dut__msg_length ,
 
-            //---------------------------------------------------------------------------
-            // Message memory interface
-            //
-            output reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0]   dut__msg__address  ,  // address of letter
-            output reg                                      dut__msg__enable   ,
-            output reg                                      dut__msg__write    ,
-            input  wire [7:0]                               msg__dut__data     ,  // read each letter
-            
-            //---------------------------------------------------------------------------
-            // K memory interface
-            //
-            output reg  [ $clog2(NUMBER_OF_Ks)-1:0]     dut__kmem__address  ,
-            output reg                                  dut__kmem__enable   ,
-            output reg                                  dut__kmem__write    ,
-            input  wire [31:0]                          kmem__dut__data     ,  // read data
+    //---------------------------------------------------------------------------
+    // Message memory interface
+    //
+    output reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0]   dut__msg__address  ,  // address of letter
+    output reg                                      dut__msg__enable   ,
+    output reg                                      dut__msg__write    ,
+    input  wire [7:0]                               msg__dut__data     ,  // read each letter
 
-            //---------------------------------------------------------------------------
-            // H memory interface
-            //
-            output reg  [ $clog2(NUMBER_OF_Hs)-1:0]     dut__hmem__address  ,
-            output reg                                  dut__hmem__enable   ,
-            output reg                                  dut__hmem__write    ,
-            input  wire [31:0]                          hmem__dut__data     ,  // read data
+    //---------------------------------------------------------------------------
+    // K memory interface
+    //
+    output reg  [ $clog2(NUMBER_OF_Ks)-1:0]     dut__kmem__address  ,
+    output reg                                  dut__kmem__enable   ,
+    output reg                                  dut__kmem__write    ,
+    input  wire [31:0]                          kmem__dut__data     ,  // read data
 
-
-            //---------------------------------------------------------------------------
-            // Output data memory 
-            //
-            output reg  [ $clog2(OUTPUT_LENGTH)-1:0]    dut__dom__address  ,
-            output reg  [31:0]                          dut__dom__data     ,  // write data
-            output reg                                  dut__dom__enable   ,
-            output reg                                  dut__dom__write    ,
+    //---------------------------------------------------------------------------
+    // H memory interface
+    //
+    output reg  [ $clog2(NUMBER_OF_Hs)-1:0]     dut__hmem__address  ,
+    output reg                                  dut__hmem__enable   ,
+    output reg                                  dut__hmem__write    ,
+    input  wire [31:0]                          hmem__dut__data     ,  // read data
 
 
-            //-------------------------------
-            // General
-            //
-            input  wire                 clk             ,
-            input  wire                 reset  
-
-            );
-
-	
-  //---------------------------------------------------------------------------
-  //
-  //<<<<----  YOUR CODE HERE    ---->>>>
-	reg [440:0] msg_len;
-	wire address_done;
-	reg next__dut__msg__enable; 
-	reg [$clog2(MAX_MESSAGE_LENGTH):0] next__dut__msg__address;
-  //`include "v564.vh"
-
-assign address_done = (xxx__dut__msg_length <= next__dut__msg__address) ? 1 : 0;
-
-always @(xxx__dut__go)
-begin
-next__dut__msg__enable = dut__msg__enable;
-if(xxx__dut__go == 1)
-begin
-next__dut__msg__address = 0;
-next__dut__msg__enable = 1; 
-end
-end
+    //---------------------------------------------------------------------------
+    // Output data memory
+    //
+    output reg  [ $clog2(OUTPUT_LENGTH)-1:0]    dut__dom__address  ,
+    output reg  [31:0]                          dut__dom__data     ,  // write data
+    output reg                                  dut__dom__enable   ,
+    output reg                                  dut__dom__write    ,
 
 
-always @(dut__msg__enable or address_done)		
-begin			
-if(!address_done && dut__msg__enable) next__dut__msg__address = dut__msg__address + 1;
-else if(address_done && dut__msg__enable) next__dut__msg__enable = 0;
-else next__dut__msg__address = 0;
-end
+    //-------------------------------
+    // General
+    //
+    input  wire                 clk             ,
+    input  wire                 reset
 
-always @(posedge clk)
-begin
-if(reset)
-begin
-dut__msg__enable <= 0;
-dut__msg__address <= 0;
-end
-else
-begin
-dut__msg__write <= 0;
-dut__msg__enable <= next__dut__msg__enable;
-dut__msg__address <= next__dut__msg__address;
-end
-end
+);
 
 
-	    
+    //---------------------------------------------------------------------------
+    //
+    //<<<<----  YOUR CODE HERE    ---->>>>
+    reg goSignal;
+    reg resetSHA;
+    reg msgEnable;
+    reg finish;
+
+    always @(posedge clk)
+        goSignal <= xxx__dut__go;
+
+    always @(posedge clk)
+        resetSHA <= reset;
+
+    always @(posedge clk)
+        dut__xxx__finish <= finish;
 
 
- 
-  // 
-  //---------------------------------------------------------------------------
+    always @(posedge clk)
+        finish <= resetSHA ? 0 : finish;
+
+    always @(posedge clk)
+        begin
+            if(resetSHA) msgEnable <= 0;
+            else msgEnable <= (goSignal || msgEnable) && !finish;
+        end
+
+        //message vector
+    reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0]   msgAddress;  // address of letter
+  //  reg                                      msgEnable;
+    reg                                      msgWrite;
+    reg [7:0]                                msgData;  // read each letter
+    reg [ $clog2(MAX_MESSAGE_LENGTH)-1:0]    msgLength;
+
+    always @(posedge clk)
+        begin
+            //output
+            dut__msg__address <= msgAddress;
+            dut__msg__enable <= msgEnable;
+            dut__msg__write <= msgWrite;
+            msgLength <= xxx__dut__msg_length;
+
+            // input
+            msgData <= msg__dut__data;
+        end
+
+    reg msgAddressComplete;
+        // Counter for msg Vector
+    always @(posedge clk)
+        begin
+            if(resetSHA || !msgEnable) begin
+                msgAddress <= 0;
+                msgWrite <= 0;
+            end
+            else if(msgAddress < msgLength) begin
+                msgWrite <= 0;
+                msgAddress <= msgAddress+1;
+            end
+            else if(msgAddress == msgLength) begin
+                msgWrite <= 0;
+                msgAddress <= msgAddress;
+            end
+            else begin
+                msgAddress <= msgAddress;
+                msgWrite <= 1'bx;
+            end
+
+            msgAddressComplete <= (msgAddress == msgLength);
+        end
+
+    reg [511:0] msgVector;
+    reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0] msgAddressPipe1;
+    reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0] msgAddressPipe2;
+
+    reg  msgAddressCompletePipe1;
+    reg  msgAddressCompletePipe2;
+
+    always @(posedge clk)
+        begin
+            msgAddressPipe1 <= msgAddress;
+            msgAddressPipe2 <= msgAddressPipe1;
+
+            msgAddressCompletePipe1 <= msgAddressComplete;
+            msgAddressCompletePipe2 <= msgAddressCompletePipe1;
+        end
+
+
+            genvar msgIndex;
+    generate
+        for (msgIndex=0; msgIndex<MAX_MESSAGE_LENGTH; msgIndex=msgIndex+1) begin
+            always @(posedge clk) begin
+                if(resetSHA || !msgEnable) msgVector[511 - 8*msgIndex -: 8] <= 0;
+                else if (!msgAddressCompletePipe1 && msgIndex == msgAddressPipe2) msgVector[511 - 8*msgIndex -: 8] <= msgData;
+                else if (msgAddressCompletePipe1) msgVector[511 - 8*msgLength -: 8] <= 8'h80;
+                else msgVector[511 - 8*msgIndex -: 8] <= msgVector[511 - 8*msgIndex -: 8];
+            end
+        end
+
+        always @(posedge clk) begin
+            msgVector[71:0] <= msgLength*8;
+        end
+    endgenerate
+
+
+        //hash vector
+    reg [ $clog2(NUMBER_OF_Hs)-1:0]          hmemAddress;  // address of letter
+    reg                                      hmemEnable;
+    reg                                      hmemWrite;
+    reg [31:0]                               hmemData;  // read each letter
+
+    always @(posedge clk)
+        begin
+            //output
+            dut__hmem__address <= hmemAddress;
+            dut__hmem__enable <= hmemEnable;
+            dut__hmem__write <= hmemWrite;
+
+            // input
+            hmemData <= hmem__dut__data;
+        end
+
+    reg hmemAddressComplete;
+
+        // Counter for Hash Vector
+    always @(posedge clk)
+        begin
+            hmemWrite <= 0;
+            if(resetSHA || !msgEnable)  hmemAddress <= 0;
+            else if(hmemAddress < NUMBER_OF_Hs) hmemAddress <= hmemAddress+1;
+            else hmemAddress <= hmemAddress;
+
+            hmemAddressComplete <= hmemAddressComplete ? 1 :  (hmemAddress == 8);
+
+        end
+
+    reg [255:0] hashVector;
+
+    reg [ $clog2(NUMBER_OF_Hs)-1:0]         hmemAddressPipe1;  // address of letter
+    reg [ $clog2(NUMBER_OF_Hs)-1:0]         hmemAddressPipe2;  // address of letter
+
+    reg hmemAddressCompletePipe1;  // address of letter
+    reg hmemAddressCompletePipe2;  // address of letter
+
+    genvar hmemIndex;
+    generate
+        for (hmemIndex=0; hmemIndex<NUMBER_OF_Hs; hmemIndex=hmemIndex+1) begin
+            always @(posedge clk) begin
+                if(resetSHA || !msgEnable) hashVector[32*hmemIndex +: 32] <= 0;
+                else if (!hmemAddressCompletePipe1 && hmemIndex == hmemAddressPipe2) hashVector[32*hmemIndex +: 32] <= hmemData;
+                else msgVector[32*hmemIndex +: 32] <= msgVector[32*hmemIndex +: 32];
+            end
+        end
+    endgenerate
+
+
+        //K vector
+    reg  [ $clog2(NUMBER_OF_Ks)-1:0]         kmemAddress;  // address of letter
+    reg                                      kmemEnable;
+    reg                                      kmemWrite;
+    reg [31:0]                               kmemData;  // read each letter
+
+    always @(posedge clk)
+        begin
+            //output
+            dut__kmem__address <= kmemAddress;
+            dut__kmem__enable <= kmemEnable;
+            dut__kmem__write <= kmemWrite;
+
+            // input
+            kmemData <= kmem__dut__data;
+        end
+
+    reg kmemAddressComplete;
+
+        // Counter for Hash Vector
+    always @(posedge clk)
+        begin
+            if(resetSHA || (msgAddressComplete && hmemAddressComplete) || (kmemAddress == NUMBER_OF_Ks))  kmemAddress <= 0;
+            else if(kmemAddress < NUMBER_OF_Ks) kmemAddress <= kmemAddress+1;
+            else kmemAddress <= kmemAddress;
+
+            kmemAddressComplete <= kmemAddressComplete ^ (kmemAddress == NUMBER_OF_Ks);
+        end
+
+    reg [31:0] cur_k_value;
+
+    reg  [ $clog2(NUMBER_OF_Ks)-1:0]         kmemAddressPipe1;
+    reg  [ $clog2(NUMBER_OF_Ks)-1:0]         kmemAddressPipe2;
+
+    reg kmemAddressCompletePipe1;
+    reg kmemAddressCompletePipe2;
+
+    genvar kmemIndex;
+    generate
+        for (kmemIndex=0; kmemIndex<NUMBER_OF_Ks; kmemIndex=kmemIndex+1) begin
+            always @(posedge clk) begin
+                if(resetSHA || !msgEnable) cur_k_value <= 0;
+                else if (!kmemAddressCompletePipe2 && kmemIndex == kmemAddressPipe2) cur_k_value <= kmemData;
+                else cur_k_value <= cur_k_value;
+            end
+        end
+    endgenerate
+
+
+
+
+
+
+
+
 
 endmodule
-

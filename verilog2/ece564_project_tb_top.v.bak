@@ -12,7 +12,7 @@
 //`define ECE464
 // All students
 // - set based on your message memory depth
-`define MSG_LENGTH 5
+`define MSG_LENGTH 1
 
 // synopsys translate_off
 /*
