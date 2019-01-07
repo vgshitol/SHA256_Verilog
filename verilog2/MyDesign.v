@@ -272,6 +272,45 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 
     reg kmemAddressComplete;
 
+    reg  [ $clog2(NUMBER_OF_Ks)-1:0]         kmemAddressPipe1;
+    reg  [ $clog2(NUMBER_OF_Ks)-1:0]         kmemAddressPipe2;
+
+    reg kmemAddressCompletePipe1;
+    reg kmemAddressCompletePipe2;
+
+    always @(posedge clk)
+        begin
+            kmemAddressPipe1 <= kmemAddress;
+            kmemAddressPipe2 <= kmemAddressPipe1;
+
+            kmemAddressCompletePipe1 <= kmemAddressComplete;
+            kmemAddressCompletePipe2 <= kmemAddressCompletePipe1;
+        end
+
+    reg kmemEnablePipe1;
+    reg kmemEnablePipe2;
+    reg hashUpdateEnable;
+
+    always @(posedge clk) begin
+        kmemEnablePipe1 <= kmemEnable;
+        kmemEnablePipe2 <= kmemEnablePipe1;
+        hashUpdateEnable <= kmemEnablePipe2;
+    end
+
+    reg [1:0] hashCycle;
+    reg getNewHash;
+
+    always @(posedge clk) begin
+        if(!kmemEnablePipe1) begin
+            hashCycle <= 3;
+        end
+        else begin
+            hashCycle <= hashCycle + 1;
+        end
+
+        getNewHash = (hashCycle == 3);
+    end
+
         // Counter for K Vector
     always @(posedge clk)
         begin
@@ -280,7 +319,7 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
                 kmemAddressCarry <= 0;
                 kmemWrite <= 0;
             end
-            else if(!kmemAddressCarry) begin
+            else if(!kmemAddressCarry && getNewHash && kmemEnablePipe1) begin
                 {kmemAddressCarry,kmemAddress} <= kmemAddress+1;
                 kmemWrite <= 0;
             end
@@ -300,21 +339,6 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
         end
 
     reg [31:0] cur_k_value;
-
-    reg  [ $clog2(NUMBER_OF_Ks)-1:0]         kmemAddressPipe1;
-    reg  [ $clog2(NUMBER_OF_Ks)-1:0]         kmemAddressPipe2;
-
-    reg kmemAddressCompletePipe1;
-    reg kmemAddressCompletePipe2;
-
-    always @(posedge clk)
-        begin
-            kmemAddressPipe1 <= kmemAddress;
-            kmemAddressPipe2 <= kmemAddressPipe1;
-
-            kmemAddressCompletePipe1 <= kmemAddressComplete;
-            kmemAddressCompletePipe2 <= kmemAddressCompletePipe1;
-        end
 
     genvar kmemIndex;
     generate
@@ -338,14 +362,7 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
         end
     endgenerate
 
-    reg kmemEnablePipe1;
-    reg kmemEnablePipe2;
-
-
-    always @(posedge clk) begin
-        kmemEnablePipe1 <= kmemEnable;
-        kmemEnablePipe2 <= kmemEnablePipe1;
-    end
+    reg [255:0] newHash;
 
     reg [31:0] a;
     reg [31:0] b;
@@ -356,15 +373,37 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
     reg [31:0] g;
     reg [31:0] h;
 
-    always @(*) begin
-        a = hashVector[32*0 +: 32];
-        b = hashVector[32*1 +: 32];
-        c = hashVector[32*2 +: 32];
-        d = hashVector[32*3 +: 32];
-        e = hashVector[32*4 +: 32];
-        f = hashVector[32*5 +: 32];
-        g = hashVector[32*6 +: 32];
-        h = hashVector[32*7 +: 32];
+    always @(posedge clk) begin
+        if(!hashUpdateEnable && getNewHash) begin
+            a <= hashVector[32*0 +: 32];
+            b <= hashVector[32*1 +: 32];
+            c <= hashVector[32*2 +: 32];
+            d <= hashVector[32*3 +: 32];
+            e <= hashVector[32*4 +: 32];
+            f <= hashVector[32*5 +: 32];
+            g <= hashVector[32*6 +: 32];
+            h <= hashVector[32*7 +: 32];
+        end
+        else if(getNewHash) begin
+            a <= newHash[32*0 +: 32];
+            b <= newHash[32*1 +: 32];
+            c <= newHash[32*2 +: 32];
+            d <= newHash[32*3 +: 32];
+            e <= newHash[32*4 +: 32];
+            f <= newHash[32*5 +: 32];
+            g <= newHash[32*6 +: 32];
+            h <= newHash[32*7 +: 32];
+        end
+        else begin
+            a <= a;
+            b <= b;
+            c <= c;
+            d <= d;
+            e <= e;
+            f <= f;
+            g <= g;
+            h <= h;
+        end
     end
 
     reg [31:0] a_r1;
@@ -413,9 +452,35 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 
     reg [31:0] t1;
     reg  t1Carry;
+    reg [31:0] hPipe1;
 
     always @(posedge clk) begin
-        {t1Carry,t1} <= (summation1_output + choice_output) + (cur_w_value + cur_k_value) + h;
+        hPipe1 <= h;
+    end
+
+    reg [31:0] dPipe1;
+
+    always @(posedge clk) begin
+        dPipe1 <= d;
+    end
+
+    reg [31:0] wk;
+    reg wkCarry;
+
+    always @(posedge clk) begin
+        {wkCarry,wk} <= (cur_w_value + cur_k_value);
+    end
+
+
+    always @(posedge clk) begin
+        {t1Carry,t1} <= (summation1_output + choice_output)  + (hPipe1);
+    end
+
+    reg [31:0] t1d;
+    reg t1dCarry;
+
+    always @(posedge clk) begin
+        {t1dCarry,t1d} <= (summation1_output + choice_output)  + (hPipe1 + dPipe1);
     end
 
     reg [31:0] t2;
@@ -425,17 +490,30 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
         {t2Carry,t2} <= summation0_output + major_output;
     end
 
-    reg [255:0] newHash;
-    always @(*) begin
-        newHash[32*0 +: 32] <= t1 + t2;
-        newHash[32*1 +: 32] <= a;
-        newHash[32*2 +: 32] <= b;
-        newHash[32*3 +: 32] <= c;
-        newHash[32*4 +: 32] <= t1 + d;
-        newHash[32*5 +: 32] <= e;
-        newHash[32*6 +: 32] <= f;
-        newHash[32*7 +: 32] <= g;
+    always @(posedge clk) begin
+        if(hashCycle == 2) begin
+            newHash[32*0 +: 32] <= (t1 + t2) + wk;
+            newHash[32*1 +: 32] <= a;
+            newHash[32*2 +: 32] <= b;
+            newHash[32*3 +: 32] <= c;
+            newHash[32*4 +: 32] <= t1d + wk;
+            newHash[32*5 +: 32] <= e;
+            newHash[32*6 +: 32] <= f;
+            newHash[32*7 +: 32] <= g;
+        end
+        else begin
+            newHash[32*0 +: 32] <= newHash[32*0 +: 32];
+            newHash[32*1 +: 32] <= newHash[32*1 +: 32];
+            newHash[32*2 +: 32] <= newHash[32*2 +: 32];
+            newHash[32*3 +: 32] <= newHash[32*3 +: 32];
+            newHash[32*4 +: 32] <= newHash[32*4 +: 32];
+            newHash[32*5 +: 32] <= newHash[32*5 +: 32];
+            newHash[32*6 +: 32] <= newHash[32*6 +: 32];
+            newHash[32*7 +: 32] <= newHash[32*7 +: 32];
+        end
     end
+
+
 
 
 
