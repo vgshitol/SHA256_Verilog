@@ -746,7 +746,7 @@ module w64 #(parameter W_LENGTH = 64
         begin
             if(enable2 && !w_vector_complete && w_vector_index2 >= 16)
                 begin
-		    s0word = w_vector[(w_vector_index2-15)*32 + 31 -: 32];
+		            s0word = w_vector[(w_vector_index2-15)*32 + 31 -: 32];
                     s0w_r1 = {s0word[6:0], s0word[31:7]};
                     s0w_r2 = {s0word[17:0], s0word[31:18]};
                     s0w_r3[28:0] = s0word[31:3];

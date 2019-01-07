@@ -80,88 +80,12 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
     always @(posedge clk)
         finish <= resetSHA ? 0 : finish;
 
+
     always @(posedge clk)
         begin
             if(resetSHA) msgEnable <= 0;
             else msgEnable <= (goSignal || msgEnable) && !finish;
         end
-
-        //message vector
-    reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0]   msgAddress;  // address of letter
-  //  reg                                      msgEnable;
-    reg                                      msgWrite;
-    reg [7:0]                                msgData;  // read each letter
-    reg [ $clog2(MAX_MESSAGE_LENGTH)-1:0]    msgLength;
-
-    always @(posedge clk)
-        begin
-            //output
-            dut__msg__address <= msgAddress;
-            dut__msg__enable <= msgEnable;
-            dut__msg__write <= msgWrite;
-            msgLength <= xxx__dut__msg_length;
-
-            // input
-            msgData <= msg__dut__data;
-        end
-
-    reg msgAddressComplete;
-        // Counter for msg Vector
-    always @(posedge clk)
-        begin
-            if(resetSHA || !msgEnable) begin
-                msgAddress <= 0;
-                msgWrite <= 0;
-            end
-            else if(msgAddress < msgLength) begin
-                msgWrite <= 0;
-                msgAddress <= msgAddress+1;
-            end
-            else if(msgAddress == msgLength) begin
-                msgWrite <= 1;
-                msgAddress <= msgAddress;
-            end
-            else begin
-                msgAddress <= msgAddress;
-                msgWrite <= 1;
-            end
-
-            msgAddressComplete <= (msgAddress == msgLength);
-        end
-
-    reg [511:0] msgVector;
-    reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0] msgAddressPipe1;
-    reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0] msgAddressPipe2;
-
-    reg  msgAddressCompletePipe1;
-    reg  msgAddressCompletePipe2;
-
-    always @(posedge clk)
-        begin
-            msgAddressPipe1 <= msgAddress;
-            msgAddressPipe2 <= msgAddressPipe1;
-
-            msgAddressCompletePipe1 <= msgAddressComplete;
-            msgAddressCompletePipe2 <= msgAddressCompletePipe1;
-        end
-
-
-            genvar msgIndex;
-    generate
-        for (msgIndex=0; msgIndex<MAX_MESSAGE_LENGTH; msgIndex=msgIndex+1) begin
-            always @(posedge clk) begin
-                if(resetSHA || !msgEnable) msgVector[511 - 8*msgIndex -: 8] <= 0;
-                else if (!msgAddressCompletePipe1 && msgIndex == msgAddressPipe2) msgVector[511 - 8*msgIndex -: 8] <= msgData;
-                else if (msgAddressCompletePipe1) msgVector[511 - 8*msgLength -: 8] <= 8'h80;
-                else msgVector[511 - 8*msgIndex -: 8] <= msgVector[511 - 8*msgIndex -: 8];
-            end
-        end
-
-        always @(posedge clk) begin
-            msgVector[71:0] <= msgLength*8;
-        end
-    endgenerate
-
 
         //hash vector
     reg [ $clog2(NUMBER_OF_Hs)-1:0]          hmemAddress;  // address of letter
@@ -245,6 +169,64 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
         end
     endgenerate
 
+        //message vector
+    reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0]   msgAddress;  // address of letter
+        //  reg                                      msgEnable;
+    reg                                      msgWrite;
+    reg [7:0]                                msgData;  // read each letter
+    reg [ $clog2(MAX_MESSAGE_LENGTH)-1:0]    msgLength;
+
+    always @(posedge clk)
+        begin
+            //output
+            dut__msg__address <= msgAddress;
+            dut__msg__enable <= msgEnable;
+            dut__msg__write <= msgWrite;
+            msgLength <= xxx__dut__msg_length;
+
+            // input
+            msgData <= msg__dut__data;
+        end
+
+    reg msgAddressComplete;
+        // Counter for msg Vector
+    always @(posedge clk)
+        begin
+            if(resetSHA || !msgEnable) begin
+                msgAddress <= 0;
+                msgWrite <= 0;
+            end
+            else if(msgAddress < msgLength) begin
+                msgWrite <= 0;
+                msgAddress <= msgAddress+1;
+            end
+            else if(msgAddress == msgLength) begin
+                msgWrite <= 1;
+                msgAddress <= msgAddress;
+            end
+            else begin
+                msgAddress <= msgAddress;
+                msgWrite <= 1;
+            end
+
+            msgAddressComplete <= (msgAddress == msgLength);
+        end
+
+    reg [511:0] msgVector;
+    reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0] msgAddressPipe1;
+    reg  [ $clog2(MAX_MESSAGE_LENGTH)-1:0] msgAddressPipe2;
+
+    reg  msgAddressCompletePipe1;
+    reg  msgAddressCompletePipe2;
+
+    always @(posedge clk)
+        begin
+            msgAddressPipe1 <= msgAddress;
+            msgAddressPipe2 <= msgAddressPipe1;
+
+            msgAddressCompletePipe1 <= msgAddressComplete;
+            msgAddressCompletePipe2 <= msgAddressCompletePipe1;
+        end
 
         //K vector
     reg  [ $clog2(NUMBER_OF_Ks)-1:0]         kmemAddress;  // address of letter
@@ -269,6 +251,69 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
             if(resetSHA) kmemEnable <= 0;
             else kmemEnable <= ((msgAddressCompletePipe2 && hmemAddressCompletePipe2) || kmemEnable) && !finish;
         end
+
+    genvar msgIndex;
+    generate
+        for (msgIndex=0; msgIndex<MAX_MESSAGE_LENGTH; msgIndex=msgIndex+1) begin
+            always @(posedge clk) begin
+                if(resetSHA || !msgEnable) msgVector[511 - 8*msgIndex -: 8] <= 0;
+                else if (!msgAddressCompletePipe1 && msgIndex == msgAddressPipe2) msgVector[511 - 8*msgIndex -: 8] <= msgData;
+                else if (msgAddressCompletePipe1) msgVector[511 - 8*msgLength -: 8] <= 8'h80;
+                else msgVector[511 - 8*msgIndex -: 8] <= msgVector[511 - 8*msgIndex -: 8];
+            end
+        end
+
+        always @(posedge clk) begin
+            msgVector[71:0] <= msgLength*8;
+        end
+    endgenerate
+
+    reg [511:0] w_vector;
+    reg [31:0] new_w;
+    reg startNewW;
+
+    always @(posedge clk)
+        begin
+            if(resetSHA || !msgEnable) startNewW <= 0;
+            else if (msgAddressCompletePipe2) startNewW <= 1;
+            else startNewW <= startNewW;
+        end
+
+    genvar nwIndex;
+    generate
+        for (nwIndex=0; nwIndex< 16; nwIndex=nwIndex+1) begin
+            always @(posedge clk) begin
+                if(!startNewW) w_vector[511 - nwIndex*32 -: 32] <= msgVector[511 - nwIndex*32 -: 32];
+                else if(startNewW && (nwIndex == kmemAddress - 16) && (kmemAddress < 32) && (kmemAddress >= 16))w_vector[511 - nwIndex*32 -: 32] <= new_w;
+                else if(startNewW && (nwIndex == kmemAddress - 32) && (kmemAddress < 48) && (kmemAddress >= 32))w_vector[511 - nwIndex*32 -: 32] <= new_w;
+                else if(startNewW && (nwIndex == kmemAddress - 48) && (kmemAddress < 64) && (kmemAddress >= 48))w_vector[511 - nwIndex*32 -: 32] <= new_w;
+                else w_vector[511 - nwIndex*32 -: 32] <= w_vector[511 - nwIndex*32 -: 32];
+            end
+        end
+    endgenerate
+
+    reg [31:0] s0word;
+
+    always @(*) begin
+        s0word = w_vector[(kmemAddress%16-15)*32 + 31 -: 32];
+    end
+
+    reg [31:0] s0w_r1;
+    reg [31:0] s0w_r2;
+    reg [31:0] s0w_r3;
+
+    always @(*) begin
+        s0w_r1 = {s0word[6:0], s0word[31:7]};
+        s0w_r2 = {s0word[17:0], s0word[31:18]};
+        s0w_r3[28:0] = s0word[31:3];
+        s0w_r3[31:29] = 0;
+    end
+
+    reg [31:0] sigma0_s0word;
+
+    always @(posedge clk) begin
+        sigma0_s0word <= (s0w_r1 ^ s0w_r2) ^ s0w_r3;
+    end
 
     reg kmemAddressComplete;
 
@@ -342,11 +387,11 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
 
     genvar kmemIndex;
     generate
-            always @(posedge clk) begin
-                if(resetSHA || !kmemEnable) cur_k_value <= 0;
-                else if (!kmemAddressCompletePipe2) cur_k_value <= kmemData;
-                else cur_k_value <= cur_k_value;
-            end
+        always @(posedge clk) begin
+            if(resetSHA || !kmemEnable) cur_k_value <= 0;
+            else if (!kmemAddressCompletePipe2) cur_k_value <= kmemData;
+            else cur_k_value <= cur_k_value;
+        end
     endgenerate
 
     reg [31:0] cur_w_value;
@@ -356,7 +401,7 @@ module MyDesign #(parameter OUTPUT_LENGTH       = 8,
         for(wIndex = 0; wIndex < 16; wIndex = wIndex + 1) begin
             always @(posedge clk) begin
                 if(!kmemEnable || resetSHA) cur_w_value <= 0;
-                else if(kmemAddressPipe2 >= 0 && !kmemAddressCompletePipe2) cur_w_value <= msgVector[511 - 32*kmemAddressPipe2[3:0] -: 32];
+                else if(kmemAddressPipe2 >= 0 && !kmemAddressCompletePipe2) cur_w_value <= w_vector[511 - 32*kmemAddressPipe2[3:0] -: 32];
                 else cur_w_value <= cur_w_value;
             end
         end
