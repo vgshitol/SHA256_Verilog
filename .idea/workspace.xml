@@ -11,13 +11,14 @@
   <component name="ChangeListManager">
     <list default="true" id="12e9ee35-3f56-42a2-858c-3dc8295383e2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verilog/MyDesign.v" beforeDir="false" afterPath="$PROJECT_DIR$/verilog/MyDesign.v" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verilog2/MyDesign.v" beforeDir="false" afterPath="$PROJECT_DIR$/verilog2/MyDesign.v" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verilog2/mti_lib/_info" beforeDir="false" afterPath="$PROJECT_DIR$/verilog2/mti_lib/_info" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verilog2/mti_lib/_lib.qdb" beforeDir="false" afterPath="$PROJECT_DIR$/verilog2/mti_lib/_lib.qdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/verilog2/mti_lib/_lib1_32.qdb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/verilog2/mti_lib/_lib1_32.qpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/verilog2/mti_lib/_lib1_32.qtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/verilog2/mti_lib/_lib1_35.qdb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/verilog2/mti_lib/_lib1_35.qpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/verilog2/mti_lib/_lib1_35.qtl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/verilog2/result_0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/verilog2/result_0.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/verilog2/result_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/verilog2/result_1.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/verilog2/vsim.wlf" beforeDir="false" afterPath="$PROJECT_DIR$/verilog2/vsim.wlf" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/verilog2/MyDesign.v">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="123">
-              <caret line="294" column="21" selection-start-line="294" selection-start-column="21" selection-end-line="294" selection-end-column="21" />
+            <state relative-caret-position="272">
+              <caret line="684" column="29" selection-start-line="684" selection-start-column="29" selection-end-line="684" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -49,8 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pythonScript/output.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="160" column="13" selection-start-line="160" selection-start-column="13" selection-end-line="160" selection-end-column="13" />
+            <state relative-caret-position="112">
+              <caret line="868" column="13" selection-start-line="868" selection-start-column="13" selection-end-line="868" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -58,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/verilog/MyDesign.v">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="749" column="19" selection-start-line="748" selection-start-column="19" selection-end-line="749" selection-end-column="19" />
+            <state relative-caret-position="296">
+              <caret line="799" column="72" selection-start-line="799" selection-start-column="11" selection-end-line="799" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -99,18 +100,26 @@
       <find>enableMsgVector</find>
       <find>reset</find>
       <find>hmemAddress</find>
-      <find>hmem</find>
       <find>cur_w_value</find>
       <find>kmemEnablePipe2</find>
       <find>newHash</find>
       <find>hashUpdateEnablePipe1</find>
-      <find>hashUpdateEnable</find>
       <find>msgVector</find>
+      <find>kmemAddress</find>
+      <find>kmemAddressPipe2</find>
+      <find>hashUpdateEnable</find>
+      <find>kmemAddressCompletePipe2</find>
+      <find>new_w</find>
+      <find>kmemaddresspip</find>
+      <find>getNewHash</find>
+      <find>hmem</find>
     </findStrings>
     <replaceStrings>
       <replace>msgEnable</replace>
       <replace>resetSHA</replace>
       <replace>kmem</replace>
+      <replace>kmemAddressPipe1</replace>
+      <replace>dom</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -196,16 +205,15 @@
       <updated>1546444213220</updated>
       <workItem from="1546444214968" duration="36000" />
       <workItem from="1546444271227" duration="10279000" />
-      <workItem from="1546559495831" duration="48121000" />
+      <workItem from="1546559495831" duration="62414000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58436000" />
+    <option name="totallyTimeSpent" value="72729000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -219,7 +227,7 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -251,6 +259,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/verilog/MyDesign.v">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="799" column="72" selection-start-line="799" selection-start-column="11" selection-end-line="799" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pythonScript/message.dat">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -260,22 +275,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pythonScript/output.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="160" column="13" selection-start-line="160" selection-start-column="13" selection-end-line="160" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/verilog/MyDesign.v">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="749" column="19" selection-start-line="748" selection-start-column="19" selection-end-line="749" selection-end-column="19" />
+        <state relative-caret-position="112">
+          <caret line="868" column="13" selection-start-line="868" selection-start-column="13" selection-end-line="868" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/verilog2/MyDesign.v">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="294" column="21" selection-start-line="294" selection-start-column="21" selection-end-line="294" selection-end-column="21" />
+        <state relative-caret-position="272">
+          <caret line="684" column="29" selection-start-line="684" selection-start-column="29" selection-end-line="684" selection-end-column="29" />
         </state>
       </provider>
     </entry>
