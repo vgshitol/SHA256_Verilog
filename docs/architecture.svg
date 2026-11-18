@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 820" width="960" height="820" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#5F6368"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4285F4"/>
+    </marker>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="820" fill="#FFFFFF"/>
+  <text x="480" y="34" text-anchor="middle" font-size="20" font-weight="bold" fill="#202124">SHA-256 hardware — submitted modular design</text>
+  <text x="480" y="56" text-anchor="middle" font-size="13" fill="#5F6368">NC State ECE 564, Fall 2018 · one 512-bit block · messages of 1–55 bytes · MyDesign.v (ProjectSubmissionFolder/v/)</text>
+
+  <!-- ============ Memories ============ -->
+  <text x="30" y="92" font-size="12" font-weight="bold" fill="#4285F4">MEMORIES (outside the DUT, in the testbench)</text>
+
+  <g>
+    <rect x="30" y="100" width="280" height="72" rx="8" fill="#E8F0FE" stroke="#4285F4" stroke-width="1.5"/>
+    <text x="170" y="126" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">Message SRAM</text>
+    <text x="170" y="148" text-anchor="middle" font-size="12.5" fill="#202124">55 × 8 bit · message.dat</text>
+    <text x="170" y="166" text-anchor="middle" font-size="11.5" fill="#5F6368">ASCII bytes, read serially</text>
+  </g>
+  <g>
+    <rect x="340" y="100" width="280" height="72" rx="8" fill="#E8F0FE" stroke="#4285F4" stroke-width="1.5"/>
+    <text x="480" y="126" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">K constant SRAM</text>
+    <text x="480" y="148" text-anchor="middle" font-size="12.5" fill="#202124">64 × 32 bit · K.dat</text>
+    <text x="480" y="166" text-anchor="middle" font-size="11.5" fill="#5F6368">FIPS 180-4 round constants · read in Phase 2</text>
+  </g>
+  <g>
+    <rect x="650" y="100" width="280" height="72" rx="8" fill="#E8F0FE" stroke="#4285F4" stroke-width="1.5"/>
+    <text x="790" y="126" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">H initial SRAM</text>
+    <text x="790" y="148" text-anchor="middle" font-size="12.5" fill="#202124">8 × 32 bit · H.dat</text>
+    <text x="790" y="166" text-anchor="middle" font-size="11.5" fill="#5F6368">FIPS 180-4 initial hash values</text>
+  </g>
+
+  <!-- arrows memories -> load -->
+  <line x1="170" y1="172" x2="170" y2="196" stroke="#5F6368" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="790" y1="172" x2="790" y2="196" stroke="#5F6368" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Phase 1: load ============ -->
+  <text x="30" y="216" font-size="12" font-weight="bold" fill="#4285F4">PHASE 1 — LOAD (message and hash in parallel, started by go)</text>
+
+  <g>
+    <rect x="30" y="224" width="430" height="86" rx="8" fill="#FFFFFF" stroke="#4285F4" stroke-width="1.5"/>
+    <text x="245" y="250" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">msg_vector — 512-bit message block M</text>
+    <text x="245" y="272" text-anchor="middle" font-size="12.5" fill="#202124">byte-serial load · append 1 · append 64-bit length</text>
+    <text x="245" y="292" text-anchor="middle" font-size="11.5" fill="#5F6368">M = message || 1 || 0...0 || length-in-bits (one block)</text>
+  </g>
+  <g>
+    <rect x="500" y="224" width="430" height="86" rx="8" fill="#FFFFFF" stroke="#4285F4" stroke-width="1.5"/>
+    <text x="715" y="250" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">hash — 256-bit initial hash H</text>
+    <text x="715" y="272" text-anchor="middle" font-size="12.5" fill="#202124">counter_h walks H0–H7 into a 256-bit register</text>
+    <text x="715" y="292" text-anchor="middle" font-size="11.5" fill="#5F6368">H0–H7: 6a09e667 bb67ae85 … 5be0cd19 (FIPS 180-4)</text>
+  </g>
+
+  <!-- arrows load -> schedule -->
+  <line x1="245" y1="310" x2="245" y2="336" stroke="#5F6368" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="715" y1="310" x2="715" y2="336" stroke="#5F6368" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Phase 2: schedule ============ -->
+  <text x="30" y="356" font-size="12" font-weight="bold" fill="#34A853">PHASE 2 — MESSAGE SCHEDULE (wEn fires when M and H are both complete)</text>
+
+  <g>
+    <rect x="30" y="364" width="280" height="86" rx="8" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <text x="170" y="390" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">k_vector — current K</text>
+    <text x="170" y="412" text-anchor="middle" font-size="12.5" fill="#202124">counter_wk steps 0–63</text>
+    <text x="170" y="432" text-anchor="middle" font-size="11.5" fill="#5F6368">cur_k_value = K[j]</text>
+  </g>
+  <g>
+    <rect x="340" y="364" width="280" height="86" rx="8" fill="#E6F4EA" stroke="#34A853" stroke-width="1.5"/>
+    <text x="480" y="390" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">w64 — 64-word W array</text>
+    <text x="480" y="412" text-anchor="middle" font-size="12.5" fill="#202124">2048-bit array · W[0..15] = M words</text>
+    <text x="480" y="432" text-anchor="middle" font-size="11.5" fill="#5F6368">W[j] = σ1(j−2)+W[j−7]+σ0(j−15)+W[j−16]</text>
+  </g>
+  <g>
+    <rect x="650" y="364" width="280" height="86" rx="8" fill="#FFFFFF" stroke="#5F6368" stroke-width="1.5"/>
+    <text x="790" y="390" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">counter_wk · wEn</text>
+    <text x="790" y="412" text-anchor="middle" font-size="12.5" fill="#202124">one W/K pair per clock</text>
+    <text x="790" y="432" text-anchor="middle" font-size="11.5" fill="#5F6368">drives the round counter, 0–63</text>
+  </g>
+
+  <!-- arrow schedule -> hash update -->
+  <line x1="480" y1="450" x2="480" y2="476" stroke="#5F6368" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Phase 3: hash update ============ -->
+  <text x="30" y="496" font-size="12" font-weight="bold" fill="#EA4335">PHASE 3 — COMPRESSION (64 rounds, one round per clock)</text>
+
+  <g>
+    <rect x="30" y="504" width="900" height="132" rx="8" fill="#FCE8E6" stroke="#EA4335" stroke-width="1.5"/>
+    <text x="480" y="530" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">hash_update — working variables a–h, updated every clock</text>
+    <!-- round function chips (short labels) -->
+    <g font-size="13" font-weight="bold" fill="#202124">
+      <rect x="55" y="544" width="130" height="34" rx="6" fill="#FFFFFF" stroke="#EA4335"/>
+      <text x="120" y="566" text-anchor="middle">Σ0(a)</text>
+      <rect x="197" y="544" width="130" height="34" rx="6" fill="#FFFFFF" stroke="#EA4335"/>
+      <text x="262" y="566" text-anchor="middle">Maj(a, b, c)</text>
+      <rect x="339" y="544" width="130" height="34" rx="6" fill="#FFFFFF" stroke="#EA4335"/>
+      <text x="404" y="566" text-anchor="middle">Σ1(e)</text>
+      <rect x="481" y="544" width="130" height="34" rx="6" fill="#FFFFFF" stroke="#EA4335"/>
+      <text x="546" y="566" text-anchor="middle">Ch(e, f, g)</text>
+      <rect x="623" y="544" width="130" height="34" rx="6" fill="#FFFFFF" stroke="#EA4335"/>
+      <text x="688" y="566" text-anchor="middle">T1</text>
+      <rect x="765" y="544" width="130" height="34" rx="6" fill="#FFFFFF" stroke="#EA4335"/>
+      <text x="830" y="566" text-anchor="middle">T2</text>
+    </g>
+    <text x="480" y="602" text-anchor="middle" font-size="12.5" fill="#202124">T1 = h + Σ1(e) + Ch(e, f, g) + K[j] + W[j] · T2 = Σ0(a) + Maj(a, b, c)</text>
+    <text x="480" y="624" text-anchor="middle" font-size="12.5" fill="#202124">each round: a ← T1 + T2 · e ← d + T1 · (b, c, d, f, g, h shift down one slot)</text>
+  </g>
+
+  <!-- arrow hash update -> store -->
+  <line x1="480" y1="636" x2="480" y2="662" stroke="#5F6368" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- ============ Phase 4: store ============ -->
+  <text x="30" y="682" font-size="12" font-weight="bold" fill="#FBBC05">PHASE 4 — STORE</text>
+
+  <g>
+    <rect x="30" y="690" width="430" height="64" rx="8" fill="#FEF7E0" stroke="#E8710A" stroke-width="1.5"/>
+    <text x="245" y="716" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">store_hash</text>
+    <text x="245" y="738" text-anchor="middle" font-size="12.5" fill="#202124">writes H[0]–H[7] to the output SRAM, one word per clock</text>
+  </g>
+  <g>
+    <rect x="500" y="690" width="280" height="64" rx="8" fill="#E8F0FE" stroke="#4285F4" stroke-width="1.5"/>
+    <text x="640" y="716" text-anchor="middle" font-size="15" font-weight="bold" fill="#202124">Output SRAM</text>
+    <text x="640" y="738" text-anchor="middle" font-size="12.5" fill="#202124">8 × 32 bit · the 256-bit digest</text>
+  </g>
+  <g>
+    <rect x="800" y="690" width="130" height="64" rx="8" fill="#FFFFFF" stroke="#34A853" stroke-width="1.5"/>
+    <text x="865" y="716" text-anchor="middle" font-size="15" font-weight="bold" fill="#34A853">finish ↑</text>
+    <text x="865" y="738" text-anchor="middle" font-size="12" fill="#202124">asserted when done</text>
+  </g>
+  <line x1="460" y1="722" x2="500" y2="722" stroke="#5F6368" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <line x1="780" y1="722" x2="800" y2="722" stroke="#34A853" stroke-width="1.5" marker-end="url(#arrow-blue)"/>
+
+  <!-- footer -->
+  <text x="480" y="790" text-anchor="middle" font-size="12.5" fill="#5F6368">Measured: 91 clocks (≤ 7-char msg) · 92 (8) · 111 (27) · 139 (55) · 24 ns clock · 36,542.02 µm² (Nangate 45 nm)</text>
+  <text x="480" y="810" text-anchor="middle" font-size="11.5" fill="#5F6368">All I/O registered (registerIO*). Every stage is a small module with its own counter + enable — see README for the module map.</text>
+</svg>
